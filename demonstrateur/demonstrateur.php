@@ -35,7 +35,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
 
     <!-- Logo Insa en haut a gauche -->
     <div id="logoinsa" style="display: none;">
-        <a href="https://www.uphf.fr/insa-hdf"><img src="../textures/logoinsa.png" style="width: 100%;"></a>
+        <a href="https://www.uphf.fr/insa-hdf"><img id="roundinsa" src="../textures/logoinsa.png" style="width: 100%;"></a>
     </div>
 
     <!-- Page qui s'affiche lorque que l'on clique sur un point info -->

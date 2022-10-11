@@ -32,7 +32,7 @@
 
     <!-- Logo Insa en haut a gauche -->
     <div id="logoinsa" style="display: none;">
-        <a href="https://www.uphf.fr/insa-hdf"><img src="../textures/logoinsa.png" style="width: 100%;"></a>
+        <a href="https://www.uphf.fr/insa-hdf"><img id="roundinsa" src="../textures/logoinsa.png" style="width: 100%;"></a>
     </div>
 
     <svg id="minimap" version="1.1" style="display: none;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080" onclick="openmap(); arrowUp();">

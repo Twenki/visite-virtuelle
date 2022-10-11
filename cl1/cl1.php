@@ -37,7 +37,7 @@
 
 	<!-- Logo Insa en haut a gauche -->
 	<div id="logoinsa" style="display: block;">
-		<a href="https://www.uphf.fr/insa-hdf"><img src="../textures/logoinsa.png" style="width: 100%;"></a>
+		<a href="https://www.uphf.fr/insa-hdf"><img id="roundinsa" src="../textures/logoinsa.png" style="width: 100%;"></a>
 	</div>
 
 	<!--
