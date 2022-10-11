@@ -1,0 +1,235 @@
+/* map 360° */
+@font-face {
+    font-family: OpenDys;
+    src: url('OpenDyslexic-Regular.otf');
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    font-family: serif;
+    color: rgba(0, 0, 0, .77);
+    font-family: sans-serif;
+    cursor: default;
+}
+
+html.help {
+    cursor: pointer
+}
+
+hr {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+    border: none;
+    height: 2px;
+}
+
+/*Its ok*/
+#tooltip {
+    opacity: 0;
+    z-index: 99;
+    color: #bbb;
+    display: block;
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-align: center;
+    text-shadow: 1px 1px 2px #111;
+    background: rgba(51, 51, 51, 0.9);
+    border: 1px solid rgba(34, 34, 34, 0.9);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -o-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    position: absolute;
+}
+
+#tooltip.is-active {
+    opacity: 1;
+    transform: translate3d(-50%, calc(-100% - 30px), 0);
+
+}
+
+
+.container {
+    position: absolute;
+    width: 50%;
+}
+
+
+/* Make the image responsive */
+.container img {
+    width: 6%;
+    height: auto;
+    padding-left: 10%;
+
+}
+
+.toolbar {
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+}
+
+.TopBar {
+    width: 100%;
+    display: flex;
+}
+
+.OpenDys-font {
+    font-family: OpenDys !important;
+}
+
+#text {
+    animation: apparition 1s linear;
+    font-size: 1.5em;
+    text-align: left;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+#containerInfo {
+    width: 100%;
+    height: 60%;
+    margin-top: 10%;
+    overflow: auto;
+    display: flex;
+}
+
+.toolbar img {
+    width: 4%
+}
+
+#logoinsa {
+    display: none;
+    position: absolute;
+    width: 6%;
+    padding: 1%;
+}
+#logo {
+    position: absolute;
+    width: 6%;
+    padding: 1%;
+    right: 0;
+}
+
+#Info,
+#PosterCEBD,
+#Infrarouge,
+#fluo,
+#absorption,
+#Cuve,
+#Thermique {
+    position: absolute;
+    background-image: url("../ressources/fondinfo.jpg");
+    opacity: 85%;
+    width: 100%;
+    height: 50vw;
+    background-size: 100% 100%;
+    animation: apparition 1s linear;
+    display: none;
+}
+
+
+
+#imginfra {
+    width: 70%;
+    height: 100%;
+    margin-right: 2%;
+}
+
+#layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    animation: apparition 1s linear;
+}
+
+#video_directeur {
+    position: absolute;
+    opacity: 97%;
+    width: 100%;
+    height: 100%;
+    padding: 3%;
+    padding-left: 10%;
+    background-size: 50% 50%;
+    animation: apparition 1s linear;
+}
+
+@keyframes apparition {
+    0% {
+        transform:
+            translateZ(1e12px) translate(0px, 91px) translate(-512px, -318px) scale(0.741211, 0.740566) translate(512px, 318px) translate(0px, 0px) rotate(0deg) translate(0px, 0px)
+    }
+}
+
+
+.container input {
+    width: 10%;
+    height: 10%;
+}
+
+#minimap {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    animation: apparition 1s linear;
+    display: none;
+}
+
+.mapAndInfos {
+    background-color: grey;
+}
+
+#arrowUp {
+    position: fixed;
+    width: 50px;
+    right: 0;
+    margin-top: 8%;
+    display: none;
+    animation: apparition 1s linear;
+}
+
+#infoimage {
+    position: fixed;
+    width: 50px;
+    right: 0;
+    margin-top: 7%;
+    display: none;
+    animation: apparition 1s linear;
+}
+
+.zoom {
+    transition: transform .2s;
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.zoom:hover {
+    -ms-transform: scale(1.5);
+    /* IE 9 */
+    -webkit-transform: scale(1.5);
+    /* Safari 3-8 */
+    transform: scale(1.5);
+}
+
+[id*=region_']{
+ cursor:pointer;
+}
