@@ -38,10 +38,10 @@
 		<a href="https://www.uphf.fr/insa-hdf"><img id="roundinsa" src="../textures/logoinsa.png" style="width: 100%;"></a>
 	</div>
 
-	<div id="absorption" style="display: none;" onclick="absorption();">
+	<div id="vueaip" style="display: none;" onclick="vueaip();">
 		<div id="containerInfo">
 			<div class="zoom">
-				<img src="Info/spectrophometre_absorption.jpg" id="imginfra" alt="" onclick="window.open(this.src)">
+				<img src="Info/vueaip.jpg" id="imginfra" alt="" onclick="window.open(this.src)">
 			</div>
 		</div>
 	</div>
@@ -146,6 +146,16 @@
 
 		function logoInsa() {
 			var div = document.getElementById("logoinsa");
+			if (div.style.display === "none") {
+				div.style.display = "block";
+			} else {
+				div.style.display = "none";
+			}
+
+		}
+
+		function vueaip() {
+			var div = document.getElementById("vueaip");
 			if (div.style.display === "none") {
 				div.style.display = "block";
 			} else {
@@ -640,6 +650,14 @@
 				image: 'arrowleft.png'
 			})
 
+			//------------- POINT INFO --------------//
+
+			sEtage1Couloir.addPoint({
+				position: new THREE.Vector3(-2.922502477197934, -0.3895707391016115, 10.533183389678136),
+				name: 'vue aip',
+				scene: false,
+				image: 'info.png'
+			})
 
 			s.createScene(scene)
 			s.appear()
@@ -687,6 +705,8 @@
 				imprimante.destroy()
 			}
 
+
+
 			renderer.setSize(window.innerWidth, window.innerHeight)
 			container.appendChild(renderer.domElement)
 
@@ -725,9 +745,9 @@
 						}
 					}
 
-					if (intersect.object.name === "Info") {
+					if (intersect.object.name === "vue aip") {
 						intersect.object.onClick()
-						Info()
+						vueaip()
 					}
 
 				})
