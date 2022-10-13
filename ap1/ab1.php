@@ -20,7 +20,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
     <div class="container">
         <div class="toolbar">
             <a href="../carrousel/index.html"><img class="accueil" src="../textures/accueil.png" alt="accueil"></a>
-            <a href="#"><img src="../ressources/iconMap.png" alt="Map" onclick="maFonction();"></a>
+            <a href="#"><img src="../ressources/iconMap.png" alt="Map" onclick="maFonction(); logoInsa(); "></a>
             <a href="#"><img src="../textures/minimap.png" name="minimap" onclick="openmap(); arrowUp();"></a>
             <img src="../textures/drapeau_fr.png" id="drapeau" class="switch-lang" onclick="ChangeDrapeau();">
             <img src="../textures/dyslexie.png" id="OpenDys" class="switch-font">
@@ -28,7 +28,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             <hr />
         </div>
     </div>
-    
+
     <div id="logo">
         <img src="tp/scientifique.png" style="width: 100%;" onclick="etage2()">
         <img src="tp/fablab.png" style="width: 100%;" onclick="CentreAide()">
@@ -144,6 +144,23 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
 
     <!-- Grande carte du campus -->
     <div id="maDIV" style="display: none; ">
+
+        <div class="main">
+            <div class="dropdown_list">
+                <button style="position: absolute;" class="dropdown_button" onclick="show_list()">
+                    Séléctionner votre département
+                </button>
+
+                <div style="position: absolute;" id="courses_id" class="courses">
+                    <li onclick="$('[id*=region_ab2').css('fill', '#aa1d1d');$('[id*=region_ab1').css('fill', '#aa1d1d');">Département éléctronique</li>
+                    <li>département automatique</li>
+                    <li>département informatique</li>
+                    <li>département STAPS</li>
+                    <li>département mathématique</li>
+                </div>
+            </div>
+        </div>
+
         <div class="mapAndInfos">
             <div class="map">
                 <?php include('../ressources/map.svg'); ?>
@@ -311,10 +328,9 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                     function() {
                         if (regionId == "region_cebd") {
                             window.location = '../demonstrateur/demonstrateur.php';
-                        } else if (regionId == "region_ab1")
-                            window.location = '../ap1/ab1.php';
-
-                        else if (regionId == "region_ab2")
+                        } else if (regionId == "region_ab1") {
+                            $('[id*=region_ab2').css('fill', '#aa1d1d')
+                        } else if (regionId == "region_ab2")
                             window.location = '../ap2/ab2.php';
 
                         else if (regionId == "region_ab3")
@@ -343,8 +359,9 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
 
                 console.log(regionId);
 
-
+                
             });
+
         })
         $('[lang="en"]').hide();
 
@@ -357,6 +374,23 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             $("div").toggleClass("OpenDys-font");
             $("#containerInfo").toggleClass("containerInfo");
         });
+
+        function show_list() {
+            var courses = document.getElementById("courses_id");
+
+            if (courses.style.display == "block") {
+                courses.style.display = "none";
+            } else {
+                courses.style.display = "block";
+            }
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown_button')) {
+                document.getElementById('courses_id')
+                    .style.display = "none";
+            }
+        }
+
     </script>
 
     <script>

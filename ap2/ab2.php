@@ -24,10 +24,10 @@
 			<hr />
 		</div>
 	</div>
-	<div id="logo" >
-        <img src="tp/aip.png" style="width: 100%;" onclick="aip()">
-        <img src="tp/etage1.png" style="width: 100%;" onclick="etage1()">
-    </div>
+	<div id="logo">
+		<img src="tp/aip.png" style="width: 100%;" onclick="aip()">
+		<img src="tp/etage1.png" style="width: 100%;" onclick="etage1()">
+	</div>
 	<!-- Page qui s'affiche a chaque entrée de batiment -->
 	<div onclick="Layer();logoInsa();">
 		<img id="layer" src="layer.jpg" alt="">
@@ -36,6 +36,14 @@
 	<!-- Logo Insa en haut a gauche -->
 	<div id="logoinsa" style="display: none;">
 		<a href="https://www.uphf.fr/insa-hdf"><img id="roundinsa" src="../textures/logoinsa.png" style="width: 100%;"></a>
+	</div>
+
+	<div id="absorption" style="display: none;" onclick="absorption();">
+		<div id="containerInfo">
+			<div class="zoom">
+				<img src="Info/spectrophometre_absorption.jpg" id="imginfra" alt="" onclick="window.open(this.src)">
+			</div>
+		</div>
 	</div>
 
 	<!--

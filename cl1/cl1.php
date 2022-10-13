@@ -388,6 +388,8 @@
 			let sCouloirPft = new Scene('RDC/couloirPft.JPG', camera)
 			let sPft1 = new Scene('RDC/PFT.JPG', camera)
 			let sPft2 = new Scene('RDC/PFT2.JPG', camera)
+			let spft3 = new Scene('RDC/PFT3.JPG', camera)
+			let sPft4 = new Scene('RDC/PFT4.JPG', camera)
 			let scouloir = new Scene('couloirAmphi.JPG', camera)
 			let sAmphi1 = new Scene('amphi.JPG', camera)
 			let sAmphi2 = new Scene('amphi2.JPG', camera)
@@ -453,8 +455,8 @@
 				scene: sCouloirFablab,
 				image: 'arrowleft.png'
 			})
-			sCouloirFablab.addPoint({
-				position: new THREE.Vector3(5.975992630871764, -2.940147274283004, 8.728977306896573),
+			sCouloirEntrer.addPoint({
+				position: new THREE.Vector3(-10.798688700290356, -0.5993026862747067, 1.7450187689562913),
 				name: '',
 				scene: sSalleTp1,
 				image: 'door.png'
@@ -462,8 +464,8 @@
 			sSalleTp1.addPoint({
 				position: new THREE.Vector3(7.7029692607012645, -0.47943490156151125, -7.809571327214472),
 				name: '',
-				scene: sCouloirFablab,
-				image: 'rond.png'
+				scene: sCouloirEntrer,
+				image: 'door.png'
 			})
 			sCouloirEntrer.addPoint({
 				position: new THREE.Vector3(9.867007656274257, -4.729592820599556, 0.5045100882069015),
@@ -573,6 +575,42 @@
 				image: 'arrowleft.png'
 			})
 			sHallCl3.addPoint({
+				position: new THREE.Vector3(-8.269770159818542, 1.2173106075253797, -7.063698601303889),
+				name: '',
+				scene: sPft4,
+				image: 'door.png'
+			})
+			sPft4.addPoint({
+				position: new THREE.Vector3(-9.200810232830309, -2.094267863046927, 5.579023084542151),
+				name: '',
+				scene: sHallCl3,
+				image: 'door.png'
+			})
+			sPft4.addPoint({
+				position: new THREE.Vector3(10.320080897399677, 0.7296973896413117, -3.567722685814093),
+				name: '',
+				scene: spft3,
+				image: 'door.png'
+			})
+			spft3.addPoint({
+				position: new THREE.Vector3(-10.872153691728, 0.10684250200474843, 1.2447531491036932),
+				name: '',
+				scene: sPft4,
+				image: 'door.png'
+			})
+			spft3.addPoint({
+				position: new THREE.Vector3(-5.857189960205646, -0.05009241610062076, 9.279198797748379),
+				name: '',
+				scene: sPft2,
+				image: 'door.png'
+			})
+			sPft2.addPoint({
+				position: new THREE.Vector3(10.382682564057903, 0.34249447243760617, -3.4265659918051785),
+				name: '',
+				scene: spft3,
+				image: 'door.png'
+			})
+			sHallCl3.addPoint({
 				position: new THREE.Vector3(-5.535531965700705, 0.07319661154081303, 9.449847790601774),
 				name: '',
 				scene: sEscalierHall,
@@ -602,23 +640,11 @@
 				scene: sPft1,
 				image: 'door.png'
 			})
-			sCouloirPft.addPoint({
-				position: new THREE.Vector3(1.6498211601489308, -1.7501430231955566, 10.684863441605522),
-				name: '',
-				scene: sPft2,
-				image: 'door.png'
-			})
 			sPft1.addPoint({
 				position: new THREE.Vector3(-7.5758453559138434, -4.334841165971625, 6.618201948698681),
 				name: 'Sortie ',
 				scene: sCouloirPft,
 				image: 'rond.png'
-			})
-			sPft2.addPoint({
-				position: new THREE.Vector3(-8.812769573598704, -1.5327225002847635, -6.328656030427126),
-				name: 'Sortie ',
-				scene: sCouloirPft,
-				image: 'arrowleft.png'
 			})
 			sBasEscalier.addPoint({
 				position: new THREE.Vector3(7.224294973613481, -2.885728612715119, -7.722071586077687),
