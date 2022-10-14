@@ -152,7 +152,9 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 </button>
 
                 <div style="position: absolute;" id="courses_id" class="courses">
-                    <li onclick="$('[id*=region_ab2').css('fill', '#aa1d1d');$('[id*=region_ab1').css('fill', '#aa1d1d');">Département éléctronique</li>
+                    <li onclick="$('[id*=region_ab2').css('fill', '#aa1d1d');
+                    $('[id*=region_ab1').css('fill', '#aa1d1d');">
+                    Département éléctronique</li>
                     <li>département automatique</li>
                     <li>département informatique</li>
                     <li>département STAPS</li>
@@ -329,7 +331,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                         if (regionId == "region_cebd") {
                             window.location = '../demonstrateur/demonstrateur.php';
                         } else if (regionId == "region_ab1") {
-                            $('[id*=region_ab2').css('fill', '#aa1d1d')
+                            window.location = '../ap1/ab1.php';
                         } else if (regionId == "region_ab2")
                             window.location = '../ap2/ab2.php';
 
@@ -359,7 +361,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
 
                 console.log(regionId);
 
-                
+
             });
 
         })
@@ -390,7 +392,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                     .style.display = "none";
             }
         }
-
     </script>
 
     <script>
