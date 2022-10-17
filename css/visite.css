@@ -15,7 +15,12 @@ html {
     font-family: sans-serif;
     cursor: default;
 }
-
+iframe,
+        video {
+            filter: url(#greenScreen);
+            position: absolute;
+            
+        }
 .main {
     position: absolute;
     height: 400px;

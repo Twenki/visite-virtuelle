@@ -143,22 +143,32 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
     <img src="../textures/ArrowUp.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
 
     <!-- Grande carte du campus -->
-    <div id="maDIV" style="display: none; ">
+    <div id="maDIV" style="display: none; position: -ms-page; width: 100%;">
 
         <div class="main">
             <div class="dropdown_list">
                 <button style="position: absolute;" class="dropdown_button" onclick="show_list()">
-                    Séléctionner votre département
+                    Séléctionner votre formation
                 </button>
 
-                <div style="position: absolute;" id="courses_id" class="courses">
+                <div style="position: absolute; overflow: auto; height: 50%;" id="courses_id" class="courses">
                     <li onclick="$('[id*=region_ab2').css('fill', '#aa1d1d');
                     $('[id*=region_ab1').css('fill', '#aa1d1d');">
-                    Département éléctronique</li>
-                    <li>département automatique</li>
-                    <li>département informatique</li>
-                    <li>département STAPS</li>
-                    <li>département mathématique</li>
+                    Formation Audiovisuel et Multimédia</li>
+                    <li>Formation Automatique</li>
+                    <li>Formation Cybersécurité</li>
+                    <li>Formation Electronique et Electronique Embarquée</li>
+                    <li>Formation Informatique</li>
+                    <li>Formation Génie Civil</li>
+                    <li>Formation Génie Industriel</li>
+                    <li>Formation Génie Electrique et informatique industrielle</li>
+                    <li>Formation Qualité/Hygiène/Sécruité</li>
+                    <li>Formation Mathématiques</li>
+                    <li>Formation Mécanique et Energétique/ Transports et Energie</li>
+                    <li>Formation Physique/Chimie/Matériaux</li>
+                    <li>Formation Réseaux et Télécommunications</li>
+                    <li>Formation STAPS</li>
+
                 </div>
             </div>
         </div>
