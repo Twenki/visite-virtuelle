@@ -16,7 +16,7 @@
     <div class="container">
         <div class="toolbar">
             <a href="../carrousel/index.html"><img class="accueil" src="../textures/accueil.png" alt="accueil"></a>
-            <a href="#"><img src="../ressources/iconMap.png" alt="Map" onclick="maFonction();"></a>
+            <a href="#"><img src="../ressources/iconMap.png" alt="Map" onclick="maFonction(); logoInsa();"></a>
             <a href="#"><img src="../textures/minimap.png" name="minimap" onclick="openmap(); arrowUp();"></a>
             <img src="../textures/drapeau_fr.png" id="drapeau" class="switch-lang" onclick="ChangeDrapeau();">
             <img src="../textures/dyslexie.png" id="OpenDys" class="switch-font">
@@ -41,6 +41,40 @@
     <img src="../textures/ArrowUp.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
 
     <div id="maDIV" style="display: none; ">
+    <div class="main">
+            <div class="dropdown_list">
+                <button style="position: absolute;" class="dropdown_button" onclick="show_list()">
+                    Séléctionner votre formation
+                </button>
+
+                <div style="position: absolute; overflow: auto; height: 50%;" id="courses_id" class="courses">
+                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
+                    $('[id*=region_ab2').css('fill', '#aa1d1d');
+                    $('[id*=region_ab1').css('fill', '#aa1d1d');">
+                        Formation Audiovisuel et Multimédia</li>
+
+                    <li>Formation Automatique</li>
+
+                    <li>Formation Cybersécurité</li>
+                    <li>Formation Electronique et Electronique Embarquée</li>
+                    <li>Formation Informatique</li>
+                    <li>Formation Génie Civil</li>
+                    <li>Formation Génie Industriel</li>
+                    <li>Formation Génie Electrique et informatique industrielle</li>
+                    <li>Formation Qualité/Hygiène/Sécruité</li>
+                    <li>Formation Mathématiques</li>
+                    <li>Formation Mécanique et Energétique/ Transports et Energie</li>
+                    <li>Formation Physique/Chimie/Matériaux</li>
+                    <li>Formation Réseaux et Télécommunications</li>
+
+                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
+                    $('[id*=region_gym').css('fill', '#aa1d1d');
+                    $('[id*=region_carpeaux').css('fill', '#aa1d1d');">
+                        Formation STAPS</li>
+
+                </div>
+            </div>
+        </div>
         <div class="mapAndInfos">
             <div class="map">
                 <?php include('../ressources/map.svg'); ?>
@@ -203,6 +237,22 @@
             $("div").toggleClass("OpenDys-font");
             $("#containerInfo").toggleClass("containerInfo");
         });
+
+        function show_list() {
+            var courses = document.getElementById("courses_id");
+
+            if (courses.style.display == "block") {
+                courses.style.display = "none";
+            } else {
+                courses.style.display = "block";
+            }
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown_button')) {
+                document.getElementById('courses_id')
+                    .style.display = "none";
+            }
+        }
     </script>
 
     <script>

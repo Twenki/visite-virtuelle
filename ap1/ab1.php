@@ -152,10 +152,13 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 </button>
 
                 <div style="position: absolute; overflow: auto; height: 50%;" id="courses_id" class="courses">
-                    <li onclick="$('[id*=region_ab2').css('fill', '#aa1d1d');
+                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
+                    $('[id*=region_ab2').css('fill', '#aa1d1d');
                     $('[id*=region_ab1').css('fill', '#aa1d1d');">
-                    Formation Audiovisuel et Multimédia</li>
+                        Formation Audiovisuel et Multimédia</li>
+
                     <li>Formation Automatique</li>
+
                     <li>Formation Cybersécurité</li>
                     <li>Formation Electronique et Electronique Embarquée</li>
                     <li>Formation Informatique</li>
@@ -167,7 +170,11 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                     <li>Formation Mécanique et Energétique/ Transports et Energie</li>
                     <li>Formation Physique/Chimie/Matériaux</li>
                     <li>Formation Réseaux et Télécommunications</li>
-                    <li>Formation STAPS</li>
+
+                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
+                    $('[id*=region_gym').css('fill', '#aa1d1d');
+                    $('[id*=region_carpeaux').css('fill', '#aa1d1d');">
+                        Formation STAPS</li>
 
                 </div>
             </div>
@@ -189,18 +196,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
 
 
     <script>
-        function montre(id) {
-            var d = document.getElementById(id);
-            if (d) {
-                if (!d.style.display || d.style.display == 'none') {
-                    d.style.display = 'block';
-                } else if (d.style.display == 'block') {
-                    d.style.display = 'none';
-                }
-            }
-        }
-
-
         function ChangeDrapeau() {
             var image = document.getElementById('drapeau');
             if (image.src == "http://localhost/stage2022/textures/drapeau_fr.png") {
