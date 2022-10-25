@@ -51,19 +51,53 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             </div>
             <div id="text" lang="en">
                 <?php
-                $recupText = $bdd->query('SELECT * FROM text WHERE id="2"');
+                $recupText = $bdd->query('SELECT * FROM texten WHERE id="1"');
                 while ($text = $recupText->fetch()) {
                     echo $text['contenu'];
                 }
                 ?>
             </div>
             <div class="zoom">
-                <img src="Info/PosterCEBD.jpg" id="imginfra" alt="" onclick="window.open(this.src)">
+                <?php
+                $recupImg = $bdd->query('SELECT * FROM images WHERE id="2"');
+                while ($donnees = $recupImg->fetch()) {
+                    echo ('<img style="width:80%" src ="' . $donnees['nom'] . '"/>');
+                }
+                ?>
             </div>
         </div>
     </div>
 
     <div id="Cuve" style="display: none;" onclick="Cuve();">
+        <div id="containerInfo">
+            <div id="text" lang="fr">
+                <?php
+                $recupText = $bdd->query('SELECT * FROM text WHERE id="2"');
+                while ($text = $recupText->fetch()) {
+                    echo $text['contenu'];
+                }
+                ?>
+            </div>
+            <div id="text" lang="en">
+                <?php
+                $recupText = $bdd->query('SELECT * FROM texten WHERE id="2"');
+                while ($text = $recupText->fetch()) {
+                    echo $text['contenu'];
+                }
+                ?>
+            </div>
+            <div class="zoom">
+                <?php
+                $recupImg = $bdd->query('SELECT * FROM images WHERE id="1"');
+                while ($donnees = $recupImg->fetch()) {
+                    echo ('<img style="width:80%" src ="' . $donnees['nom'] . '"/>');
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+
+    <div id="Thermique" style="display: none;" onclick="Thermique();">
         <div id="containerInfo">
             <div id="text" lang="fr">
                 <?php
@@ -75,38 +109,19 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             </div>
             <div id="text" lang="en">
                 <?php
-                $recupText = $bdd->query('SELECT * FROM text WHERE id="4"');
+                $recupText = $bdd->query('SELECT * FROM text WHERE id="3"');
                 while ($text = $recupText->fetch()) {
                     echo $text['contenu'];
                 }
                 ?>
             </div>
             <div class="zoom">
-                <img src="Info/cuve.jpg" id="imginfra" alt="" onclick="window.open(this.src)">
-            </div>
-        </div>
-    </div>
-
-    <div id="Thermique" style="display: none;" onclick="Thermique();">
-        <div id="containerInfo">
-            <div id="text" lang="fr">
                 <?php
-                $recupText = $bdd->query('SELECT * FROM text WHERE id="5"');
-                while ($text = $recupText->fetch()) {
-                    echo $text['contenu'];
+                $recupImg = $bdd->query('SELECT * FROM images WHERE id="3"');
+                while ($donnees = $recupImg->fetch()) {
+                    echo ('<img style="width:80%" src ="' . $donnees['nom'] . '"/>');
                 }
                 ?>
-            </div>
-            <div id="text" lang="en">
-                <?php
-                $recupText = $bdd->query('SELECT * FROM text WHERE id="6"');
-                while ($text = $recupText->fetch()) {
-                    echo $text['contenu'];
-                }
-                ?>
-            </div>
-            <div class="zoom">
-                <img src="Info/thermique.jpg" id="imginfra" alt="" onclick="window.open(this.src)">
             </div>
         </div>
     </div>
@@ -134,7 +149,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
 
     <!-- Grande carte du campus -->
     <div id="maDIV" style="display: none; ">
-    <div class="main">
+        <div class="main">
             <div class="dropdown_list">
                 <button style="position: absolute;" class="dropdown_button" onclick="show_list()">
                     Séléctionner votre formation

@@ -50,7 +50,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
         <div id="containerInfo">
             <div id="text" lang="fr">
                 <?php
-                $recupText = $bdd->query('SELECT * FROM text WHERE id="7"');
+                $recupText = $bdd->query('SELECT * FROM text WHERE id="4"');
                 while ($text = $recupText->fetch()) {
                     echo $text['contenu'];
                 }
@@ -58,14 +58,19 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             </div>
             <div id="text" lang="en">
                 <?php
-                $recupText = $bdd->query('SELECT * FROM text WHERE id="8"');
+                $recupText = $bdd->query('SELECT * FROM texten WHERE id="4"');
                 while ($text = $recupText->fetch()) {
                     echo $text['contenu'];
                 }
                 ?>
             </div>
             <div class="zoom">
-                <img src="Info/spectrophometre_infrarouge.jpg" id="imginfra" alt="" onclick="window.open(this.src)">
+                <?php
+                $recupImg = $bdd->query('SELECT * FROM images WHERE id="4"');
+                while ($donnees = $recupImg->fetch()) {
+                    echo ('<img style="width:80%" src ="' . $donnees['nom'] . '"/>');
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -74,7 +79,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
         <div id="containerInfo">
             <div id="text" lang="fr">
                 <?php
-                $recupText = $bdd->query('SELECT * FROM text WHERE id="9"');
+                $recupText = $bdd->query('SELECT * FROM text WHERE id="5"');
                 while ($text = $recupText->fetch()) {
                     echo $text['contenu'];
                 }
@@ -82,14 +87,19 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             </div>
             <div id="text" lang="en">
                 <?php
-                $recupText = $bdd->query('SELECT * FROM text WHERE id="10"');
+                $recupText = $bdd->query('SELECT * FROM texten WHERE id="5"');
                 while ($text = $recupText->fetch()) {
                     echo $text['contenu'];
                 }
                 ?>
             </div>
             <div class="zoom">
-                <img src="Info/spectrophometre_fluorescence.jpg" id="imginfra" alt="" onclick="window.open(this.src)">
+                <?php
+                $recupImg = $bdd->query('SELECT * FROM images WHERE id="5"');
+                while ($donnees = $recupImg->fetch()) {
+                    echo ('<img style="width:80%" src ="' . $donnees['nom'] . '"/>');
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -98,7 +108,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
         <div id="containerInfo">
             <div id="text" lang="fr">
                 <?php
-                $recupText = $bdd->query('SELECT * FROM text WHERE id="11"');
+                $recupText = $bdd->query('SELECT * FROM text WHERE id="6"');
                 while ($text = $recupText->fetch()) {
                     echo $text['contenu'];
                 }
@@ -106,14 +116,19 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             </div>
             <div id="text" lang="en">
                 <?php
-                $recupText = $bdd->query('SELECT * FROM text WHERE id="12"');
+                $recupText = $bdd->query('SELECT * FROM texten WHERE id="6"');
                 while ($text = $recupText->fetch()) {
                     echo $text['contenu'];
                 }
                 ?>
             </div>
             <div class="zoom">
-                <img src="Info/spectrophometre_absorption.jpg" id="imginfra" alt="" onclick="window.open(this.src)">
+            <?php
+                $recupImg = $bdd->query('SELECT * FROM images WHERE id="6"');
+                while ($donnees = $recupImg->fetch()) {
+                    echo ('<img style="width:80%" src ="' . $donnees['nom'] . '"/>');
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -425,10 +440,8 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 this.scene = scene
                 const geometry = new THREE.SphereGeometry(11, 32, 32)
                 const texture = new THREE.TextureLoader().load(this.image)
-                scene.background = null;
                 texture.wrapS = THREE.RepeatWrapping
                 texture.repeat.x = -1
-                texture.minFilter = THREE.LinearFilter;
                 const material = new THREE.MeshBasicMaterial({
                     map: texture,
                     side: THREE.DoubleSide
@@ -541,8 +554,9 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             camera = new THREE.PerspectiveCamera(80, WIDTH / HEIGHT, 1, 50);
 
             renderer = new THREE.WebGLRenderer({
-                alpha: true,
-                canvas: document.querySelector('#world')
+                canvas: document.querySelector('#world'),
+                antialias: true,
+                powerPreference: "high-performance",
             });
             renderer.setSize(window.innerWidth, window.innerHeight)
             renderer.setPixelRatio(window.devicePixelRatio * 0.95);
@@ -1085,6 +1099,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 intersects = rayCaster.intersectObject(s.sphere)
                 if (intersects.length > 0) {
                     console.log(intersects[0].point)
+                    console.log(renderer.info)
 
                 }
                 let intersectes = rayCaster.intersectObjects(scene.children)

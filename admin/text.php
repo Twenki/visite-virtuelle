@@ -17,24 +17,38 @@ if (!$_SESSION['password']) {
 <body style="background-color: #c5d5cb;">
     <h1 style="text-align: center;">Batiment CEBD</h1>
     <?php
-    $recupText = $bdd->query('SELECT * FROM text WHERE id BETWEEN "1" AND "6"');
-    while ($text = $recupText->fetch()) {
+    $recupImg = $bdd->query('SELECT * FROM images INNER JOIN text ON images.id = text.id WHERE text.id BETWEEN "1" AND "3"');
+
+    while ($img = $recupImg->fetch()) {
     ?>
-        <div style="border: solid 1px;background-color: white; ">
-            <p style="text-align: center;">
-                <?= $text['contenu']; ?><a href="modifier.php?id=<?= $text['id']; ?>">Modifier le texte</a>
+        <div style="border: solid 1px;background-color: white; display: flex; ">
+            <p style="text-align: center; display: flex;">
+                <?= $img['nom']; ?>
+                <?= $img['contenu']; ?>
+                <?= ('<img style="width:10%;" src ="../demonstrateur/' . $img['nom'] . '"/>'); ?>
+                <a href="modifierImg.php?id=<?= $img['id']; ?>">Entrer le nom de la nouvelle image</a>
+                <a href="modifierText.php?id=<?= $img['id']; ?>">Modifier le texte</a></p>
+                
             </p>
         </div>
     <?php
     }
     ?>
+
     <h1 style="text-align: center;">Batiment Abel de Pujol 1</h1>
     <?php
-    $recupText = $bdd->query('SELECT * FROM text WHERE id BETWEEN "7" AND "12"');
-    while ($text = $recupText->fetch()) {
+    $recupImg = $bdd->query('SELECT * FROM images INNER JOIN text ON images.id = text.id WHERE text.id BETWEEN "4" AND "6"');
+    while ($img = $recupImg->fetch()) {
     ?>
-        <div style="border: solid 1px;background-color: white; ">
-            <p style="text-align: center;"><?= $text['contenu']; ?><a href="modifier.php?id=<?= $text['id']; ?>">Modifier le texte</a></p>
+        <div style="border: solid 1px;background-color: white; display: flex; ">
+            <p style="text-align: center; display: flex;">
+                <?= $img['nom']; ?>
+                <?= $img['contenu']; ?>
+                <?= ('<img style="width:10%;" src ="../ap1/' . $img['nom'] . '"/>'); ?>
+                <a href="modifierImg.php?id=<?= $img['id']; ?>">Entrer le nom de la nouvelle image</a>
+                <a href="modifierText.php?id=<?= $img['id']; ?>">Modifier le texte</a></p>
+
+            </p>
         </div>
     <?php
     }

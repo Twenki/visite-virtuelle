@@ -15,7 +15,9 @@ session_start();
         <form>
             <h1>Connexion</h1>
 
-            <a href="text.php"><label><b>Afficher les textes des points d'info</b></label></a>
+            <a href="text.php"><label><b>Afficher les textes et images des points d'infos en français</b></label></a>
+            <br>
+            <a href="textEN.php"><label><b>Afficher les textes et images des points d'infos en Anglais</b></label></a>
             <br>
             <a href="logout.php">Se déconnecter</a>
 
