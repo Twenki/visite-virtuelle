@@ -1,3 +1,7 @@
+<?php
+session_start();
+$bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
+?>
 <!DOCTYPE html>
 <html>
 
@@ -39,6 +43,47 @@
 	<div id="logoinsa" style="display: block;">
 		<a href="https://www.uphf.fr/insa-hdf"><img id="roundinsa" src="../textures/logoinsa.png" style="width: 100%;"></a>
 	</div>
+
+	<div id="information" style="display: none;" onclick="information();">
+        <div id="containerInfo">
+            <div id="text" lang="fr">
+                <?php
+                $recupText = $bdd->query('SELECT * FROM text WHERE id="8"');
+                while ($text = $recupText->fetch()) {
+                    echo $text['contenu'];
+                }
+                ?>
+            </div>
+            <div id="text" lang="en">
+                <?php
+                $recupText = $bdd->query('SELECT * FROM texten WHERE id="8"');
+                while ($text = $recupText->fetch()) {
+                    echo $text['contenu'];
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+	<div id="information2" style="display: none;" onclick="information2();">
+        <div id="containerInfo">
+            <div id="text" lang="fr">
+                <?php
+                $recupText = $bdd->query('SELECT * FROM text WHERE id="9"');
+                while ($text = $recupText->fetch()) {
+                    echo $text['contenu'];
+                }
+                ?>
+            </div>
+            <div id="text" lang="en">
+                <?php
+                $recupText = $bdd->query('SELECT * FROM texten WHERE id="9"');
+                while ($text = $recupText->fetch()) {
+                    echo $text['contenu'];
+                }
+                ?>
+            </div>
+        </div>
+    </div>
 
 	<!--
 	<map name="map">
@@ -106,6 +151,24 @@
 
 
 	<script>
+		function information() {
+            var div = document.getElementById("information");
+            if (div.style.display === "none") {
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
+
+        }
+		function information2() {
+            var div = document.getElementById("information2");
+            if (div.style.display === "none") {
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
+
+        }
 		function ChangeDrapeau() {
 			var image = document.getElementById('drapeau');
 			if (image.src == "http://localhost/stage2022/textures/drapeau_fr.png") {
@@ -296,7 +359,6 @@
 				scene.background = null;
 				texture.wrapS = THREE.RepeatWrapping
 				texture.repeat.x = -1
-				texture.minFilter = THREE.LinearFilter;
 				const material = new THREE.MeshBasicMaterial({
 					map: texture,
 					side: THREE.DoubleSide
@@ -422,27 +484,29 @@
 			camera.position.set(-1, 0, 0)
 			controls.update()
 
-			let s = new Scene('RDC/entrerInt.JPG', camera)
-			let sHall = new Scene('RDC/hall.JPG', camera)
-			let sCouloirEntrer = new Scene('RDC/couloirEntrer.JPG', camera)
-			let sCouloirFablab = new Scene('RDC/couloirFablab.JPG', camera)
-			let sSalleTp8 = new Scene('RDC/salleTP8.JPG', camera)
-			let sSalleTp1 = new Scene('RDC/salleTP1.JPG', camera)
-			let sCouloirTp = new Scene('RDC/couloirTp.JPG', camera)
-			let sSalleTp2 = new Scene('RDC/salleTP2.JPG', camera)
-			let sentreCL3 = new Scene('RDC/entreCL3.JPG', camera)
-			let sEntreInt = new Scene('RDC/entreInt.JPG', camera)
-			let sBasEscalier = new Scene('RDC/basEscalier.JPG', camera)
-			let sHallCl3 = new Scene('RDC/Hallcl3.JPG', camera)
-			let sEscalierHall = new Scene('RDC/escalierHall.JPG', camera)
-			let sCouloirPft = new Scene('RDC/couloirPft.JPG', camera)
-			let sPft1 = new Scene('RDC/PFT.JPG', camera)
-			let sPft2 = new Scene('RDC/PFT2.JPG', camera)
-			let spft3 = new Scene('RDC/PFT3.JPG', camera)
-			let sPft4 = new Scene('RDC/PFT4.JPG', camera)
-			let scouloir = new Scene('couloirAmphi.JPG', camera)
-			let sAmphi1 = new Scene('amphi.JPG', camera)
-			let sAmphi2 = new Scene('amphi2.JPG', camera)
+			let s = new Scene('RDC/entrerInt.jpg', camera)
+			let sCl3Ext = new Scene('RDC/entreExt.jpg', camera)
+			let sHall = new Scene('RDC/hall.jpg', camera)
+			let sCouloirEntrer = new Scene('RDC/couloirEntrer.jpg', camera)
+			let sCouloirFablab = new Scene('RDC/couloirFablab.jpg', camera)
+			let sSalleTp8 = new Scene('RDC/salleTP8.jpg', camera)
+			let sSalleTp1 = new Scene('RDC/salleTP1.jpg', camera)
+			let sCouloirTp = new Scene('RDC/couloirTp.jpg', camera)
+			let sSalleTp2 = new Scene('RDC/salleTP2.jpg', camera)
+			let sentreCL3 = new Scene('RDC/entreCL3.jpg', camera)
+			let sEntreInt = new Scene('RDC/entreInt.jpg', camera)
+			let sBasEscalier = new Scene('RDC/basEscalier.jpg', camera)
+			let sHallCl3 = new Scene('RDC/Hallcl3.jpg', camera)
+			let sEscalierHall = new Scene('RDC/escalierHall.jpg', camera)
+			let sCouloirPft = new Scene('RDC/couloirPft.jpg', camera)
+			let sPft1 = new Scene('RDC/PFT.jpg', camera)
+			let sPft2 = new Scene('RDC/PFT2.jpg', camera)
+			let spft3 = new Scene('RDC/PFT3.jpg', camera)
+			let sPft4 = new Scene('RDC/PFT4.jpg', camera)
+			let scouloir = new Scene('couloirAmphi.jpg', camera)
+			let sAmphi1 = new Scene('amphi.jpg', camera)
+			let sAmphi2 = new Scene('amphi2.jpg', camera)
+			let sEntreCl1 = new Scene('RDC/entrecl1.jpg', camera)
 
 			//Point sur les scène
 			s.addPoint({
@@ -451,8 +515,32 @@
 				scene: sHall,
 				image: 'rond.png'
 			})
+			s.addPoint({
+				position: new THREE.Vector3(5.335715731852955, -3.03392759168428, -9.071222275375053),
+				name: '',
+				scene: sEntreCl1,
+				image: 'rond.png'
+			})
+			sEntreCl1.addPoint({
+				position: new THREE.Vector3(5.4719472790866766, -1.7952341870054371, 9.308097764408881),
+				name: '',
+				scene: s,
+				image: 'rond.png'
+			})
+			sEntreCl1.addPoint({
+                position: new THREE.Vector3(1.4279212315413545, -2.547232239045808, 10.547495060755557),
+                name: 'Information',
+                scene: false,
+                image: 'panneau.png'
+            })
+			sCl3Ext.addPoint({
+                position: new THREE.Vector3(9.178916706441207, -1.2411519005950296, 5.887143278198129),
+                name: 'Information 2',
+                scene: false,
+                image: 'panneau.png'
+            })
 			sHall.addPoint({
-				position: new THREE.Vector3(5.586655480442088, -2.8808708566302292, -8.980354602334508),
+				position: new THREE.Vector3(-8.960547002913097, -1.694405849104562, -6.110965305616871),
 				name: '',
 				scene: s,
 				image: 'rond.png'
@@ -476,7 +564,7 @@
 				image: 'rond.png'
 			})
 			scouloir.addPoint({
-				position: new THREE.Vector3(4.822546791467821, -2.178132994648537, 9.587412499673036),
+				position: new THREE.Vector3(-5.085354632489591, -2.7805115206375444, -9.27667254898899),
 				name: '',
 				scene: sCouloirEntrer,
 				image: 'rond.png'
@@ -545,11 +633,11 @@
 			//Abel de Claudin 1 / Etage 1
 			//Déclaration des scène
 
-			let sEsca = new Scene('1ETAGE/esca.JPG', camera)
+			let sEsca = new Scene('1ETAGE/esca.jpg', camera)
 
 			//Points sur les scènes
 			sHall.addPoint({
-				position: new THREE.Vector3(10.251038348414493, 0.5594536699060717, -3.8239983539078093),
+				position: new THREE.Vector3(-3.7833341857039287, -0.4266504508101928, -10.2701586743408),
 				name: '',
 				scene: sEsca,
 				image: 'rond.png'
@@ -569,13 +657,13 @@
 
 			//Point sur les scène modif ici
 			scouloir.addPoint({
-				position: new THREE.Vector3(0.11094661191489386, 0.05822983483518479, 10.98621206434346),
+				position: new THREE.Vector3(10.392056893031304, -0.8932995046322207, 3.302895325457971),
 				name: '',
 				scene: sAmphi1,
 				image: 'door.png'
 			})
 			scouloir.addPoint({
-				position: new THREE.Vector3(-9.674788445593292, 0.90595184543966, -5.028329450913663),
+				position: new THREE.Vector3(-1.1302765161588422, -0.41168883497072517, -10.868452435275444),
 				name: '',
 				scene: sAmphi2,
 				image: 'door.png'
@@ -601,31 +689,32 @@
 				image: 'rond.png'
 			})
 			sEntreInt.addPoint({
-				position: new THREE.Vector3(-5.589198294369736, -2.4369864395013403, 9.104462363081907),
+				position: new THREE.Vector3(8.493627006402983, -5.540705157775507, 4.14036020483737),
 				name: '',
-				scene: s,
+				scene: sCl3Ext,
+				image: 'rond.png'
+			})
+			sCl3Ext.addPoint({
+				position: new THREE.Vector3(10.444235398303793, -1.0288598549498724, 3.1080544270470645),
+				name: '',
+				scene: sEntreInt,
 				image: 'rond.png'
 			})
 			sEntreInt.addPoint({
-				position: new THREE.Vector3(10.375858243835738, -0.8348387889943012, -3.3661414049528227),
+				position: new THREE.Vector3(-6.606398575238191, -1.9568362748957833, -8.503839271454332),
 				name: '',
 				scene: sBasEscalier,
 				image: 'rond.png'
 			})
-			sEntreInt.addPoint({
-				position: new THREE.Vector3(10.922767575221854, 0.4989254686452473, -0.5352932700198354),
+			
+			sHallCl3.addPoint({
+				position: new THREE.Vector3(-10.292584579648361, -1.8971124473360133, 3.1832144974540144),
 				name: '',
-				scene: sHallCl3,
-				image: 'arrowright.png'
+				scene: sBasEscalier,
+				image: 'rond.png'
 			})
 			sHallCl3.addPoint({
-				position: new THREE.Vector3(4.069968162365029, 0.9900658057402745, -10.154424237416915),
-				name: '',
-				scene: sEntreInt,
-				image: 'arrowleft.png'
-			})
-			sHallCl3.addPoint({
-				position: new THREE.Vector3(-8.269770159818542, 1.2173106075253797, -7.063698601303889),
+				position: new THREE.Vector3(-6.872723931012591,-0.5258852250689572, 8.487998076413819),
 				name: '',
 				scene: sPft4,
 				image: 'door.png'
@@ -661,7 +750,7 @@
 				image: 'door.png'
 			})
 			sHallCl3.addPoint({
-				position: new THREE.Vector3(-5.535531965700705, 0.07319661154081303, 9.449847790601774),
+				position: new THREE.Vector3(10.530310185641177, -0.4770815785765352, -2.917235696545704),
 				name: '',
 				scene: sEscalierHall,
 				image: 'arrowright.png'
@@ -697,19 +786,25 @@
 				image: 'rond.png'
 			})
 			sBasEscalier.addPoint({
-				position: new THREE.Vector3(7.224294973613481, -2.885728612715119, -7.722071586077687),
+				position: new THREE.Vector3(5.88733162860869, -3.189431355807054, 8.721350193107485),
 				name: 'Entrée du batiment ',
 				scene: sEntreInt,
 				image: 'rond.png'
 			})
 			sBasEscalier.addPoint({
-				position: new THREE.Vector3(-6.9304124664476845, -5.232361305197751, 6.729430454887892),
+				position: new THREE.Vector3(9.189028674768036, -2.9975665522617394, -5.134543482650731),
+				name: 'Entrée du batiment ',
+				scene: sHallCl3,
+				image: 'rond.png'
+			})
+			sBasEscalier.addPoint({
+				position: new THREE.Vector3(-4.8276689499169, -2.3383648393514083, -9.539384049688445),
 				name: 'Entrée du  ',
 				scene: scouloir,
 				image: 'rond.png'
 			})
 			scouloir.addPoint({
-				position: new THREE.Vector3(-6.635854339035398, -1.567699177723833, -8.553979079270746),
+				position: new THREE.Vector3(7.631561802093376, -1.8870569898090963, 7.6758356422569705),
 				name: 'Entrée du  ',
 				scene: sBasEscalier,
 				image: 'rond.png'
@@ -717,11 +812,11 @@
 
 			//Abel de Claudin 1 / Rez de chaussé
 			//Déclaration des scène
-			let sEtage1CouloirConseil = new Scene('1ETAGE/couloirSalleConseil.JPG', camera)
-			let sEtage1CouloirCentral = new Scene('1ETAGE/couloirCentral.JPG', camera)
-			let sEtage1CouloirPLP = new Scene('1ETAGE/couloirPLP.JPG', camera)
-			let sEtage1PLP = new Scene('1ETAGE/PLP.JPG', camera)
-			let sEtage1Conseil = new Scene('1ETAGE/Conseil.JPG', camera)
+			let sEtage1CouloirConseil = new Scene('1ETAGE/couloirSalleConseil.jpg', camera)
+			let sEtage1CouloirCentral = new Scene('1ETAGE/couloirCentral.jpg', camera)
+			let sEtage1CouloirPLP = new Scene('1ETAGE/couloirPLP.jpg', camera)
+			let sEtage1PLP = new Scene('1ETAGE/PLP.jpg', camera)
+			let sEtage1Conseil = new Scene('1ETAGE/Conseil.jpg', camera)
 
 			sEscalierHall.addPoint({
 				position: new THREE.Vector3(-10.760719735121114, 1.642134783924429, 1.0423107538619056),
@@ -737,10 +832,10 @@
 				image: 'arrowright.png'
 			})
 			sBasEscalier.addPoint({
-				position: new THREE.Vector3(-9.199905097868442, 1.0379466245803326, -5.903083803299032),
+				position: new THREE.Vector3(2.6229125250020835, -0.6787089523043933, -10.609290802912568),
 				name: 'Entrée du batiment ',
 				scene: sEtage1CouloirCentral,
-				image: 'rond.png'
+				image: 'arrowright.png'
 			})
 			sEtage1CouloirCentral.addPoint({
 				position: new THREE.Vector3(-10.621632906312787, -2.4737922522798756, -0.861959300513484),
@@ -791,8 +886,9 @@
 			s.appear()
 
 			window.rdcCl1 = function() {
-				s.createScene(scene)
+				sEntreCl1.createScene(scene)
 				s.destroy()
+				sEntreCl1.destroy()
 				sHall.destroy()
 				sCouloirEntrer.destroy()
 				sCouloirFablab.destroy()
@@ -821,6 +917,7 @@
 			window.rdcCl2 = function() {
 				scouloir.createScene(scene)
 				s.destroy()
+				sEntreCl1.destroy()
 				sHall.destroy()
 				sCouloirEntrer.destroy()
 				sCouloirFablab.destroy()
@@ -847,8 +944,9 @@
 				sEtage1Conseil.destroy()
 			}
 			window.rdcCl3 = function() {
-				sHallCl3.createScene(scene)
+				sCl3Ext.createScene(scene)
 				s.destroy()
+				sEntreCl1.destroy()
 				sHall.destroy()
 				sCouloirEntrer.destroy()
 				sCouloirFablab.destroy()
@@ -917,6 +1015,14 @@
 						intersect.object.onClick()
 						Info()
 					}
+					if (intersect.object.name === "Information") {
+                        intersect.object.onClick()
+                        information()
+                    }
+					if (intersect.object.name === "Information 2") {
+                        intersect.object.onClick()
+                        information2()
+                    }
 
 				})
 

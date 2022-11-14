@@ -73,31 +73,31 @@
 				</button>
 
 				<div style="position: absolute; overflow: auto; height: 50%;" id="courses_id" class="courses">
-                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
+					<li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
                     $('[id*=region_ab2').css('fill', '#aa1d1d');
                     $('[id*=region_ab1').css('fill', '#aa1d1d');">
-                        Formation Audiovisuel et Multimédia</li>
+						Formation Audiovisuel et Multimédia</li>
 
-                    <li>Formation Automatique</li>
+					<li>Formation Automatique</li>
 
-                    <li>Formation Cybersécurité</li>
-                    <li>Formation Electronique et Electronique Embarquée</li>
-                    <li>Formation Informatique</li>
-                    <li>Formation Génie Civil</li>
-                    <li>Formation Génie Industriel</li>
-                    <li>Formation Génie Electrique et informatique industrielle</li>
-                    <li>Formation Qualité/Hygiène/Sécruité</li>
-                    <li>Formation Mathématiques</li>
-                    <li>Formation Mécanique et Energétique/ Transports et Energie</li>
-                    <li>Formation Physique/Chimie/Matériaux</li>
-                    <li>Formation Réseaux et Télécommunications</li>
+					<li>Formation Cybersécurité</li>
+					<li>Formation Electronique et Electronique Embarquée</li>
+					<li>Formation Informatique</li>
+					<li>Formation Génie Civil</li>
+					<li>Formation Génie Industriel</li>
+					<li>Formation Génie Electrique et informatique industrielle</li>
+					<li>Formation Qualité/Hygiène/Sécruité</li>
+					<li>Formation Mathématiques</li>
+					<li>Formation Mécanique et Energétique/ Transports et Energie</li>
+					<li>Formation Physique/Chimie/Matériaux</li>
+					<li>Formation Réseaux et Télécommunications</li>
 
-                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
+					<li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
                     $('[id*=region_gym').css('fill', '#aa1d1d');
                     $('[id*=region_carpeaux').css('fill', '#aa1d1d');">
-                        Formation STAPS</li>
+						Formation STAPS</li>
 
-                </div>
+				</div>
 			</div>
 		</div>
 		<div class="mapAndInfos">
@@ -268,20 +268,20 @@
 		});
 
 		function show_list() {
-            var courses = document.getElementById("courses_id");
+			var courses = document.getElementById("courses_id");
 
-            if (courses.style.display == "block") {
-                courses.style.display = "none";
-            } else {
-                courses.style.display = "block";
-            }
-        }
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown_button')) {
-                document.getElementById('courses_id')
-                    .style.display = "none";
-            }
-        }
+			if (courses.style.display == "block") {
+				courses.style.display = "none";
+			} else {
+				courses.style.display = "block";
+			}
+		}
+		window.onclick = function(event) {
+			if (!event.target.matches('.dropdown_button')) {
+				document.getElementById('courses_id')
+					.style.display = "none";
+			}
+		}
 	</script>
 
 	<script>
@@ -441,26 +441,27 @@
 			camera.position.set(1, 0, 0)
 			controls.update()
 
-			let s = new Scene('RDC/entreeExt.JPG', camera)
-			let sEntreInt = new Scene('RDC/EntreInt.JPG', camera)
-			let sAmphi2 = new Scene('RDC/Amphi2.JPG', camera)
-			let sEscaAmphi = new Scene('RDC/EscaAmphi.JPG', camera)
-			let sHall = new Scene('RDC/Hall.JPG', camera)
-			let sEntreAIP = new Scene('RDC/entreAIP.JPG', camera)
-			let sCouloirDroitAIP = new Scene('RDC/CouloirDroiteAIP.JPG', camera)
-			let sCouloirGaucheAIP = new Scene('RDC/CouloirGaucheAIP.JPG', camera)
-			let smachineAIP = new Scene('RDC/MachineAIP.JPG', camera)
-			let sMilieuAIP = new Scene('RDC/MilieuAIP.JPG', camera)
-			let scouloirGestionProd = new Scene('RDC/CouloirGestionProd.JPG', camera)
-			let sGestionProd = new Scene('RDC/GestionProd.JPG', camera)
-			let sphimx = new Scene('RDC/sphimx.JPG', camera)
-			let imprimante = new Scene('RDC/salleImprimante.JPG', camera)
-			let Couloir20E = new Scene('RDC/couloir20E.JPG', camera)
+			let s = new Scene('RDC/entreeExt.jpg', camera)
+			let sEntreInt = new Scene('RDC/EntreInt.jpg', camera)
+			let sAmphi2 = new Scene('RDC/Amphi2.jpg', camera)
+			let sEscaAmphi = new Scene('RDC/EscaAmphi.jpg', camera)
+			let sHall = new Scene('RDC/Hall.jpg', camera)
+			let sEntreAIP = new Scene('RDC/entreAIP.jpg', camera)
+			let sCouloirDroitAIP = new Scene('RDC/CouloirDroiteAIP.jpg', camera)
+			let sCouloirGaucheAIP = new Scene('RDC/CouloirGaucheAIP.jpg', camera)
+			let smachineAIP = new Scene('RDC/MachineAIP.jpg', camera)
+			let sMilieuAIP = new Scene('RDC/MilieuAIP.jpg', camera)
+			let scouloirGestionProd = new Scene('RDC/CouloirGestionProd.jpg', camera)
+			let sGestionProd = new Scene('RDC/GestionProd.jpg', camera)
+			let sphimx = new Scene('RDC/sphimx.jpg', camera)
+			let imprimante = new Scene('RDC/salleImprimante.jpg', camera)
+			let Couloir20E = new Scene('RDC/couloir20E.jpg', camera)
+			let Etage1AIP = new Scene('1ETAGE/etage1aip.jpg', camera)
 
 
 			//Point sur les scène
 			s.addPoint({
-				position: new THREE.Vector3(-10.353341902131765, -2.259340456493337, 2.7590220236283063),
+				position: new THREE.Vector3(10.429848622608457, -1.5261348836743056, 2.919373669100846),
 				name: '',
 				scene: sEntreInt,
 				image: 'rond.png'
@@ -490,25 +491,25 @@
 				image: 'rond.png'
 			})
 			sEscaAmphi.addPoint({
-				position: new THREE.Vector3(4.717289624381983, -1.6645135139768574, 9.733351555341859),
+				position: new THREE.Vector3(10.451044242162912, -2.019993873459158, -2.5983526359711546),
 				name: '',
 				scene: sEntreInt,
 				image: 'arrowleft.png'
 			})
 			sEscaAmphi.addPoint({
-				position: new THREE.Vector3(-10.545257539491402, -2.435552253852481, -1.7346641544801706),
+				position: new THREE.Vector3(-9.72968501935405, -2.885074436587192, 4.182534486952781),
 				name: '',
 				scene: sHall,
 				image: 'rond.png'
 			})
 			sHall.addPoint({
-				position: new THREE.Vector3(-8.893781814838539, -4.014913926702677, 4.9627380951274676),
+				position: new THREE.Vector3(9.78975186461614, -4.182125146483027, -2.6018746531050083),
 				name: '',
 				scene: sEscaAmphi,
 				image: 'rond.png'
 			})
 			sHall.addPoint({
-				position: new THREE.Vector3(-6.495598237675756, -0.9130056831258822, -8.77301330882821),
+				position: new THREE.Vector3(8.087094747268983, -1.4968160516751987, 7.22124902230326),
 				name: '',
 				scene: sphimx,
 				image: 'door.png'
@@ -520,7 +521,7 @@
 				image: 'door.png'
 			})
 			sHall.addPoint({
-				position: new THREE.Vector3(10.22050625694429, -3.8448081426320138, -0.7377656157561647),
+				position: new THREE.Vector3(-10.643507217166077, -2.297384749038855, 1.0885135742328302),
 				name: '',
 				scene: sEntreAIP,
 				image: 'rond.png'
@@ -629,10 +630,10 @@
 			})
 
 			///-------------------Déclaration des scènes de AB2-Etage 1
-			let sEtage1Couloir = new Scene('1ETAGE/CouloirEsca.JPG', camera)
-			let sEtage1CouloirAmphi = new Scene('1ETAGE/CouloirAmphi.JPG', camera)
-			let sEtage1CouloirApple = new Scene('1ETAGE/CouloirDevApple.JPG', camera)
-			let sEtage1Apple = new Scene('1ETAGE/DevApple.JPG', camera)
+			let sEtage1Couloir = new Scene('1ETAGE/CouloirEsca.jpg', camera)
+			let sEtage1CouloirAmphi = new Scene('1ETAGE/CouloirAmphi.jpg', camera)
+			let sEtage1CouloirApple = new Scene('1ETAGE/CouloirDevApple.jpg', camera)
+			let sEtage1Apple = new Scene('1ETAGE/DevApple.jpg', camera)
 
 			//Point sur les scène
 			sEntreAIP.addPoint({
@@ -648,9 +649,21 @@
 				scene: sEntreAIP,
 				image: 'rond.png'
 			})
+			sEtage1Couloir.addPoint({
+				position: new THREE.Vector3(-9.66400455172927, -3.5584373025818574, -3.7814667717190966),
+				name: '',
+				scene: Etage1AIP,
+				image: 'rond.png'
+			})
+			Etage1AIP.addPoint({
+				position: new THREE.Vector3(3.829274675996354, -2.4380465463500385, 9.982131912143739),
+				name: '',
+				scene: sEtage1Couloir,
+				image: 'rond.png'
+			})
 
 			sEscaAmphi.addPoint({
-				position: new THREE.Vector3(10.893841042915724, -0.19818068953064982, -0.9789984955155999),
+				position: new THREE.Vector3(7.742384493587444, -2.4912050099101046, -7.354569196112752),
 				name: '',
 				scene: sEtage1CouloirAmphi,
 				image: 'rond.png'

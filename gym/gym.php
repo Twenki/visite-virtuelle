@@ -389,11 +389,11 @@
             camera.position.set(-1, 0, 0)
             controls.update()
 
-            let s = new Scene('entre.JPG', camera)
-            let sCouloirEnt = new Scene('couloirEnt.JPG', camera)
-            let sCouloirDojo = new Scene('couloirDojo.JPG', camera)
-            let stade = new Scene('stade2.JPG', camera)
-            let dojo = new Scene('dojo.JPG', camera)
+            let s = new Scene('entre.jpg', camera)
+            let sCouloirEnt = new Scene('couloirEnt.jpg', camera)
+            let sCouloirDojo = new Scene('couloirDojo.jpg', camera)
+            let stade = new Scene('stade2.jpg', camera)
+            let dojo = new Scene('dojo.jpg', camera)
 
             s.addPoint({
                 position: new THREE.Vector3(10.7980387019072, -0.03287504409687081, 2.034149840590505),

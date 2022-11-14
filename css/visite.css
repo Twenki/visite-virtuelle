@@ -15,23 +15,21 @@ html {
     font-family: sans-serif;
     cursor: default;
 }
+
 iframe,
-        video {
-            filter: url(#greenScreen);
-            position: absolute;
-            
-        }
+video {
+    filter: url(#greenScreen);
+    position: absolute;
+
+}
+
 .main {
     position: absolute;
     height: 400px;
     padding: 10px;
 }
 
-@media only screen and (max-width: 600px) {
-    .main {
-      margin-top: 50%;
-    }
-  }
+
 
 
 .dropdown_button {
@@ -156,12 +154,12 @@ hr {
 }
 
 #text {
+    display: flex;
+    justify-content: center;
     animation: apparition 1s linear;
     font-size: 2.5em;
-    text-align: left;
-    margin-right: 2%;
-    margin-left: 2%;
-    color: #666;
+    text-align: justify;
+    margin: 10px auto;
     width: 70%;
 }
 
@@ -222,12 +220,33 @@ hr {
 #Thermique {
     position: absolute;
     background-image: url("../ressources/fondinfo.jpg");
-    opacity: 85%;
+    background-color: #0979ad;
     width: 100%;
     height: 50vw;
     background-size: 100% 100%;
     animation: apparition 1s linear;
     display: none;
+}
+
+#information {
+    position: fixed;
+    background-image: url("../ressources/fondinfo.jpg");
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    left: 25%;
+    background-size: 100% 100%;
+    animation: apparition 1s linear;
+}
+#information2 {
+    position: fixed;
+    background-image: url("../ressources/fondinfo.jpg");
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    left: 25%;
+    background-size: 100% 100%;
+    animation: apparition 1s linear;
 }
 
 
@@ -248,11 +267,11 @@ hr {
 
 #video_directeur {
     position: absolute;
-    opacity: 97%;
     width: 100%;
     height: 100%;
-    padding: 3%;
-    padding-left: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-size: 50% 50%;
     animation: apparition 1s linear;
 }
@@ -315,4 +334,45 @@ hr {
     -webkit-transform: scale(1.5);
     /* Safari 3-8 */
     transform: scale(1.5);
+}
+
+@media only screen and (max-width: 720px) {
+    .main {
+        margin-top: 50%;
+    }
+
+    #Info,
+    #vueaip,
+    #PosterCEBD,
+    #Infrarouge,
+    #fluo,
+    #absorption,
+    #Cuve,
+    #Thermique {
+        height: 100%;
+    }
+
+    #information {
+        top: 0%;
+        left: 0%;
+        padding-bottom: 10%;
+        height: 100%;
+        width: 100%;
+    }
+    #information2 {
+        top: 0%;
+        left: 0%;
+        padding-bottom: 10%;
+        height: 100%;
+        width: 100%;
+    }
+
+    #text {
+        display: flex;
+    }
+
+    #containerInfo {
+        display: block;
+        margin-top: 50%;
+    }
 }

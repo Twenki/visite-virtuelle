@@ -45,6 +45,27 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
         <a href="https://www.uphf.fr/insa-hdf"><img id="roundinsa" src="../textures/logoinsa.png" style="width: 100%;"></a>
     </div>
 
+    <div id="information" style="display: none;" onclick="information();">
+        <div id="containerInfo">
+            <div id="text" lang="fr">
+                <?php
+                $recupText = $bdd->query('SELECT * FROM text WHERE id="10"');
+                while ($text = $recupText->fetch()) {
+                    echo $text['contenu'];
+                }
+                ?>
+            </div>
+            <div id="text" lang="en">
+                <?php
+                $recupText = $bdd->query('SELECT * FROM texten WHERE id="10"');
+                while ($text = $recupText->fetch()) {
+                    echo $text['contenu'];
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+
     <!--
     <map name="map">
         <area onclick="rdchall();" shape="poly" coords="150,20,171,19,163,25,160,44,217,46,216,66,200,67,198,129,185,129,187,66,143,65" alt="Couloir" style="display: none;" />
@@ -144,6 +165,16 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 document.getElementById("soussol").style.display = 'none';
                 document.getElementById("etage1").style.display = 'none';
             }
+        }
+
+        function information() {
+            var div = document.getElementById("information");
+            if (div.style.display === "none") {
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
+
         }
 
         function maFonction() {
@@ -443,10 +474,17 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             controls.update()
 
 
-            let s = new Scene('RDC/entreExt.JPG', camera)
-            let sInterieur = new Scene('RDC/entreInt.JPG', camera)
-            let sHallAmphie = new Scene('RDC/hallAmphi.JPG', camera)
-            let sAmphiCollet = new Scene('RDC/amphiCollet.JPG', camera)
+            let s = new Scene('RDC/entreExt.jpg', camera)
+            let sInterieur = new Scene('RDC/entreInt.jpg', camera)
+            let sHallAmphie = new Scene('RDC/hallAmphi.jpg', camera)
+            let sAmphiCollet = new Scene('RDC/amphiCollet.jpg', camera)
+            let sAmphiCoquet = new Scene('RDC/amphiCoquet.jpg', camera)
+            let couloirdirectionstaps = new Scene('1ETAGE/couloirdirectionstaps.jpg', camera)
+            let couloirstaps = new Scene('1ETAGE/couloirstaps.jpg', camera)
+            let directionstaps = new Scene('1ETAGE/directionstaps.jpg', camera)
+            let escastaps = new Scene('1ETAGE/escastaps.jpg', camera)
+            let entrestaps = new Scene('1ETAGE/entrestaps.jpg', camera)
+            let salleteam = new Scene('1ETAGE/salleteam.jpg', camera)
 
             s.addPoint({
                 position: new THREE.Vector3(10.191504275408748, -3.4323133586945045, -2.1972452461558456),
@@ -460,17 +498,66 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 scene: s,
                 image: 'rond.png'
             })
-            sInterieur.addPoint({
-                position: new THREE.Vector3(-7.566497386787321, -1.794728683618272, -7.7468645358577835),
-                name: 'Hall',
-                scene: sHallAmphie,
+           
+            sHallAmphie.addPoint({
+                position: new THREE.Vector3(-9.586164588773931, -3.7280349354978743, -3.8300309734529776),
+                name: '',
+                scene: couloirdirectionstaps,
                 image: 'rond.png'
             })
-            sHallAmphie.addPoint({
-                position: new THREE.Vector3(-7.321575191724273, -2.875031725394622, -7.645685388868115),
-                name: 'Entrée principal',
-                scene: sInterieur,
-                image: 'arrowleft.png'
+            couloirdirectionstaps.addPoint({
+                position: new THREE.Vector3(0.06964910391711954, -1.842387787531042, -10.82681390909975),
+                name: '',
+                scene: directionstaps,
+                image: 'rond.png'
+            })
+            directionstaps.addPoint({
+                position: new THREE.Vector3(-6.751039975406627, -2.173091930784513, 8.340273114672902),
+                name: '',
+                scene: couloirdirectionstaps,
+                image: 'rond.png'
+            })
+            directionstaps.addPoint({
+                position: new THREE.Vector3(8.788828764457026, -2.775870610952716, 5.967614882606949),
+                name: '',
+                scene: escastaps,
+                image: 'rond.png'
+            })
+            escastaps.addPoint({
+                position: new THREE.Vector3(-0.9670162552771981, -4.433145827069506, 9.961663733332863),
+                name: '',
+                scene: directionstaps,
+                image: 'rond.png'
+            })
+            escastaps.addPoint({
+                position: new THREE.Vector3(-8.87724083255964, -5.88123660368762, -2.564202644532218),
+                name: '',
+                scene: entrestaps,
+                image: 'rond.png'
+            })
+            entrestaps.addPoint({
+                position: new THREE.Vector3(-8.896754131474493, -4.40958257446285, -4.610414149327728),
+                name: '',
+                scene: escastaps,
+                image: 'rond.png'
+            })
+            entrestaps.addPoint({
+                position: new THREE.Vector3(-10.416329668941932, -0.9318525751947571, 3.2163856024610316),
+                name: '',
+                scene: salleteam,
+                image: 'door.png'
+            })
+            salleteam.addPoint({
+                position: new THREE.Vector3(10.641970022955983, -1.113467442072068, -2.429961472218616),
+                name: '',
+                scene: entrestaps,
+                image: 'door.png'
+            })
+            couloirdirectionstaps.addPoint({
+                position: new THREE.Vector3(-9.806597766723712, -4.758733325479133, -0.9779258997331286),
+                name: '',
+                scene: sHallAmphie,
+                image: 'rond.png'
             })
             sHallAmphie.addPoint({
                 position: new THREE.Vector3(3.5419401543680817, 0.26419013122153945, 10.35168480114863),
@@ -484,13 +571,25 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 scene: sHallAmphie,
                 image: 'rond.png'
             })
+            sHallAmphie.addPoint({
+                position: new THREE.Vector3(-10.156787853262934, -0.08693232995602107, 4.211515775339934),
+                name: 'Amphi Coquet',
+                scene: sAmphiCoquet,
+                image: 'door.png'
+            })
+            sAmphiCoquet.addPoint({
+                position: new THREE.Vector3(10.358764336962548, 1.928441767214697, -2.9491170391072723),
+                name: 'Amphi Collet',
+                scene: sHallAmphie,
+                image: 'door.png'
+            })
 
             //CPX / Etage 1
 
-            let sCouloirEsca = new Scene('1ETAGE/couloirEsca.JPG', camera)
-            let sCouloir = new Scene('1ETAGE/couloir.JPG', camera)
-            let sCouloirSuite = new Scene('1ETAGE/couloirSuite.JPG', camera)
-            let sSalleInfo = new Scene('1ETAGE/salleInformatique.JPG', camera)
+            let sCouloirEsca = new Scene('1ETAGE/couloirEsca.jpg', camera)
+            let sCouloir = new Scene('1ETAGE/couloir.jpg', camera)
+            let sCouloirSuite = new Scene('1ETAGE/couloirSuite.jpg', camera)
+            let sSalleInfo = new Scene('1ETAGE/salleInformatique.jpg', camera)
 
             sInterieur.addPoint({
                 position: new THREE.Vector3(-4.291868647275341, -2.9220622355917723, 9.660789956979164),
@@ -528,6 +627,18 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 scene: sCouloir,
                 image: 'rond.png'
             })
+            sCouloirSuite.addPoint({
+                position: new THREE.Vector3(10.50664111253645, -3.246732330461332, 0.005315760516988455),
+                name: '',
+                scene: sHallAmphie,
+                image: 'rond.png'
+            })
+            sHallAmphie.addPoint({
+                position: new THREE.Vector3(9.316626345572775, -1.321345688721492, 5.604393274406638),
+                name: '',
+                scene: sCouloirSuite,
+                image: 'rond.png'
+            })
             sCouloir.addPoint({
                 position: new THREE.Vector3(10.653234394762237, -0.33147536881255124, -2.5365320279970858),
                 name: 'Salle informatique',
@@ -543,19 +654,19 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
 
             //CPX / Sous-Sol
 
-            let sScouloirEsca = new Scene('SS/couloirEsca.JPG', camera)
-            let sScouloirMixage = new Scene('SS/couloirMixage.JPG', camera)
-            let sScouloirPreMat = new Scene('SS/couloirPretMat.JPG', camera)
-            let sScouloirRamdam = new Scene('SS/couloirRamdam.JPG', camera)
-            let sScouloirPlateau = new Scene('SS/couloirPlateau.JPG', camera)
-            let sSsallePret = new Scene('SS/sallePret.JPG', camera)
-            let sSsallePret2 = new Scene('SS/sallePret2.JPG', camera)
-            let sSsalleMixage = new Scene('SS/salleMixage.JPG', camera)
-            let sRegie = new Scene('SS/regie.JPG', camera)
-            let splateauRegie = new Scene('SS/PlateauRegie.JPG', camera)
-            let sCouloirAvantRamdam = new Scene('SS/couloirAvantRamdam.JPG', camera)
-            let sGrandPlateau = new Scene('SS/plateau.JPG', camera)
-            let sPlateauCine = new Scene('SS/plateauCine.JPG', camera)
+            let sScouloirEsca = new Scene('SS/couloirEsca.jpg', camera)
+            let sScouloirMixage = new Scene('SS/couloirMixage.jpg', camera)
+            let sScouloirPreMat = new Scene('SS/couloirPretMat.jpg', camera)
+            let sScouloirRamdam = new Scene('SS/couloirRamdam.jpg', camera)
+            let sScouloirPlateau = new Scene('SS/couloirPlateau.jpg', camera)
+            let sSsallePret = new Scene('SS/sallePret.jpg', camera)
+            let sSsallePret2 = new Scene('SS/sallePret2.jpg', camera)
+            let sSsalleMixage = new Scene('SS/salleMixage.jpg', camera)
+            let sRegie = new Scene('SS/regie.jpg', camera)
+            let splateauRegie = new Scene('SS/PlateauRegie.jpg', camera)
+            let sCouloirAvantRamdam = new Scene('SS/couloirAvantRamdam.jpg', camera)
+            let sGrandPlateau = new Scene('SS/plateau.jpg', camera)
+            let sPlateauCine = new Scene('SS/plateauCine.jpg', camera)
 
             sInterieur.addPoint({
                 position: new THREE.Vector3(-9.926901078792866, -3.6150164452037323, 2.8454095601718166),
@@ -721,6 +832,13 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 image: 'rond.png'
             })
 
+            s.addPoint({
+                position: new THREE.Vector3(10.491757224648467, -2.7919607827147943, 1.3714323252472587),
+                name: 'Information',
+                scene: false,
+                image: 'panneau.png'
+            })
+
 
 
             s.createScene(scene)
@@ -821,6 +939,11 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                             tooltip.classList.remove('is-active')
                             spriteActive = false
                         }
+                    }
+
+                    if (intersect.object.name === "Information") {
+                        intersect.object.onClick()
+                        information()
                     }
 
 

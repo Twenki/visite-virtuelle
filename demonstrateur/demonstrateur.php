@@ -509,15 +509,15 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             controls.update()
 
 
-            let s = new Scene('entreExt.JPG', camera)
-            let sCouloir = new Scene('Couloir.JPG', camera)
-            let sPiece1960 = new Scene('Piece1960.JPG', camera)
-            let sPieceNeutre = new Scene('PieceNeutre.JPG', camera)
-            let sPieceTravail = new Scene('PieceTravail.JPG', camera)
-            let sChaufferie = new Scene('Chaufferie.JPG', camera)
+            let s = new Scene('entreExt.jpg', camera)
+            let sCouloir = new Scene('Couloir.jpg', camera)
+            let sPiece1960 = new Scene('Piece1960.jpg', camera)
+            let sPieceNeutre = new Scene('PieceNeutre.jpg', camera)
+            let sPieceTravail = new Scene('PieceTravail.jpg', camera)
+            let sChaufferie = new Scene('Chaufferie.jpg', camera)
 
             s.addPoint({
-                position: new THREE.Vector3(10.455667804274139, -3.212713468893284, 0.6464443963028412),
+                position: new THREE.Vector3(4.714811314699234, -3.114821546821535, 9.380237556534915),
                 name: '',
                 scene: sCouloir,
                 image: 'rond.png',
@@ -701,10 +701,11 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 })
 
                 intersects = rayCaster.intersectObject(s.sphere)
-                if (intersects.length > 0) {}
+                if (intersects.length > 0) {
+                    console.log(intersects[0].point)
+                }
                 let intersectes = rayCaster.intersectObjects(scene.children)
                 intersects.forEach(function(intersect) {
-                    console.log(intersectes[0].object.position)
                     if (intersectes[0].object.type == "Sprite") {
                         gsap.to(camera.position, {
                             x: -intersectes[0].object.position.x,

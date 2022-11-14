@@ -440,18 +440,21 @@
 			camera.position.set(1, 0, 0)
 			controls.update()
 
-			let s = new Scene('RDC/entreExt.JPG', camera)
-			let sEntreInt = new Scene('RDC/entreInt.JPG', camera)
-			let sCouloirH = new Scene('RDC/couloirHall.JPG', camera)
-			let sCouloirElectronique = new Scene('RDC/couloirElectronique.JPG', camera)
-			let sCouloirContuinite = new Scene('RDC/couloirContinuite.JPG', camera)
-			let sCouloirContuinite1 = new Scene('RDC/couloirContinuite1.JPG', camera)
-			let sCouloirContuinite2 = new Scene('RDC/couloirContinuite2.JPG', camera)
-			let sCouloirContuinite3 = new Scene('RDC/couloirContinuite3.JPG', camera)
-			let sSalleElec = new Scene('RDC/salleElec.JPG', camera)
-			let sSalleReseau = new Scene('RDC/salleReseau.JPG', camera)
-			let sSalleAutomatisme = new Scene('RDC/salleAutomatisme.JPG', camera)
-			let sModule = new Scene('ap3Module.JPG', camera)
+			let s = new Scene('RDC/entreExt.jpg', camera)
+			let sEntreInt = new Scene('RDC/entreInt.jpg', camera)
+			let sCouloirH = new Scene('RDC/couloirHall.jpg', camera)
+			let sCouloirElectronique = new Scene('RDC/couloirElectronique.jpg', camera)
+			let sCouloirContuinite = new Scene('RDC/couloirContinuite.jpg', camera)
+			let sCouloirContuinite1 = new Scene('RDC/couloirContinuite1.jpg', camera)
+			let sCouloirContuinite2 = new Scene('RDC/couloirContinuite2.jpg', camera)
+			let sCouloirContuinite3 = new Scene('RDC/couloirContinuite3.jpg', camera)
+			let sSalleElec = new Scene('RDC/salleElec.jpg', camera)
+			let sSalleReseau = new Scene('RDC/salleReseau.jpg', camera)
+			let sSalleAutomatisme = new Scene('RDC/salleAutomatisme.jpg', camera)
+			let sModule = new Scene('ap3Module.jpg', camera)
+			let sHall = new Scene('RDC/hall.jpg', camera)
+			let sAdmin1 = new Scene('RDC/Couloiradmin.jpg', camera)
+			let sAdmin2 = new Scene('RDC/CouloirAdmin2.jpg', camera)
 
 
 			//Point sur les scène
@@ -474,13 +477,49 @@
 				image: 'door.png'
 			})
 			sEntreInt.addPoint({
-				position: new THREE.Vector3(5.623505306584677, -3.1238519699229843, -8.891977694638026),
+				position: new THREE.Vector3(-10.339565200243312, -3.3069273711900626, -1.482991163662132),
 				name: '',
 				scene: s,
 				image: 'rond.png'
 			})
 			sEntreInt.addPoint({
-				position: new THREE.Vector3(-10.90301260739323, -1.3432282624409015, -0.04776502313076482),
+				position: new THREE.Vector3(-6.325808944004615, -3.5272407251807314, 8.206402747659993),
+				name: '',
+				scene: sHall,
+				image: 'rond.png'
+			})
+			sEntreInt.addPoint({
+				position: new THREE.Vector3(10.018608469785526, -3.16324806687511, -3.0862654671087917),
+				name: '',
+				scene: sAdmin2,
+				image: 'rond.png'
+			})
+			sAdmin2.addPoint({
+				position: new THREE.Vector3(-7.012918133205044, -2.9086281405198777, 7.888159318518818),
+				name: '',
+				scene: sEntreInt,
+				image: 'rond.png'
+			})
+			sAdmin2.addPoint({
+				position: new THREE.Vector3(6.44088330597738, -1.3881927354645196, -8.748267911610432),
+				name: '',
+				scene: sAdmin1,
+				image: 'rond.png'
+			})
+			sAdmin1.addPoint({
+				position: new THREE.Vector3(-5.559645332314107, -2.455918794388862, 9.114907404547322),
+				name: '',
+				scene: sAdmin2,
+				image: 'rond.png'
+			})
+			sHall.addPoint({
+				position: new THREE.Vector3(-1.2048341588034304, -3.5811292517282904, -10.26884986707138),
+				name: '',
+				scene: sEntreInt,
+				image: 'rond.png'
+			})
+			sHall.addPoint({
+				position: new THREE.Vector3(-3.701548778869777, -2.514513956714212, 10.000957611016052),
 				name: '',
 				scene: sCouloirH,
 				image: 'rond.png'
@@ -488,7 +527,7 @@
 			sCouloirH.addPoint({
 				position: new THREE.Vector3(9.472049139150277, -4.532699567050274, 3.0915708407858276),
 				name: '',
-				scene: sEntreInt,
+				scene: sHall,
 				image: 'rond.png'
 			})
 			sCouloirH.addPoint({
@@ -592,29 +631,29 @@
 
 			//Abel de pujol 3 / Etage 1 ---------------------------- MANQUE DES PHOTOS ! A NE PAS OUBLIER
 			//Déclaration des scène
-			let sEtage1Esca = new Scene('1ETAGE/Esca.JPG', camera)
+			let sEtage1Esca = new Scene('1ETAGE/Esca.jpg', camera)
 
 			//Point sur les scène
-			sEntreInt.addPoint({
-				position: new THREE.Vector3(-10.2821633408239, 0.2568192656459418, 3.772363175251246),
+			sHall.addPoint({
+				position: new THREE.Vector3(-0.3586275151285522, -3.0636076313740124, 10.523465665363773),
 				name: '',
 				scene: sEtage1Esca,
-				image: 'arrowright.png'
+				image: 'rond.png'
 			})
 			sEtage1Esca.addPoint({
 				position: new THREE.Vector3(8.614606633842147, -2.713483402382425, -6.204419986400512),
 				name: '',
-				scene: sEntreInt,
+				scene: sHall,
 				image: 'arrowright.png'
 			})
 
 
 			//Abel de pujol 3 / Etage 1.5
 			//Déclaration des scène
-			let sEtageSemiEsca = new Scene('SEMI/esca.JPG', camera)
-			let sEtageSemiCouloir109 = new Scene('SEMI/couloir109.JPG', camera)
-			let sEtageSemiCouloir110 = new Scene('SEMI/couloir110.JPG', camera)
-			let sEtageSemiSalle111 = new Scene('SEMI/salleInfo111.JPG', camera)
+			let sEtageSemiEsca = new Scene('SEMI/esca.jpg', camera)
+			let sEtageSemiCouloir109 = new Scene('SEMI/couloir109.jpg', camera)
+			let sEtageSemiCouloir110 = new Scene('SEMI/couloir110.jpg', camera)
+			let sEtageSemiSalle111 = new Scene('SEMI/salleInfo111.jpg', camera)
 
 			//Point sur les scène
 			sEtage1Esca.addPoint({
@@ -668,10 +707,10 @@
 
 			//Abel de pujol 3 / Etage 1.5
 			//Déclaration des scène
-			let sEtage2Esca = new Scene('2ETAGE/esca.JPG', camera)
-			let sEtage2Couloir201 = new Scene('2ETAGE/couloir201.JPG', camera)
-			let sEtage2Couloir203 = new Scene('2ETAGE/couloir203.JPG', camera)
-			let sEtage2Salle203 = new Scene('2ETAGE/salleInfo203.JPG', camera)
+			let sEtage2Esca = new Scene('2ETAGE/esca.jpg', camera)
+			let sEtage2Couloir201 = new Scene('2ETAGE/couloir201.jpg', camera)
+			let sEtage2Couloir203 = new Scene('2ETAGE/couloir203.jpg', camera)
+			let sEtage2Salle203 = new Scene('2ETAGE/salleInfo203.jpg', camera)
 
 			//Point sur les scène
 			sEtageSemiEsca.addPoint({

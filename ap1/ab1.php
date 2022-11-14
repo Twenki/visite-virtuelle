@@ -123,10 +123,32 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 ?>
             </div>
             <div class="zoom">
-            <?php
+                <?php
                 $recupImg = $bdd->query('SELECT * FROM images WHERE id="6"');
                 while ($donnees = $recupImg->fetch()) {
                     echo ('<img style="width:80%" src ="' . $donnees['nom'] . '"/>');
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="information" style="display: none;" onclick="information();">
+        <div id="containerInfo">
+            <div id="text" lang="fr">
+                <?php
+                $recupText = $bdd->query('SELECT * FROM text WHERE id="7"');
+                while ($text = $recupText->fetch()) {
+                    echo $text['contenu'];
+                }
+                ?>
+            </div>
+            <div id="text" lang="en">
+                <?php
+                $recupText = $bdd->query('SELECT * FROM texten WHERE id="7"');
+                while ($text = $recupText->fetch()) {
+                    echo $text['contenu'];
                 }
                 ?>
             </div>
@@ -303,6 +325,16 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
 
         }
 
+        function information() {
+            var div = document.getElementById("information");
+            if (div.style.display === "none") {
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
+
+        }
+
         function Layer() {
             var div = document.getElementById("layer");
             if (div.style.display === "fixed") {
@@ -325,7 +357,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
     </script>
     <div id="tooltip"></div>
     <canvas id="world"></canvas>
-
 
     <script src="../three.js"></script>
     <script src="../TweenLite.js"></script>
@@ -414,7 +445,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
         }
     </script>
 
-    <script>
+    <script type="module">
         var scene, camera, renderer;
         var clock, delta, spriteMixer, actionSprite, running;
         var actions = {};
@@ -442,6 +473,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 const texture = new THREE.TextureLoader().load(this.image)
                 texture.wrapS = THREE.RepeatWrapping
                 texture.repeat.x = -1
+                texture.minFilter = THREE.LinearFilter;
                 const material = new THREE.MeshBasicMaterial({
                     map: texture,
                     side: THREE.DoubleSide
@@ -548,19 +580,23 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             loop();
         })
 
+
         function init() {
+
             scene = new THREE.Scene();
 
             camera = new THREE.PerspectiveCamera(80, WIDTH / HEIGHT, 1, 50);
 
             renderer = new THREE.WebGLRenderer({
                 canvas: document.querySelector('#world'),
-                antialias: true,
+                antialias: false,
                 powerPreference: "high-performance",
             });
             renderer.setSize(window.innerWidth, window.innerHeight)
             renderer.setPixelRatio(window.devicePixelRatio * 0.95);
             renderer.setClearColor(0xffffff, 0);
+
+
 
             clock = new THREE.Clock();
 
@@ -577,16 +613,16 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             camera.position.set(1, 0, 0)
             controls.update()
 
-            let s = new Scene('RDC/Entre.JPG', camera)
-            let sHall = new Scene('RDC/hallPrincipal.JPG', camera)
-            let sHallCom = new Scene('RDC/HallCom.JPG', camera)
-            let sHallFinance = new Scene('RDC/HallFinance.JPG', camera)
-            let sHall2 = new Scene('RDC/hall2.JPG', camera)
-            let sAmphi200 = new Scene('RDC/amphi200.JPG', camera)
-            let sAmphi300 = new Scene('RDC/amphi300.JPG', camera)
-            let sEntreeExt = new Scene('RDC/entreExt2.JPG', camera)
-            let sModule = new Scene('ap1.JPG', camera)
-            let sCouloirRdc = new Scene('RDC/CouloirRdc.JPG', camera)
+            let s = new Scene('RDC/Entre.jpg', camera)
+            let sHall = new Scene('RDC/hallPrincipal.jpg', camera)
+            let sHallCom = new Scene('RDC/HallCom.jpg', camera)
+            let sHallFinance = new Scene('RDC/HallFinance.jpg', camera)
+            let sHall2 = new Scene('RDC/hall2.jpg', camera)
+            let sAmphi200 = new Scene('RDC/amphi200.jpg', camera)
+            let sAmphi300 = new Scene('RDC/amphi300.jpg', camera)
+            let sEntreeExt = new Scene('RDC/entreExt2.jpg', camera)
+            let sTram = new Scene('tram.jpg', camera)
+            let sCouloirRdc = new Scene('RDC/CouloirRdc.jpg', camera)
 
             //Point sur les scène
             s.addPoint({
@@ -596,13 +632,13 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 image: 'rond.png'
             })
             s.addPoint({
-                position: new THREE.Vector3(10.877771204469095, 0.7074335868490863, 0.888145824521527),
+                position: new THREE.Vector3(9.083049363305841, 0.17839529911529067, -6.174431725125072),
                 name: '',
-                scene: sModule,
+                scene: sTram,
                 image: 'door.png'
             })
-            sModule.addPoint({
-                position: new THREE.Vector3(-8.446364590140831, -0.16982155625560477, -6.9508949553870085),
+            sTram.addPoint({
+                position: new THREE.Vector3(-4.537421508034326, -0.3298448881264114, 9.969121445902818),
                 name: '',
                 scene: s,
                 image: 'door.png'
@@ -675,7 +711,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             })
 
             sEntreeExt.addPoint({
-                position: new THREE.Vector3(25.156853331364545, 0.5814158678190425, -42.94255623779937),
+                position: new THREE.Vector3(-10.08654029053534, -2.078572977505144, -3.7701712928225186),
                 name: '',
                 scene: sHall,
                 image: 'rond.png'
@@ -712,14 +748,14 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             // --------------- Abel de pujol 1 / Etage 1
 
             //Déclaration des scène
-            let sEtage1 = new Scene('1ETAGE/Etage1.JPG', camera)
-            let sCouloirAmphie = new Scene('1ETAGE/couloirAmphi.JPG', camera)
-            let sAmphi70 = new Scene('1ETAGE/amphi70.JPG', camera)
-            let sCouloirEsca = new Scene('1ETAGE/couloirEsca.JPG', camera)
-            let sCouloirCentreAide = new Scene('1ETAGE/couloirCentreAide.JPG', camera)
-            let sCouloirHubhouse = new Scene('1ETAGE/couloirHubhouse.JPG', camera)
-            let sCentreAide = new Scene('1ETAGE/centreAide.JPG', camera)
-            let sHubHouse = new Scene('1ETAGE/hubhouse.JPG', camera)
+            let sEtage1 = new Scene('1ETAGE/Etage1.jpg', camera)
+            let sCouloirAmphie = new Scene('1ETAGE/couloirAmphi.jpg', camera)
+            let sAmphi70 = new Scene('1ETAGE/amphi70.jpg', camera)
+            let sCouloirEsca = new Scene('1ETAGE/couloirEsca.jpg', camera)
+            let sCouloirCentreAide = new Scene('1ETAGE/couloirCentreAide.jpg', camera)
+            let sCouloirHubhouse = new Scene('1ETAGE/couloirHubhouse.jpg', camera)
+            let sCentreAide = new Scene('1ETAGE/centreAide.jpg', camera)
+            let sHubHouse = new Scene('1ETAGE/hubhouse.jpg', camera)
 
             //Point sur les scène
             sHall.addPoint({
@@ -789,6 +825,18 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 scene: sCouloirAmphie,
                 image: 'rond.png'
             })
+            sCouloirEsca.addPoint({
+                position: new THREE.Vector3(-5.0550533764991865, -3.64608056921079, 8.993357660879889),
+                name: '',
+                scene: sHall2,
+                image: 'rond.png'
+            })
+            sHall2.addPoint({
+                position: new THREE.Vector3(8.562910949540097, -2.480188436328324, 6.359083167624441),
+                name: '',
+                scene: sCouloirEsca,
+                image: 'rond.png'
+            })
 
             sCouloirEsca.addPoint({
                 position: new THREE.Vector3(10.454274719170188, -3.129717072665537, -0.8930061904849269),
@@ -849,10 +897,10 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             // --------------- Abel de pujol 1 / Etage 2 ----------------- //
 
             //Déclaration des scène
-            let sCouloir = new Scene('2ETAGE/couloir.JPG', camera)
-            let sCouloirPhysique = new Scene('2ETAGE/couloirPhysique.JPG', camera)
-            let sSallePc8 = new Scene('2ETAGE/sallepc8.JPG', camera)
-            let sSallePc4 = new Scene('2ETAGE/sallepc4.JPG', camera)
+            let sCouloir = new Scene('2ETAGE/couloir.jpg', camera)
+            let sCouloirPhysique = new Scene('2ETAGE/couloirPhysique.jpg', camera)
+            let sSallePc8 = new Scene('2ETAGE/sallepc8.jpg', camera)
+            let sSallePc4 = new Scene('2ETAGE/sallepc4.jpg', camera)
 
             //Point sur les scène
             sCouloirEsca.addPoint({
@@ -932,6 +980,12 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 scene: false,
                 image: 'info.png'
             })
+            s.addPoint({
+                position: new THREE.Vector3(-8.263998285248835, -1.1662377744152068, -7.082616160453021),
+                name: 'Information',
+                scene: false,
+                image: 'panneau.png'
+            })
 
             s.createScene(scene)
             s.appear()
@@ -960,7 +1014,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 sSallePc4.destroy()
                 sHallCom.destroy()
                 sHallFinance.destroy()
-                sModule.destroy()
+                sTram.destroy()
                 sCouloirRdc.destroy()
             }
             window.amphi300 = function() {
@@ -985,7 +1039,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 sSallePc4.destroy()
                 sHallCom.destroy()
                 sHallFinance.destroy()
-                sModule.destroy()
+                sTram.destroy()
                 sCouloirRdc.destroy()
             }
             window.etage2 = function() {
@@ -1010,7 +1064,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 sSallePc4.destroy()
                 sHallCom.destroy()
                 sHallFinance.destroy()
-                sModule.destroy()
+                sTram.destroy()
                 sCouloirRdc.destroy()
             }
             window.CentreAide = function() {
@@ -1036,12 +1090,13 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 sSallePc4.destroy()
                 sHallCom.destroy()
                 sHallFinance.destroy()
-                sModule.destroy()
+                sTram.destroy()
                 sCouloirRdc.destroy()
             }
 
             renderer.setSize(window.innerWidth, window.innerHeight)
             container.appendChild(renderer.domElement)
+
 
             function animate() {
                 requestAnimationFrame(animate)
@@ -1093,18 +1148,20 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                         intersect.object.onClick()
                         absorption()
                     }
+                    if (intersect.object.name === "Information") {
+                        intersect.object.onClick()
+                        information()
+                    }
 
                 })
 
                 intersects = rayCaster.intersectObject(s.sphere)
                 if (intersects.length > 0) {
                     console.log(intersects[0].point)
-                    console.log(renderer.info)
 
                 }
                 let intersectes = rayCaster.intersectObjects(scene.children)
                 intersects.forEach(function(intersect) {
-                    console.log(intersectes[0].object.position)
                     if (intersectes[0].object.type == "Sprite") {
                         gsap.to(camera.position, {
                             x: -intersectes[0].object.position.x,

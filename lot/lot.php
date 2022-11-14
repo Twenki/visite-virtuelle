@@ -409,35 +409,100 @@
             camera.position.set(1, 0, 0)
             controls.update()
 
-            let s = new Scene('couloir.JPG', camera)
-            let sSalleMicroscope = new Scene('SalleMicroscopeBaleyage2.JPG', camera)
-            let sRobotique = new Scene('salleRobotique.JPG', camera)
-            let sScience = new Scene('salleScience.JPG', camera)
+            let s = new Scene('hall.jpg', camera)
+            let sCouloir = new Scene('couloir.jpg', camera)
+            let sSalleMicroscope = new Scene('SalleMicroscopeBaleyage2.jpg', camera)
+            let sRobotique = new Scene('salleRobotique.jpg', camera)
+            let sScience = new Scene('salleScience.jpg', camera)
+            let sVoiture = new Scene('voiture.jpg', camera)
+            let sAvantDerniere = new Scene('avantderniere.jpg', camera)
+            let sDerniereSalle = new Scene('dernieresalle.jpg', camera)
+            let sEtage1 = new Scene('etage1lottman.jpg', camera)
 
 
             s.addPoint({
-                position: new THREE.Vector3(-8.279245038571204, -0.8242530665743746, -7.104096436987499),
+                position: new THREE.Vector3(-1.237065799002014, -2.7605906061889165, 10.512848920438657),
                 name: '',
-                scene: sSalleMicroscope,
+                scene: sCouloir,
+                image: 'rond.png'
+            })
+            s.addPoint({
+                position: new THREE.Vector3(7.979986636501081, 0.3766338905997665, 7.503240081120729),
+                name: '',
+                scene: sEtage1,
                 image: 'arrowright.png'
             })
-            sSalleMicroscope.addPoint({
-                position: new THREE.Vector3(-5.519541998648475, -3.8270985145432084, -8.671995680654705),
+            sEtage1.addPoint({
+                position: new THREE.Vector3(5.3052745840848266, -5.0699897767487165, 8.17288009031107),
                 name: '',
                 scene: s,
                 image: 'rond.png'
             })
-            s.addPoint({
-                position: new THREE.Vector3(-4.583883128026344, -5.96427383487961, 7.970076641270893),
+            sCouloir.addPoint({
+                position: new THREE.Vector3(-9.017452627701523, -1.097019872997943, -6.18063593526573),
+                name: '',
+                scene: s,
+                image: 'arrowright.png'
+            })
+            sCouloir.addPoint({
+                position: new THREE.Vector3(4.74633860972725, -1.9519784138449796, 9.669706663089746),
+                name: '',
+                scene: sSalleMicroscope,
+                image: 'door.png'
+            })
+            sCouloir.addPoint({
+                position: new THREE.Vector3(-4.031112259531356, -0.5656548953643534, 10.187894247119),
+                name: '',
+                scene: sAvantDerniere,
+                image: 'door.png'
+            })
+            sAvantDerniere.addPoint({
+                position: new THREE.Vector3(7.90102837804899, -0.5072658536554833, -7.589383771392035),
+                name: '',
+                scene: sCouloir,
+                image: 'door.png'
+            })
+            sAvantDerniere.addPoint({
+                position: new THREE.Vector3(3.4028157920713022, -0.7211941057494818, -10.370539261644367),
+                name: '',
+                scene: sDerniereSalle,
+                image: 'door.png'
+            })
+            sDerniereSalle.addPoint({
+                position: new THREE.Vector3(4.121320064223293, -1.2097821655459202, 10.114044330087674),
+                name: '',
+                scene: sAvantDerniere,
+                image: 'door.png'
+            })
+            sSalleMicroscope.addPoint({
+                position: new THREE.Vector3(-5.995433692709088, 0.2784993404340984, -9.192643950573874),
+                name: '',
+                scene: sCouloir,
+                image: 'door.png'
+            })
+            sSalleMicroscope.addPoint({
+                position: new THREE.Vector3(-1.8918072132462174, 1.3043356112148312, 10.727159270425414),
+                name: '',
+                scene: sVoiture,
+                image: 'door.png'
+            })
+            sVoiture.addPoint({
+                position: new THREE.Vector3(6.770007015228905, -1.9026136466260088, 8.379924250467724),
+                name: '',
+                scene: sSalleMicroscope,
+                image: 'door.png'
+            })
+            sCouloir.addPoint({
+                position: new THREE.Vector3(-10.759848743446163, -1.5529779187766448, -1.1854314033892122),
                 name: '',
                 scene: sRobotique,
-                image: 'rond.png'
+                image: 'door.png'
             })
             sRobotique.addPoint({
-                position: new THREE.Vector3(-3.653808814830252, -4.738691299098084, -9.200175362816903),
+                position: new THREE.Vector3(10.83103765330227, -1.7658621463110489, 0.14201840231467094),
                 name: '',
-                scene: s,
-                image: 'rond.png'
+                scene: sCouloir,
+                image: 'door.png'
             })
 
 

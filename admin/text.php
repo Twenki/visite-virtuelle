@@ -15,6 +15,22 @@ if (!$_SESSION['password']) {
 </head>
 
 <body style="background-color: #c5d5cb;">
+    <h1 style="text-align: center;">Panneau AB1</h1>
+    <?php
+    $recupText = $bdd->query('SELECT * FROM text WHERE id = "7"');
+
+    while ($text = $recupText->fetch()) {
+    ?>
+        <div style="border: solid 1px;background-color: white; display: flex; ">
+            <p style="text-align: center; display: flex;">
+                <?= $text['contenu']; ?>
+                <a href="modifierText.php?id=<?= $text['id']; ?>">Modifier le texte</a></p>
+                
+            </p>
+        </div>
+    <?php
+    }
+    ?>
     <h1 style="text-align: center;">Batiment CEBD</h1>
     <?php
     $recupImg = $bdd->query('SELECT * FROM images INNER JOIN text ON images.id = text.id WHERE text.id BETWEEN "1" AND "3"');

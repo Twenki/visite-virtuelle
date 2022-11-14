@@ -412,11 +412,11 @@
             controls.update()
 
 
-            let s = new Scene('RDC/entreExt.JPG', camera)
-            let scouloirEntInt = new Scene('RDC/couloirEntInt.JPG', camera)
-            let sEsca = new Scene('RDC/esca.JPG', camera)
-            let sCouloirAmphi = new Scene('RDC/couloirAmphi.JPG', camera)
-            let sAmphi = new Scene('RDC/Amphi.JPG', camera)
+            let s = new Scene('RDC/entreExt.jpg', camera)
+            let scouloirEntInt = new Scene('RDC/couloirEntInt.jpg', camera)
+            let sEsca = new Scene('RDC/esca.jpg', camera)
+            let sCouloirAmphi = new Scene('RDC/couloirAmphi.jpg', camera)
+            let sAmphi = new Scene('RDC/Amphi.jpg', camera)
 
             s.addPoint({
                 position: new THREE.Vector3(10.692533977841284, -0.874221005367475, -2.315567948156415),
@@ -475,7 +475,7 @@
 
             // Etage 1 
 
-            let sEtage1 = new Scene('1ETAGE/esca.JPG', camera)
+            let sEtage1 = new Scene('1ETAGE/esca.jpg', camera)
 
 
             sEsca.addPoint({
@@ -492,8 +492,8 @@
             })
 
             // Etage 2
-            let sEtage2Esca = new Scene('2ETAGE/esca.JPG', camera)
-            let sEtage2Couloir = new Scene('2ETAGE/couloir.JPG', camera)
+            let sEtage2Esca = new Scene('2ETAGE/esca.jpg', camera)
+            let sEtage2Couloir = new Scene('2ETAGE/couloir.jpg', camera)
 
             sEtage1.addPoint({
                 position: new THREE.Vector3(10.297555007742432, -2.7923813311851458, 2.485181388346513),
