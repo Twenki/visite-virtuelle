@@ -1,6 +1,6 @@
 <?php
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
+include '../admin/database.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -199,10 +199,12 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
     <script>
         function ChangeDrapeau() {
             var image = document.getElementById('drapeau');
-            if (image.src == "http://localhost/stage2022/textures/drapeau_fr.png") {
-                image.src = "http://localhost/stage2022/textures/drapeau_en.png";
+            console.log(image.src)
+            
+            if (image.src == "../textures/drapeau_fr.png") {
+                image.src = "../textures/drapeau_en.png";
             } else {
-                image.src = "http://localhost/stage2022/textures/drapeau_fr.png"
+                image.src = "../textures/drapeau_fr.png"
             }
         }
         //Appartition de la carte du campus

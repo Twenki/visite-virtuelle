@@ -7,37 +7,28 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
     overflow-x: hidden;
     background: url('ressources/couv.jpg') no-repeat center center fixed;
-    background-size: 100% 100%;
+    background-size: cover;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 900px) {
     body {
-        background-size: cover;
+        color: white;
+        background-size: contain;
+        width: 100%;
+        background-color: #8D5B5E;
+        font-weight: bold;
     }
-  }
-
-.img360 img{
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
-    justify-content: center;
-}
-
-#i360 {
-    width: 8em;
 
 }
 
 .container-first {
     position: absolute;
-    top: 85%;
-    left: 41%;
-    bottom: 0;
-
+    top: 88%;
+    right: 10%;
 }
 
 h1 {
@@ -51,20 +42,16 @@ h1 span {
     position: relative;
 }
 
-.container-btns {
-    position: fixed;
-}
 
 .btn-first {
-    border: 4px solid black;
     outline: none;
-    background-color: #333;
+    background-color: red;
     font-size: 30px;
     padding: 20px;
     width: 280px;
     color: black;
     cursor: pointer;
-
+    border-radius: 25px;
 }
 
 .btn-first:nth-child(1) {
@@ -73,7 +60,7 @@ h1 span {
 
 .btn-first:hover {
     transition: all 0.3s ease-in-out;
-    background: red;
+    background: white;
     color: #333;
 
 }
@@ -100,25 +87,12 @@ h1 span {
     top: 20px;
 }
 
-.logo {
-    position: absolute;
-    right: 2.9%;
-    top: 4%;
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-}
-
 .medias {
     list-style-type: none;
     position: absolute;
-    right: 3.3%;
-    top: 50%;
-    transform: translateY(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 
 .bulle {
@@ -129,8 +103,8 @@ h1 span {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 0;
-    background: red;
+    margin: 10px 10px;
+    background: white;
     cursor: pointer;
     position: relative;
 }
@@ -143,4 +117,9 @@ h1 span {
 a {
     text-decoration: none;
     color: black;
+}
+
+.text {
+    color: white;
+    font-size: 40px;
 }

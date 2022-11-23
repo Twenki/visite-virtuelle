@@ -1,6 +1,6 @@
 <?php
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
+include '../admin/database.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,6 +16,14 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
 
 
 <body>
+    <nav>
+        <ul>
+            <img src="RDC/hall2.jpg" style="width: 10%;" onclick="hall()">
+            <img src="1ETAGE/couloirCentreAide.jpg" style="width: 10%;" onclick="CentreAide()">
+            <img src="2ETAGE/SallePC4.jpg" style="width: 10%;" onclick="etage2()">
+        </ul>
+    </nav>
+
     <!-- Barre de tache en bas de l'écran -->
     <div class="container">
         <div class="toolbar">
@@ -232,6 +240,8 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
 
 
 
+
+
     <script>
         function ChangeDrapeau() {
             var image = document.getElementById('drapeau');
@@ -352,13 +362,22 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             } else {
                 div.style.display = "none";
             }
+        }
 
+        function slider() {
+            var div = document.getElementById("scene");
+            if (div.style.display === "none") {
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
         }
     </script>
     <div id="tooltip"></div>
     <canvas id="world"></canvas>
 
     <script src="../three.js"></script>
+    <script src="../stats.js"></script>
     <script src="../TweenLite.js"></script>
     <script src="../SpriteMixer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
@@ -444,10 +463,11 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             }
         }
     </script>
+    
 
     <script type="module">
-        var scene, camera, renderer;
-        var clock, delta, spriteMixer, actionSprite, running;
+        let camera, scene, renderer, sphere, clock;
+        var delta, spriteMixer, actionSprite, running;
         var actions = {};
         const WIDTH = window.innerWidth;
         const HEIGHT = window.innerHeight;
@@ -455,6 +475,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
         const tooltip = document.querySelector('#tooltip')
         let spriteActive = false
         spriteMixer = SpriteMixer();
+
 
         class Scene {
 
@@ -580,24 +601,18 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
             loop();
         })
 
-
+        
         function init() {
-
             scene = new THREE.Scene();
 
             camera = new THREE.PerspectiveCamera(80, WIDTH / HEIGHT, 1, 50);
 
             renderer = new THREE.WebGLRenderer({
                 canvas: document.querySelector('#world'),
-                antialias: false,
-                powerPreference: "high-performance",
             });
             renderer.setSize(window.innerWidth, window.innerHeight)
             renderer.setPixelRatio(window.devicePixelRatio * 0.95);
             renderer.setClearColor(0xffffff, 0);
-
-
-
             clock = new THREE.Clock();
 
             const controls = new THREE.OrbitControls(camera)
@@ -635,7 +650,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
                 position: new THREE.Vector3(9.083049363305841, 0.17839529911529067, -6.174431725125072),
                 name: '',
                 scene: sTram,
-                image: 'door.png'
+                image: 'spyglasse.png'
             })
             sTram.addPoint({
                 position: new THREE.Vector3(-4.537421508034326, -0.3298448881264114, 9.969121445902818),

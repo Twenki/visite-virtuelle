@@ -1,6 +1,6 @@
 <?php
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=visitevirtuelle;', 'root', '');
+include '../admin/database.php';
 ?>
 <!DOCTYPE html>
 <html>

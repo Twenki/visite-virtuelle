@@ -1,3 +1,7 @@
+<?php
+session_start();
+include '../admin/database.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -36,13 +40,13 @@
     </div>
 
     <svg id="minimap" version="1.1" style="display: none;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080" onclick="openmap(); arrowUp();">
-		<image width="1920" height="1080" xlink:href="rdc.png"></image>
-	</svg>
+        <image width="1920" height="1080" xlink:href="rdc.png"></image>
+    </svg>
     <img src="../textures/ArrowUp.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
 
 
     <div id="maDIV" style="display: none; ">
-    <div class="main">
+        <div class="main">
             <div class="dropdown_list">
                 <button style="position: absolute;" class="dropdown_button" onclick="show_list()">
                     Séléctionner votre formation
@@ -97,7 +101,7 @@
                 image.src = "http://localhost/stage2022/textures/drapeau_fr.png"
             }
         }
-        
+
         function changeImage() {
             var image = document.getElementById('minimap');
             if (image.src == "http://localhost/stage2022/lot/rdc.png") {
