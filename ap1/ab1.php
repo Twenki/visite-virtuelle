@@ -13,14 +13,22 @@ include '../admin/database.php';
     <title>Visite virtuelle - Batiment Abel de Pujol 1</title>
     <link rel="stylesheet" href="../css/visite.css">
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HYLJZEMJB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-7HYLJZEMJB');
+</script>
 
 <body>
     <nav>
         <ul>
             <img src="RDC/hall2.jpg" style="width: 10%;" onclick="hall()">
-            <img src="1ETAGE/couloirCentreAide.jpg" style="width: 10%;" onclick="CentreAide()">
-            <img src="2ETAGE/SallePC4.jpg" style="width: 10%;" onclick="etage2()">
+            <img src="1ETAGE/couloircentreaide.jpg" style="width: 10%;" onclick="CentreAide()">
+            <img src="2ETAGE/sallepc4.jpg" style="width: 10%;" onclick="etage2()">
         </ul>
     </nav>
 
@@ -28,11 +36,11 @@ include '../admin/database.php';
     <div class="container">
         <div class="toolbar">
             <a href="../carrousel/index.html"><img class="accueil" src="../textures/accueil.png" alt="accueil"></a>
-            <a href="#"><img src="../ressources/iconMap.png" alt="Map" onclick="maFonction(); logoInsa(); "></a>
+            <a href="#"><img src="../ressources/iconmap.png" alt="Map" onclick="maFonction(); logoInsa(); "></a>
             <a href="#"><img src="../textures/minimap.png" name="minimap" onclick="openmap(); arrowUp();"></a>
-            <img src="../textures/drapeau_fr.png" id="drapeau" class="switch-lang" onclick="ChangeDrapeau();">
             <img src="../textures/dyslexie.png" id="OpenDys" class="switch-font">
-            <a href="#"><img src="../textures/fullscreenOn.png" name="FullScreen" onclick="fullscreen();"></a>
+            <a href="#"><img src="../textures/fullscreenon.png" name="FullScreen" onclick="fullscreen();"></a>
+
             <hr />
         </div>
     </div>
@@ -64,14 +72,6 @@ include '../admin/database.php';
                 }
                 ?>
             </div>
-            <div id="text" lang="en">
-                <?php
-                $recupText = $bdd->query('SELECT * FROM texten WHERE id="4"');
-                while ($text = $recupText->fetch()) {
-                    echo $text['contenu'];
-                }
-                ?>
-            </div>
             <div class="zoom">
                 <?php
                 $recupImg = $bdd->query('SELECT * FROM images WHERE id="4"');
@@ -93,14 +93,6 @@ include '../admin/database.php';
                 }
                 ?>
             </div>
-            <div id="text" lang="en">
-                <?php
-                $recupText = $bdd->query('SELECT * FROM texten WHERE id="5"');
-                while ($text = $recupText->fetch()) {
-                    echo $text['contenu'];
-                }
-                ?>
-            </div>
             <div class="zoom">
                 <?php
                 $recupImg = $bdd->query('SELECT * FROM images WHERE id="5"');
@@ -117,14 +109,6 @@ include '../admin/database.php';
             <div id="text" lang="fr">
                 <?php
                 $recupText = $bdd->query('SELECT * FROM text WHERE id="6"');
-                while ($text = $recupText->fetch()) {
-                    echo $text['contenu'];
-                }
-                ?>
-            </div>
-            <div id="text" lang="en">
-                <?php
-                $recupText = $bdd->query('SELECT * FROM texten WHERE id="6"');
                 while ($text = $recupText->fetch()) {
                     echo $text['contenu'];
                 }
@@ -152,78 +136,16 @@ include '../admin/database.php';
                 }
                 ?>
             </div>
-            <div id="text" lang="en">
-                <?php
-                $recupText = $bdd->query('SELECT * FROM texten WHERE id="7"');
-                while ($text = $recupText->fetch()) {
-                    echo $text['contenu'];
-                }
-                ?>
-            </div>
         </div>
     </div>
 
-
-    <!--Creation des zone cliquable dans la map en 3D-->
-    <!--
-    <map name="map">
-        <area onclick="amphi200();" shape="poly" coords="143,43,144,35,152,27,163,27,172,37,172,46" alt="Couloir" style="display: none;" />
-        <area onclick="amphi300();" shape="poly" coords="128,121,122,159,164,159,165,121" alt="Couloir" style="display: none;" />
-        <area onclick="etage1();" shape="poly" coords="146,74,142,106,241,103,245,116,272,115,263,70" alt="Couloir" style="display: none;" />
-        <area onclick="PC4();" shape="poly" coords="97,50,113,50,109,67,90,68" alt="Couloir" style="display: none;" />
-    </map>
-            -->
     <svg id="minimap" version="1.1" style="display: none;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080" onclick="openmap(); arrowUp();">
         <image width="1920" height="1080" xlink:href="rdc.png"></image>
-        <a xlink:href="#">
-            <rect id="hall" x="488" y="444" fill="#fff" opacity="0" width="920" height="402" onclick="hall();"></rect>
-        </a>
-        <a xlink:href="#">
-            <rect id="etage2" x="632" y="438" fill="#fff" opacity="0" width="1134" height="402" onclick="etage2();"></rect>
-        </a>
-        <a xlink:href="#">
-            <rect id="etage1" x="488" y="444" fill="#fff" opacity="0" width="920" height="402" onclick="etage1();"></rect>
-        </a>
     </svg>
-    <img src="../textures/ArrowUp.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
+    <img src="../textures/arrowup.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
 
     <!-- Grande carte du campus -->
     <div id="maDIV" style="display: none; position: -ms-page; width: 100%;">
-
-        <div class="main">
-            <div class="dropdown_list">
-                <button style="position: absolute;" class="dropdown_button" onclick="show_list()">
-                    Séléctionner votre formation
-                </button>
-
-                <div style="position: absolute; overflow: auto; height: 50%;" id="courses_id" class="courses">
-                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
-                    $('[id*=region_ab2').css('fill', '#aa1d1d');
-                    $('[id*=region_ab1').css('fill', '#aa1d1d');">
-                        Formation Audiovisuel et Multimédia</li>
-
-                    <li>Formation Automatique</li>
-
-                    <li>Formation Cybersécurité</li>
-                    <li>Formation Electronique et Electronique Embarquée</li>
-                    <li>Formation Informatique</li>
-                    <li>Formation Génie Civil</li>
-                    <li>Formation Génie Industriel</li>
-                    <li>Formation Génie Electrique et informatique industrielle</li>
-                    <li>Formation Qualité/Hygiène/Sécruité</li>
-                    <li>Formation Mathématiques</li>
-                    <li>Formation Mécanique et Energétique/ Transports et Energie</li>
-                    <li>Formation Physique/Chimie/Matériaux</li>
-                    <li>Formation Réseaux et Télécommunications</li>
-
-                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
-                    $('[id*=region_gym').css('fill', '#aa1d1d');
-                    $('[id*=region_carpeaux').css('fill', '#aa1d1d');">
-                        Formation STAPS</li>
-
-                </div>
-            </div>
-        </div>
 
         <div class="mapAndInfos">
             <div class="map">
@@ -243,12 +165,29 @@ include '../admin/database.php';
 
 
     <script>
-        function ChangeDrapeau() {
-            var image = document.getElementById('drapeau');
-            if (image.src == "http://localhost/stage2022/textures/drapeau_fr.png") {
-                image.src = "http://localhost/stage2022/textures/drapeau_en.png";
+        function fullscreen(elem) {
+            elem = elem || document.documentElement;
+            if (!document.fullscreenElement && !document.mozFullScreenElement &&
+                !document.webkitFullscreenElement && !document.msFullscreenElement) {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                } else if (elem.mozRequestFullScreen) {
+                    elem.mozRequestFullScreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+                }
             } else {
-                image.src = "http://localhost/stage2022/textures/drapeau_fr.png"
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
             }
         }
 
@@ -257,20 +196,11 @@ include '../admin/database.php';
             var image = document.querySelector("image")
             if (image.href.animVal == 'rdc.png') {
                 image.setAttribute('href', "etage1.png");
-                document.getElementById("etage1").style.display = 'block';
-                document.getElementById("etage2").style.display = 'none';
-                document.getElementById("hall").style.display = 'none';
 
             } else if (image.href.animVal == 'etage1.png') {
                 image.setAttribute('href', "etage2.png");
-                document.getElementById("etage2").style.display = 'block';
-                document.getElementById("etage1").style.display = 'none';
             } else {
                 image.setAttribute('href', "rdc.png")
-                document.getElementById("hall").style.display = 'block';
-                document.getElementById("etage1").style.display = 'none';
-                document.getElementById("etage2").style.display = 'none';
-
             }
 
         }
@@ -377,7 +307,6 @@ include '../admin/database.php';
     <canvas id="world"></canvas>
 
     <script src="../three.js"></script>
-    <script src="../stats.js"></script>
     <script src="../TweenLite.js"></script>
     <script src="../SpriteMixer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
@@ -434,36 +363,14 @@ include '../admin/database.php';
 
             });
 
+            $("#OpenDys").click(function() {
+                $("div").toggleClass("OpenDys-font");
+                $("#containerInfo").toggleClass("containerInfo");
+            });
+
         })
-        $('[lang="en"]').hide();
-
-        $('.switch-lang').click(function() {
-            $('[lang="fr"]').toggle();
-            $('[lang="en"]').toggle();
-        });
-
-        $("#OpenDys").click(function() {
-            $("div").toggleClass("OpenDys-font");
-            $("#containerInfo").toggleClass("containerInfo");
-        });
-
-        function show_list() {
-            var courses = document.getElementById("courses_id");
-
-            if (courses.style.display == "block") {
-                courses.style.display = "none";
-            } else {
-                courses.style.display = "block";
-            }
-        }
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown_button')) {
-                document.getElementById('courses_id')
-                    .style.display = "none";
-            }
-        }
     </script>
-    
+
 
     <script type="module">
         let camera, scene, renderer, sphere, clock;
@@ -475,7 +382,6 @@ include '../admin/database.php';
         const tooltip = document.querySelector('#tooltip')
         let spriteActive = false
         spriteMixer = SpriteMixer();
-
 
         class Scene {
 
@@ -504,6 +410,8 @@ include '../admin/database.php';
                 this.sphere = new THREE.Mesh(geometry, material)
                 this.scene.add(this.sphere)
                 this.points.forEach(this.addTooltip.bind(this))
+
+
             }
 
             addPoint(point) {
@@ -533,9 +441,15 @@ include '../admin/database.php';
                         sprite.onClick = () => {
                             this.destroy();
                             setTimeout(() => {
+                                point.scene.destroy(scene);
                                 point.scene.createScene(scene);
+                                TweenLite.to(this.sphere.material, 1, {
+                                    opacity: 0,
+                                    onComplete: () => {
+                                        this.scene.remove(this.sphere)
+                                    }
+                                })
                             }, 1500);
-                            point.scene.appear();
 
                         }
                     } else {
@@ -562,11 +476,10 @@ include '../admin/database.php';
             }
 
             //Destruction des tooltip/scene a chaque changement de scene
-            destroy = function() {
+            destroy() {
+
                 actions.runLeft.stop();
-
                 this.sprites.forEach((sprite) => {
-
                     this.sprites.forEach((sprite) => {
                         TweenLite.to(sprite.scale, 1, {
                             x: 0,
@@ -601,7 +514,7 @@ include '../admin/database.php';
             loop();
         })
 
-        
+
         function init() {
             scene = new THREE.Scene();
 
@@ -619,7 +532,7 @@ include '../admin/database.php';
             controls.maxDistance = 3;
             controls.minDistance = 0.9;
             controls.rotateSpeed = -0.1
-            controls.enableZoom = true
+            controls.enableZoom = false
             controls.enablePan = false
             controls.autoRotate = true
             controls.autoRotateSpeed = 0.1
@@ -628,16 +541,17 @@ include '../admin/database.php';
             camera.position.set(1, 0, 0)
             controls.update()
 
-            let s = new Scene('RDC/Entre.jpg', camera)
-            let sHall = new Scene('RDC/hallPrincipal.jpg', camera)
-            let sHallCom = new Scene('RDC/HallCom.jpg', camera)
-            let sHallFinance = new Scene('RDC/HallFinance.jpg', camera)
+
+            let s = new Scene('RDC/entre.jpg', camera)
+            let sHall = new Scene('RDC/hallprincipal.jpg', camera)
+            let sHallCom = new Scene('RDC/hallcom.jpg', camera)
+            let sHallFinance = new Scene('RDC/hallfinance.jpg', camera)
             let sHall2 = new Scene('RDC/hall2.jpg', camera)
             let sAmphi200 = new Scene('RDC/amphi200.jpg', camera)
             let sAmphi300 = new Scene('RDC/amphi300.jpg', camera)
-            let sEntreeExt = new Scene('RDC/entreExt2.jpg', camera)
+            let sEntreeExt = new Scene('RDC/entreext2.jpg', camera)
             let sTram = new Scene('tram.jpg', camera)
-            let sCouloirRdc = new Scene('RDC/CouloirRdc.jpg', camera)
+            let sCouloirRdc = new Scene('RDC/couloirrdc.jpg', camera)
 
             //Point sur les scène
             s.addPoint({
@@ -705,17 +619,17 @@ include '../admin/database.php';
             })
 
             sAmphi300.addPoint({
-                position: new THREE.Vector3(2.1469404447992044, 0.8136121937148264, -10.746783071043808),
+                position: new THREE.Vector3(-10.592094976832428, -1.0759358436633, 2.6126978138914465),
                 name: '',
                 scene: sHall,
-                image: 'arrowleft.png'
+                image: 'arrowright.png'
             })
 
             sAmphi200.addPoint({
-                position: new THREE.Vector3(10.92693494914755, -0.907185458701395, 0.28934377463863764),
+                position: new THREE.Vector3(-8.889877160162126, -1.5453162662689475, 6.231769614730984),
                 name: '',
                 scene: sHall,
-                image: 'rond.png'
+                image: 'door.png'
             })
 
             sHall.addPoint({
@@ -763,13 +677,13 @@ include '../admin/database.php';
             // --------------- Abel de pujol 1 / Etage 1
 
             //Déclaration des scène
-            let sEtage1 = new Scene('1ETAGE/Etage1.jpg', camera)
-            let sCouloirAmphie = new Scene('1ETAGE/couloirAmphi.jpg', camera)
+            let sEtage1 = new Scene('1ETAGE/etage1.jpg', camera)
+            let sCouloirAmphie = new Scene('1ETAGE/couloiramphi.jpg', camera)
             let sAmphi70 = new Scene('1ETAGE/amphi70.jpg', camera)
-            let sCouloirEsca = new Scene('1ETAGE/couloirEsca.jpg', camera)
-            let sCouloirCentreAide = new Scene('1ETAGE/couloirCentreAide.jpg', camera)
-            let sCouloirHubhouse = new Scene('1ETAGE/couloirHubhouse.jpg', camera)
-            let sCentreAide = new Scene('1ETAGE/centreAide.jpg', camera)
+            let sCouloirEsca = new Scene('1ETAGE/couloiresca.jpg', camera)
+            let sCouloirCentreAide = new Scene('1ETAGE/couloircentreaide.jpg', camera)
+            let sCouloirHubhouse = new Scene('1ETAGE/couloirhubhouse.jpg', camera)
+            let sCentreAide = new Scene('1ETAGE/centreaide.jpg', camera)
             let sHubHouse = new Scene('1ETAGE/hubhouse.jpg', camera)
 
             //Point sur les scène
@@ -913,7 +827,7 @@ include '../admin/database.php';
 
             //Déclaration des scène
             let sCouloir = new Scene('2ETAGE/couloir.jpg', camera)
-            let sCouloirPhysique = new Scene('2ETAGE/couloirPhysique.jpg', camera)
+            let sCouloirPhysique = new Scene('2ETAGE/couloirphysique.jpg', camera)
             let sSallePc8 = new Scene('2ETAGE/sallepc8.jpg', camera)
             let sSallePc4 = new Scene('2ETAGE/sallepc4.jpg', camera)
 
@@ -1010,11 +924,15 @@ include '../admin/database.php';
             window.hall = function() {
                 sHall.createScene(scene)
                 s.destroy()
-                sAmphi200.destroy()
                 sHall.destroy()
+                sHallCom.destroy()
+                sHallFinance.destroy()
                 sHall2.destroy()
+                sAmphi200.destroy()
                 sAmphi300.destroy()
                 sEntreeExt.destroy()
+                sTram.destroy()
+                sCouloirRdc.destroy()
                 sEtage1.destroy()
                 sCouloirAmphie.destroy()
                 sAmphi70.destroy()
@@ -1027,19 +945,19 @@ include '../admin/database.php';
                 sCouloirPhysique.destroy()
                 sSallePc8.destroy()
                 sSallePc4.destroy()
-                sHallCom.destroy()
-                sHallFinance.destroy()
-                sTram.destroy()
-                sCouloirRdc.destroy()
             }
             window.amphi300 = function() {
                 sAmphi300.createScene(scene)
                 s.destroy()
-                sAmphi300.destroy()
                 sHall.destroy()
+                sHallCom.destroy()
+                sHallFinance.destroy()
                 sHall2.destroy()
                 sAmphi200.destroy()
+                sAmphi300.destroy()
                 sEntreeExt.destroy()
+                sTram.destroy()
+                sCouloirRdc.destroy()
                 sEtage1.destroy()
                 sCouloirAmphie.destroy()
                 sAmphi70.destroy()
@@ -1052,19 +970,19 @@ include '../admin/database.php';
                 sCouloirPhysique.destroy()
                 sSallePc8.destroy()
                 sSallePc4.destroy()
-                sHallCom.destroy()
-                sHallFinance.destroy()
-                sTram.destroy()
-                sCouloirRdc.destroy()
             }
             window.etage2 = function() {
                 sSallePc4.createScene(scene)
                 s.destroy()
-                sSallePc8.destroy()
                 sHall.destroy()
+                sHallCom.destroy()
+                sHallFinance.destroy()
                 sHall2.destroy()
                 sAmphi200.destroy()
+                sAmphi300.destroy()
                 sEntreeExt.destroy()
+                sTram.destroy()
+                sCouloirRdc.destroy()
                 sEtage1.destroy()
                 sCouloirAmphie.destroy()
                 sAmphi70.destroy()
@@ -1075,23 +993,22 @@ include '../admin/database.php';
                 sHubHouse.destroy()
                 sCouloir.destroy()
                 sCouloirPhysique.destroy()
-                sAmphi300.destroy()
+                sSallePc8.destroy()
                 sSallePc4.destroy()
-                sHallCom.destroy()
-                sHallFinance.destroy()
-                sTram.destroy()
-                sCouloirRdc.destroy()
             }
             window.CentreAide = function() {
                 sCouloirCentreAide.createScene(scene)
                 s.destroy()
-                sEtage1.destroy()
-                sSallePc8.destroy()
                 sHall.destroy()
+                sHallCom.destroy()
+                sHallFinance.destroy()
                 sHall2.destroy()
                 sAmphi200.destroy()
+                sAmphi300.destroy()
                 sEntreeExt.destroy()
-                sSallePc4.destroy()
+                sTram.destroy()
+                sCouloirRdc.destroy()
+                sEtage1.destroy()
                 sCouloirAmphie.destroy()
                 sAmphi70.destroy()
                 sCouloirEsca.destroy()
@@ -1101,17 +1018,12 @@ include '../admin/database.php';
                 sHubHouse.destroy()
                 sCouloir.destroy()
                 sCouloirPhysique.destroy()
-                sAmphi300.destroy()
+                sSallePc8.destroy()
                 sSallePc4.destroy()
-                sHallCom.destroy()
-                sHallFinance.destroy()
-                sTram.destroy()
-                sCouloirRdc.destroy()
             }
 
             renderer.setSize(window.innerWidth, window.innerHeight)
             container.appendChild(renderer.domElement)
-
 
             function animate() {
                 requestAnimationFrame(animate)
@@ -1124,7 +1036,7 @@ include '../admin/database.php';
             function onResize() {
                 renderer.setSize(window.innerWidth, window.innerHeight)
                 camera.aspect = window.innerWidth / window.innerHeight
-                camera.updateProjectionMatrix()
+
             }
 
             const rayCaster = new THREE.Raycaster()
@@ -1188,6 +1100,7 @@ include '../admin/database.php';
                     }
                 })
 
+
             }
 
             function onMouseMove(e) {
@@ -1226,6 +1139,7 @@ include '../admin/database.php';
             container.addEventListener('click', onClick)
             container.addEventListener('mousemove', onMouseMove)
 
+
         };
 
         function loop() {
@@ -1243,31 +1157,6 @@ include '../admin/database.php';
 
 
         //Fonction plein ecran
-        function fullscreen(elem) {
-            elem = elem || document.documentElement;
-            if (!document.fullscreenElement && !document.mozFullScreenElement &&
-                !document.webkitFullscreenElement && !document.msFullscreenElement) {
-                if (elem.requestFullscreen) {
-                    elem.requestFullscreen();
-                } else if (elem.msRequestFullscreen) {
-                    elem.msRequestFullscreen();
-                } else if (elem.mozRequestFullScreen) {
-                    elem.mozRequestFullScreen();
-                } else if (elem.webkitRequestFullscreen) {
-                    elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                }
-            }
-        }
     </script>
 
 </body>

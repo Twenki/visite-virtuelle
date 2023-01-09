@@ -13,18 +13,32 @@ include '../admin/database.php';
     <title>Visite virtuelle - Batiment Demonstrateur</title>
     <link rel="stylesheet" href="../css/visite.css">
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HYLJZEMJB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-7HYLJZEMJB');
+</script>
 
 <body>
+    <nav>
+        <ul>
+            <img src="RDC/hallamphi.jpg" style="width: 10%;" onclick="etage1()">
+            <img src="1ETAGE/entrestaps.jpg" style="width: 10%;" onclick="rdchall()">
+            <img src="SS/couloiresca.jpg" style="width: 10%;" onclick="soussol()">
+        </ul>
+    </nav>
     <!-- Barre de tache en bas de l'écran -->
     <div class="container">
         <div class="toolbar">
             <a href="../carrousel/index.html"><img class="accueil" src="../textures/accueil.png" alt="accueil"></a>
-            <a href="#"><img src="../ressources/iconMap.png" alt="Map" onclick="maFonction(); logoInsa();"></a>
+            <a href="#"><img src="../ressources/iconmap.png" alt="Map" onclick="maFonction(); logoInsa();"></a>
             <a href="#"><img src="../textures/minimap.png" name="minimap" onclick="openmap(); arrowUp();"></a>
-            <img src="../textures/drapeau_fr.png" id="drapeau" class="switch-lang" onclick="ChangeDrapeau();">
             <img src="../textures/dyslexie.png" id="OpenDys" class="switch-font">
-            <a href="#"><img src="../textures/fullscreenOn.png" name="FullScreen" onclick="fullscreen();"></a>
+            <a href="#"><img src="../textures/fullscreenon.png" name="FullScreen" onclick="fullscreen();"></a>
             <hr />
         </div>
     </div>
@@ -55,9 +69,50 @@ include '../admin/database.php';
                 }
                 ?>
             </div>
-            <div id="text" lang="en">
+        </div>
+    </div>
+
+    <div id="premat" style="display: none;" onclick="premat();">
+        <div id="containerInfo">
+            <div id="text" lang="fr">
                 <?php
-                $recupText = $bdd->query('SELECT * FROM texten WHERE id="10"');
+                $recupText = $bdd->query('SELECT * FROM text WHERE id="12"');
+                while ($text = $recupText->fetch()) {
+                    echo $text['contenu'];
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+    <div id="protool" style="display: none;" onclick="protool();">
+        <div id="containerInfo">
+            <div id="text" lang="fr">
+                <?php
+                $recupText = $bdd->query('SELECT * FROM text WHERE id="13"');
+                while ($text = $recupText->fetch()) {
+                    echo $text['contenu'];
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+    <div id="son" style="display: none;" onclick="son();">
+        <div id="containerInfo">
+            <div id="text" lang="fr">
+                <?php
+                $recupText = $bdd->query('SELECT * FROM text WHERE id="14"');
+                while ($text = $recupText->fetch()) {
+                    echo $text['contenu'];
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+    <div id="video" style="display: none;" onclick="video();">
+        <div id="containerInfo">
+            <div id="text" lang="fr">
+                <?php
+                $recupText = $bdd->query('SELECT * FROM text WHERE id="15"');
                 while ($text = $recupText->fetch()) {
                     echo $text['contenu'];
                 }
@@ -76,53 +131,10 @@ include '../admin/database.php';
 
     <svg id="minimap" version="1.1" style="display: none;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080" onclick="openmap(); arrowUp();">
         <image width="1920" height="1080" xlink:href="rdc.png"></image>
-        <a xlink:href="#">
-            <rect id="rdchall" x="695" y="182" fill="#fff" opacity="0" width="519" height="232" onclick="rdchall();"></rect>
-        </a>
-        <a xlink:href="#">
-            <rect id="etage1" x="695" y="182" fill="#fff" opacity="0" width="519" height="232" onclick="etage1();"></rect>
-        </a>
-        <a xlink:href="#">
-            <rect id="soussol" x="507" y="184" fill="#fff" opacity="0" width="358" height="668" onclick="soussol();"></rect>
-        </a>
     </svg>
-    <img src="../textures/ArrowUp.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
+    <img src="../textures/arrowup.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
 
     <div id="maDIV" style="display: none; ">
-    <div class="main">
-            <div class="dropdown_list">
-                <button style="position: absolute;" class="dropdown_button" onclick="show_list()">
-                    Séléctionner votre formation
-                </button>
-
-                <div style="position: absolute; overflow: auto; height: 50%;" id="courses_id" class="courses">
-                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
-                    $('[id*=region_ab2').css('fill', '#aa1d1d');
-                    $('[id*=region_ab1').css('fill', '#aa1d1d');">
-                        Formation Audiovisuel et Multimédia</li>
-
-                    <li>Formation Automatique</li>
-
-                    <li>Formation Cybersécurité</li>
-                    <li>Formation Electronique et Electronique Embarquée</li>
-                    <li>Formation Informatique</li>
-                    <li>Formation Génie Civil</li>
-                    <li>Formation Génie Industriel</li>
-                    <li>Formation Génie Electrique et informatique industrielle</li>
-                    <li>Formation Qualité/Hygiène/Sécruité</li>
-                    <li>Formation Mathématiques</li>
-                    <li>Formation Mécanique et Energétique/ Transports et Energie</li>
-                    <li>Formation Physique/Chimie/Matériaux</li>
-                    <li>Formation Réseaux et Télécommunications</li>
-
-                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
-                    $('[id*=region_gym').css('fill', '#aa1d1d');
-                    $('[id*=region_carpeaux').css('fill', '#aa1d1d');">
-                        Formation STAPS</li>
-
-                </div>
-            </div>
-        </div>
         <div class="mapAndInfos">
             <div class="map">
                 <?php include('../ressources/map.svg'); ?>
@@ -151,24 +163,51 @@ include '../admin/database.php';
             var image = document.querySelector("image")
             if (image.href.animVal == 'rdc.png') {
                 image.setAttribute('href', "etage1.png");
-                document.getElementById("etage1").style.display = 'block';
-                document.getElementById("soussol").style.display = 'none';
-                document.getElementById("rdchall").style.display = 'none';
             } else if (image.href.animVal == 'etage1.png') {
                 image.setAttribute('href', "ss.png");
-                document.getElementById("soussol").style.display = 'block';
-                document.getElementById("rdchall").style.display = 'none';
-                document.getElementById("etage1").style.display = 'none';
             } else {
                 image.setAttribute('href', "rdc.png")
-                document.getElementById("rdchall").style.display = 'block';
-                document.getElementById("soussol").style.display = 'none';
-                document.getElementById("etage1").style.display = 'none';
             }
         }
 
         function information() {
             var div = document.getElementById("information");
+            if (div.style.display === "none") {
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
+
+        }
+        function premat() {
+            var div = document.getElementById("premat");
+            if (div.style.display === "none") {
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
+
+        }
+        function protool() {
+            var div = document.getElementById("protool");
+            if (div.style.display === "none") {
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
+
+        }
+        function son() {
+            var div = document.getElementById("son");
+            if (div.style.display === "none") {
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
+
+        }
+        function video() {
+            var div = document.getElementById("video");
             if (div.style.display === "none") {
                 div.style.display = "block";
             } else {
@@ -194,10 +233,6 @@ include '../admin/database.php';
             } else {
                 div.style.display = "none";
             }
-            document.getElementById("rdchall").style.display = 'none';
-                document.getElementById("soussol").style.display = 'none';
-                document.getElementById("etage1").style.display = 'none';
-
         }
 
         function arrowUp() {
@@ -286,34 +321,11 @@ include '../admin/database.php';
                     }, 1000);
                 console.log(regionId);
             });
+            $("#OpenDys").click(function() {
+                $("div").toggleClass("OpenDys-font");
+                $("#containerInfo").toggleClass("containerInfo");
+            });
         })
-        $('[lang="en"]').hide();
-
-        $('.switch-lang').click(function() {
-            $('[lang="fr"]').toggle();
-            $('[lang="en"]').toggle();
-        });
-
-        $("#OpenDys").click(function() {
-            $("div").toggleClass("OpenDys-font");
-            $("#containerInfo").toggleClass("containerInfo");
-        });
-
-        function show_list() {
-            var courses = document.getElementById("courses_id");
-
-            if (courses.style.display == "block") {
-                courses.style.display = "none";
-            } else {
-                courses.style.display = "block";
-            }
-        }
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown_button')) {
-                document.getElementById('courses_id')
-                    .style.display = "none";
-            }
-        }
     </script>
 
 
@@ -384,6 +396,12 @@ include '../admin/database.php';
                             this.destroy();
                             setTimeout(() => {
                                 point.scene.createScene(scene);
+                                TweenLite.to(this.sphere.material, 1, {
+                                    opacity: 0,
+                                    onComplete: () => {
+                                        this.scene.remove(this.sphere)
+                                    }
+                                })
                             }, 1500);
                             point.scene.appear();
 
@@ -464,7 +482,7 @@ include '../admin/database.php';
             controls.maxDistance = 3;
             controls.minDistance = 0.9;
             controls.rotateSpeed = -0.1
-            controls.enableZoom = true
+            controls.enableZoom = false
             controls.enablePan = false
             controls.autoRotate = true
             controls.autoRotateSpeed = 0.1
@@ -474,11 +492,11 @@ include '../admin/database.php';
             controls.update()
 
 
-            let s = new Scene('RDC/entreExt.jpg', camera)
-            let sInterieur = new Scene('RDC/entreInt.jpg', camera)
-            let sHallAmphie = new Scene('RDC/hallAmphi.jpg', camera)
-            let sAmphiCollet = new Scene('RDC/amphiCollet.jpg', camera)
-            let sAmphiCoquet = new Scene('RDC/amphiCoquet.jpg', camera)
+            let s = new Scene('RDC/entreext.jpg', camera)
+            let sInterieur = new Scene('RDC/entreint.jpg', camera)
+            let sHallAmphie = new Scene('RDC/hallamphi.jpg', camera)
+            let sAmphiCollet = new Scene('RDC/amphicollet.jpg', camera)
+            let sAmphiCoquet = new Scene('RDC/amphicoquet.jpg', camera)
             let couloirdirectionstaps = new Scene('1ETAGE/couloirdirectionstaps.jpg', camera)
             let couloirstaps = new Scene('1ETAGE/couloirstaps.jpg', camera)
             let directionstaps = new Scene('1ETAGE/directionstaps.jpg', camera)
@@ -488,17 +506,17 @@ include '../admin/database.php';
 
             s.addPoint({
                 position: new THREE.Vector3(10.191504275408748, -3.4323133586945045, -2.1972452461558456),
-                name: 'Entrée',
+                name: '',
                 scene: sInterieur,
                 image: 'rond.png'
             })
             sInterieur.addPoint({
                 position: new THREE.Vector3(10.643205230773958, -1.9211384503982143, 1.815251053755759),
-                name: 'Sortie',
+                name: '',
                 scene: s,
                 image: 'rond.png'
             })
-           
+
             sHallAmphie.addPoint({
                 position: new THREE.Vector3(-9.586164588773931, -3.7280349354978743, -3.8300309734529776),
                 name: '',
@@ -561,69 +579,69 @@ include '../admin/database.php';
             })
             sHallAmphie.addPoint({
                 position: new THREE.Vector3(3.5419401543680817, 0.26419013122153945, 10.35168480114863),
-                name: 'Amphi Collet',
+                name: '',
                 scene: sAmphiCollet,
                 image: 'door.png'
             })
             sAmphiCollet.addPoint({
                 position: new THREE.Vector3(-4.334482264270251, -1.0314080764486626, -10.038702780871347),
-                name: 'Hall',
+                name: '',
                 scene: sHallAmphie,
                 image: 'rond.png'
             })
             sHallAmphie.addPoint({
                 position: new THREE.Vector3(-10.156787853262934, -0.08693232995602107, 4.211515775339934),
-                name: 'Amphi Coquet',
+                name: '',
                 scene: sAmphiCoquet,
                 image: 'door.png'
             })
             sAmphiCoquet.addPoint({
-                position: new THREE.Vector3(10.358764336962548, 1.928441767214697, -2.9491170391072723),
-                name: 'Amphi Collet',
+                position: new THREE.Vector3(9.889564115233977, 1.7955599137061642, -4.383997923307846),
+                name: '',
                 scene: sHallAmphie,
-                image: 'door.png'
+                image: 'arrowright.png'
             })
 
             //CPX / Etage 1
 
-            let sCouloirEsca = new Scene('1ETAGE/couloirEsca.jpg', camera)
+            let sCouloirEsca = new Scene('1ETAGE/couloiresca.jpg', camera)
             let sCouloir = new Scene('1ETAGE/couloir.jpg', camera)
-            let sCouloirSuite = new Scene('1ETAGE/couloirSuite.jpg', camera)
-            let sSalleInfo = new Scene('1ETAGE/salleInformatique.jpg', camera)
+            let sCouloirSuite = new Scene('1ETAGE/couloirsuite.jpg', camera)
+            let sSalleInfo = new Scene('1ETAGE/salleinformatique.jpg', camera)
 
             sInterieur.addPoint({
                 position: new THREE.Vector3(-4.291868647275341, -2.9220622355917723, 9.660789956979164),
-                name: '1 etage',
+                name: '',
                 scene: sCouloirEsca,
                 image: 'rond.png'
             })
             sCouloirEsca.addPoint({
                 position: new THREE.Vector3(10.135230768860648, -2.783633313132867, 3.0278049966864438),
-                name: 'Rez de chaussé',
+                name: '',
                 scene: sInterieur,
                 image: 'rond.png'
             })
             sCouloirEsca.addPoint({
                 position: new THREE.Vector3(-3.6839044989688943, -3.3851119646576304, 9.758094997006355),
-                name: 'Couloir',
+                name: '',
                 scene: sCouloir,
                 image: 'rond.png'
             })
             sCouloir.addPoint({
                 position: new THREE.Vector3(0.18966594456114733, -4.499518196117287, 10.006834498576588),
-                name: 'Escalier',
+                name: '',
                 scene: sCouloirEsca,
                 image: 'rond.png'
             })
             sCouloir.addPoint({
                 position: new THREE.Vector3(-10.346358717084863, -3.591454074503852, 0.3803664811399465),
-                name: 'Suite du couloir',
+                name: '',
                 scene: sCouloirSuite,
                 image: 'rond.png'
             })
             sCouloirSuite.addPoint({
                 position: new THREE.Vector3(-10.334183158773055, -3.3170642368634957, -1.5008102192021293),
-                name: 'Couloir',
+                name: '',
                 scene: sCouloir,
                 image: 'rond.png'
             })
@@ -640,116 +658,116 @@ include '../admin/database.php';
                 image: 'rond.png'
             })
             sCouloir.addPoint({
-                position: new THREE.Vector3(10.653234394762237, -0.33147536881255124, -2.5365320279970858),
-                name: 'Salle informatique',
+                position: new THREE.Vector3(2.332382289199178, -2.114952347950834, -10.536880832674854),
+                name: '',
                 scene: sSalleInfo,
                 image: 'door.png'
             })
             sSalleInfo.addPoint({
                 position: new THREE.Vector3(-7.748378342651395, 0.48079988187125383, 7.772218745161015),
-                name: 'Couloir',
+                name: '',
                 scene: sCouloir,
                 image: 'rond.png'
             })
 
             //CPX / Sous-Sol
 
-            let sScouloirEsca = new Scene('SS/couloirEsca.jpg', camera)
-            let sScouloirMixage = new Scene('SS/couloirMixage.jpg', camera)
-            let sScouloirPreMat = new Scene('SS/couloirPretMat.jpg', camera)
-            let sScouloirRamdam = new Scene('SS/couloirRamdam.jpg', camera)
-            let sScouloirPlateau = new Scene('SS/couloirPlateau.jpg', camera)
-            let sSsallePret = new Scene('SS/sallePret.jpg', camera)
-            let sSsallePret2 = new Scene('SS/sallePret2.jpg', camera)
-            let sSsalleMixage = new Scene('SS/salleMixage.jpg', camera)
+            let sScouloirEsca = new Scene('SS/couloiresca.jpg', camera)
+            let sScouloirMixage = new Scene('SS/couloirmixage.jpg', camera)
+            let sScouloirPreMat = new Scene('SS/couloirpretmat.jpg', camera)
+            let sScouloirRamdam = new Scene('SS/couloirramdam.jpg', camera)
+            let sScouloirPlateau = new Scene('SS/couloirplateau.jpg', camera)
+            let sSsallePret = new Scene('SS/sallepret.jpg', camera)
+            let sSsallePret2 = new Scene('SS/sallepret2.jpg', camera)
+            let sSsalleMixage = new Scene('SS/sallemixage.jpg', camera)
             let sRegie = new Scene('SS/regie.jpg', camera)
-            let splateauRegie = new Scene('SS/PlateauRegie.jpg', camera)
-            let sCouloirAvantRamdam = new Scene('SS/couloirAvantRamdam.jpg', camera)
+            let splateauRegie = new Scene('SS/plateauregie.jpg', camera)
+            let sCouloirAvantRamdam = new Scene('SS/couloiravantramdam.jpg', camera)
             let sGrandPlateau = new Scene('SS/plateau.jpg', camera)
-            let sPlateauCine = new Scene('SS/plateauCine.jpg', camera)
+            let sPlateauCine = new Scene('SS/plateaucine.jpg', camera)
 
             sInterieur.addPoint({
                 position: new THREE.Vector3(-9.926901078792866, -3.6150164452037323, 2.8454095601718166),
-                name: 'Sous sol',
+                name: '',
                 scene: sScouloirEsca,
                 image: 'rond.png'
             })
             sScouloirEsca.addPoint({
                 position: new THREE.Vector3(4.1777301606158135, -3.584333399797831, 9.487227957914651),
-                name: 'Couloir PreMat',
+                name: '',
                 scene: sScouloirPreMat,
                 image: 'rond.png'
             })
             sScouloirPreMat.addPoint({
                 position: new THREE.Vector3(10.56235404871919, -2.2353860087415693, 2.0701500847622496),
-                name: 'Couloir PreMat',
+                name: '',
                 scene: sScouloirEsca,
                 image: 'rond.png'
             })
             sScouloirEsca.addPoint({
                 position: new THREE.Vector3(-3.8488720413588497, -2.9181773804101385, 9.851114472133418),
-                name: 'Rez de chaussé',
+                name: '',
                 scene: sInterieur,
                 image: 'rond.png'
             })
             sScouloirEsca.addPoint({
                 position: new THREE.Vector3(-10.598378522080193, -2.2624748561254737, 1.6354955005971858),
-                name: 'Couloir',
+                name: '',
                 scene: sScouloirMixage,
                 image: 'rond.png'
             })
             sScouloirMixage.addPoint({
                 position: new THREE.Vector3(0.9046778360284724, -2.578332527711921, -10.591239476336414),
-                name: 'Sous sol',
+                name: '',
                 scene: sScouloirEsca,
                 image: 'rond.png'
             })
             sScouloirMixage.addPoint({
                 position: new THREE.Vector3(-0.6802579364421232, 0.2821741999868782, 10.919138063391742),
-                name: 'Suite',
+                name: '',
                 scene: sCouloirAvantRamdam,
                 image: 'arrowleft.png'
             })
             sCouloirAvantRamdam.addPoint({
                 position: new THREE.Vector3(-6.852941184675751, -1.49019063911028, 8.390622318602881),
-                name: 'Suite',
+                name: '',
                 scene: sScouloirMixage,
                 image: 'rond.png'
             })
             sCouloirAvantRamdam.addPoint({
                 position: new THREE.Vector3(-8.106544369882714, -1.6194126071274826, -7.1690216586157005),
-                name: 'Suite',
+                name: '',
                 scene: sScouloirRamdam,
                 image: 'rond.png'
             })
             sScouloirRamdam.addPoint({
                 position: new THREE.Vector3(-10.152604163779431, -2.3884409155737187, 3.3099014836807363),
-                name: 'Précédent',
+                name: '',
                 scene: sCouloirAvantRamdam,
                 image: 'rond.png'
             })
             sScouloirRamdam.addPoint({
                 position: new THREE.Vector3(10.629236743906684, -0.7865013434385225, 2.5390048898407507),
-                name: 'Précédent',
+                name: '',
                 scene: sScouloirPlateau,
                 image: 'rond.png'
             })
             sScouloirPlateau.addPoint({
                 position: new THREE.Vector3(10.880142658817523, -1.1705967855240915, -0.539963685617718),
-                name: 'Précédent',
+                name: '',
                 scene: sScouloirRamdam,
                 image: 'rond.png'
             })
             sScouloirPlateau.addPoint({
                 position: new THREE.Vector3(-10.749271616333482, -2.2406359731177887, 0.15899670583993075),
                 name: '',
-                scene: sGrandPlateau,
+                scene: sPlateauCine,
                 image: 'rond.png'
             })
             sScouloirPlateau.addPoint({
                 position: new THREE.Vector3(0.4944556259452457, 0.9334512770841834, 10.905442821187872),
                 name: '',
-                scene: sPlateauCine,
+                scene: sGrandPlateau,
                 image: 'rond.png'
             })
             sPlateauCine.addPoint({
@@ -767,67 +785,67 @@ include '../admin/database.php';
 
             sScouloirPreMat.addPoint({
                 position: new THREE.Vector3(-1.089279179228074, 2.5809996454185016, -10.572389710251707),
-                name: 'Salle PreMat',
+                name: '',
                 scene: sSsallePret,
                 image: 'door.png'
             })
             sScouloirPreMat.addPoint({
                 position: new THREE.Vector3(10.012140317505917, 1.1522456304009803, 4.356133766777102),
-                name: 'Salle PreMat',
+                name: '',
                 scene: sRegie,
                 image: 'door.png'
             })
             sRegie.addPoint({
                 position: new THREE.Vector3(2.4081401641264923, -3.956048599428005, 9.932644977995738),
-                name: 'Salle PreMat',
+                name: '',
                 scene: sScouloirPreMat,
                 image: 'rond.png'
             })
             sRegie.addPoint({
                 position: new THREE.Vector3(-6.846449423672041, -0.09238222743851227, 8.536978616979122),
-                name: 'Salle PreMat',
+                name: '',
                 scene: splateauRegie,
                 image: 'door.png'
             })
             splateauRegie.addPoint({
                 position: new THREE.Vector3(8.643934251857422, -0.17608847979388825, -6.709672849842383),
-                name: 'Salle PreMat',
+                name: '',
                 scene: sRegie,
                 image: 'door.png'
             })
             splateauRegie.addPoint({
                 position: new THREE.Vector3(8.571812446924469, -1.3526890239859701, 6.6641566150563385),
-                name: 'Salle PreMat',
+                name: '',
                 scene: sScouloirPreMat,
                 image: 'door.png'
             })
             sSsallePret.addPoint({
                 position: new THREE.Vector3(-10.889053091974601, -0.9374128157253976, 0.6588869505219618),
-                name: 'Salle PreMat',
+                name: '',
                 scene: sScouloirPreMat,
                 image: 'rond.png'
             })
             sSsallePret.addPoint({
                 position: new THREE.Vector3(8.802104313619473, -2.5493757483744943, 6.040438348265259),
-                name: 'Salle PreMat2',
+                name: '',
                 scene: sSsallePret2,
                 image: 'rond.png'
             })
             sSsallePret2.addPoint({
                 position: new THREE.Vector3(-6.351914641423018, -4.650956806449431, -7.60189830560512),
-                name: 'Salle PreMat',
+                name: '',
                 scene: sSsallePret,
                 image: 'rond.png'
             })
             sScouloirMixage.addPoint({
-                position: new THREE.Vector3(7.982391407724708, 4.602560226763186, 5.92419032893082),
-                name: 'Salle Mixage',
+                position: new THREE.Vector3(-10.81888222706838, 1.4362722255892126, -0.7618218185341114),
+                name: '',
                 scene: sSsalleMixage,
                 image: 'door.png'
             })
             sSsalleMixage.addPoint({
                 position: new THREE.Vector3(4.378546623699027, -5.399837019536167, 8.461590471908421),
-                name: 'Couloir',
+                name: '',
                 scene: sScouloirMixage,
                 image: 'rond.png'
             })
@@ -839,17 +857,79 @@ include '../admin/database.php';
                 image: 'panneau.png'
             })
 
+            sScouloirPreMat.addPoint({
+                position: new THREE.Vector3(0.21853079316463273, 6.905363515117462, -8.535704278067913),
+                name: 'Pret materiel',
+                scene: false,
+                image: 'info.png'
+            })
+            sScouloirMixage.addPoint({
+                position: new THREE.Vector3(-10.341939552601076, 3.5723378849360365, -0.4946789315892256),
+                name: 'Pro Tools',
+                scene: false,
+                image: 'info.png'
+            })
+            sScouloirPlateau.addPoint({
+                position: new THREE.Vector3(-10.904689668304238, 1.2197868123913729, 0.21665012251294058),
+                name: 'Plateau son',
+                scene: false,
+                image: 'info.png'
+            })
+            sScouloirPlateau.addPoint({
+                position: new THREE.Vector3(-1.740410500764445, 1.282282549884572, 10.745341825342274),
+                name: 'Plateau video',
+                scene: false,
+                image: 'info.png'
+            })
 
 
             s.createScene(scene)
             s.appear()
 
             window.rdchall = function() {
+                entrestaps.createScene(scene)
+                s.destroy()
+                sInterieur.destroy()
+                sHallAmphie.destroy()
+                sAmphiCollet.destroy()
+                sAmphiCoquet.destroy()
+                couloirdirectionstaps.destroy()
+                couloirstaps.destroy()
+                directionstaps.destroy()
+                escastaps.destroy()
+                entrestaps.destroy()
+                salleteam.destroy()
+                sCouloirEsca.destroy()
+                sCouloir.destroy()
+                sCouloirSuite.destroy()
+                sSalleInfo.destroy()
+                sScouloirEsca.destroy()
+                sScouloirMixage.destroy()
+                sScouloirPreMat.destroy()
+                sScouloirRamdam.destroy()
+                sScouloirPlateau.destroy()
+                sSsallePret.destroy()
+                sSsallePret2.destroy()
+                sSsalleMixage.destroy()
+                sRegie.destroy()
+                splateauRegie.destroy()
+                sCouloirAvantRamdam.destroy()
+                sGrandPlateau.destroy()
+                sPlateauCine.destroy()
+            }
+            window.etage1 = function() {
                 sHallAmphie.createScene(scene)
                 s.destroy()
                 sInterieur.destroy()
                 sHallAmphie.destroy()
                 sAmphiCollet.destroy()
+                sAmphiCoquet.destroy()
+                couloirdirectionstaps.destroy()
+                couloirstaps.destroy()
+                directionstaps.destroy()
+                escastaps.destroy()
+                entrestaps.destroy()
+                salleteam.destroy()
                 sCouloirEsca.destroy()
                 sCouloir.destroy()
                 sCouloirSuite.destroy()
@@ -862,25 +942,11 @@ include '../admin/database.php';
                 sSsallePret.destroy()
                 sSsallePret2.destroy()
                 sSsalleMixage.destroy()
-            }
-            window.etage1 = function() {
-                sCouloir.createScene(scene)
-                s.destroy()
-                sInterieur.destroy()
-                sHallAmphie.destroy()
-                sAmphiCollet.destroy()
-                sCouloirEsca.destroy()
-                sCouloir.destroy()
-                sCouloirSuite.destroy()
-                sSalleInfo.destroy()
-                sScouloirEsca.destroy()
-                sScouloirMixage.destroy()
-                sScouloirPreMat.destroy()
-                sScouloirRamdam.destroy()
-                sScouloirPlateau.destroy()
-                sSsallePret.destroy()
-                sSsallePret2.destroy()
-                sSsalleMixage.destroy()
+                sRegie.destroy()
+                splateauRegie.destroy()
+                sCouloirAvantRamdam.destroy()
+                sGrandPlateau.destroy()
+                sPlateauCine.destroy()
             }
             window.soussol = function() {
                 sScouloirEsca.createScene(scene)
@@ -888,6 +954,13 @@ include '../admin/database.php';
                 sInterieur.destroy()
                 sHallAmphie.destroy()
                 sAmphiCollet.destroy()
+                sAmphiCoquet.destroy()
+                couloirdirectionstaps.destroy()
+                couloirstaps.destroy()
+                directionstaps.destroy()
+                escastaps.destroy()
+                entrestaps.destroy()
+                salleteam.destroy()
                 sCouloirEsca.destroy()
                 sCouloir.destroy()
                 sCouloirSuite.destroy()
@@ -900,6 +973,11 @@ include '../admin/database.php';
                 sSsallePret.destroy()
                 sSsallePret2.destroy()
                 sSsalleMixage.destroy()
+                sRegie.destroy()
+                splateauRegie.destroy()
+                sCouloirAvantRamdam.destroy()
+                sGrandPlateau.destroy()
+                sPlateauCine.destroy()
             }
 
             renderer.setSize(window.innerWidth, window.innerHeight)
@@ -939,6 +1017,23 @@ include '../admin/database.php';
                             tooltip.classList.remove('is-active')
                             spriteActive = false
                         }
+                    }
+
+                    if (intersect.object.name === "Pret materiel") {
+                        intersect.object.onClick()
+                        premat()
+                    }
+                    if (intersect.object.name === "Pro Tools") {
+                        intersect.object.onClick()
+                        protool()
+                    }
+                    if (intersect.object.name === "Plateau son") {
+                        intersect.object.onClick()
+                        son()
+                    }
+                    if (intersect.object.name === "Plateau video") {
+                        intersect.object.onClick()
+                        video()
                     }
 
                     if (intersect.object.name === "Information") {

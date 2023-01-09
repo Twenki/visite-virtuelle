@@ -17,8 +17,6 @@ session_start();
 
             <a href="text.php"><label><b>Afficher les textes et images des points d'infos en français</b></label></a>
             <br>
-            <a href="textEN.php"><label><b>Afficher les textes et images des points d'infos en Anglais</b></label></a>
-            <br>
             <a href="logout.php">Se déconnecter</a>
 
         </form>

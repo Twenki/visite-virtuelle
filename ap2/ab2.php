@@ -14,17 +14,30 @@ include '../admin/database.php';
 	<link rel="stylesheet" href="../css/visite.css">
 </head>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HYLJZEMJB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-7HYLJZEMJB');
+</script>
 <body>
+	<nav>
+		<ul>
+			<img src="RDC/entreaip.jpg" style="width: 10%;" onclick="aip()">
+			<img src="1ETAGE/couloiramphi.jpg" style="width: 10%;" onclick="etage1()">
+		</ul>
+	</nav>
 	<!-- Barre de tache en bas de l'écran -->
 	<div class="container">
 		<div class="toolbar">
 			<a href="../carrousel/index.html"><img class="accueil" src="../textures/accueil.png" alt="accueil"></a>
-			<a href="#"><img src="../ressources/iconMap.png" alt="Map" onclick="maFonction(); logoInsa();"></a>
+			<a href="#"><img src="../ressources/iconmap.png" alt="Map" onclick="maFonction(); logoInsa();"></a>
 			<a href="#"><img src="../textures/minimap.png" name="minimap" onclick="openmap(); arrowUp();"></a>
-			<img src="../textures/drapeau_fr.png" id="drapeau" class="switch-lang" onclick="ChangeDrapeau();">
 			<img src="../textures/dyslexie.png" id="OpenDys" class="switch-font">
-			<a href="#"><img src="../textures/fullscreenOn.png" name="FullScreen" onclick="fullscreen();"></a>
+			<a href="#"><img src="../textures/fullscreenon.png" name="FullScreen" onclick="fullscreen();"></a>
 			<hr />
 		</div>
 	</div>
@@ -42,68 +55,14 @@ include '../admin/database.php';
 		<a href="https://www.uphf.fr/insa-hdf"><img id="roundinsa" src="../textures/logoinsa.png" style="width: 100%;"></a>
 	</div>
 
-	<div id="vueaip" style="display: none;" onclick="vueaip();">
-		<div id="containerInfo">
-			<div class="zoom">
-				<img src="Info/vueaip.jpg" id="imginfra" alt="" onclick="window.open(this.src)">
-			</div>
-		</div>
-	</div>
 
-	<!--
-	<img src="rdc.png" alt="Map" title="Map" usemap="#map" id="minimap" style="display: none;" />
-	<img src="../textures/ArrowUp.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
-	<map name="map">
-		<area onclick="aip();" shape="poly" coords="329,75,347,107,400,106,371,84,336,84" shape="poly" style="display: none;">
-		<area onclick="etage1();" shape="poly" coords="145,75,264,70,270,92,266,107,268,115,244,117,243,102,143,106" alt="Couloir" style="display: none;" />
-	</map>
--->
 
 	<svg id="minimap" style="display: none;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080" onclick="openmap(); arrowUp();">
-		<image width="1920" height="1080" xlink:href="rdc.png"></image> <a xlink:href="#">
-			<rect id="aip" x="248" y="373" fill="#fff" opacity="0" width="465" height="281" onclick="aip();"></rect>
-		</a>
-		<a xlink:href="#">
-			<rect id="etage1" x="448" y="313" fill="#fff" opacity="0" width="999" height="281" onclick="etage1();"></rect>
-		</a>
+		<image width="1920" height="1080" xlink:href="rdc.png"></image>
 	</svg>
-	<img src="../textures/ArrowUp.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
+	<img src="../textures/arrowup.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
 
 	<div id="maDIV" style="display: none; ">
-		<div class="main">
-			<div class="dropdown_list">
-				<button style="position: absolute;" class="dropdown_button" onclick="show_list()">
-					Séléctionner votre formation
-				</button>
-
-				<div style="position: absolute; overflow: auto; height: 50%;" id="courses_id" class="courses">
-					<li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
-                    $('[id*=region_ab2').css('fill', '#aa1d1d');
-                    $('[id*=region_ab1').css('fill', '#aa1d1d');">
-						Formation Audiovisuel et Multimédia</li>
-
-					<li>Formation Automatique</li>
-
-					<li>Formation Cybersécurité</li>
-					<li>Formation Electronique et Electronique Embarquée</li>
-					<li>Formation Informatique</li>
-					<li>Formation Génie Civil</li>
-					<li>Formation Génie Industriel</li>
-					<li>Formation Génie Electrique et informatique industrielle</li>
-					<li>Formation Qualité/Hygiène/Sécruité</li>
-					<li>Formation Mathématiques</li>
-					<li>Formation Mécanique et Energétique/ Transports et Energie</li>
-					<li>Formation Physique/Chimie/Matériaux</li>
-					<li>Formation Réseaux et Télécommunications</li>
-
-					<li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
-                    $('[id*=region_gym').css('fill', '#aa1d1d');
-                    $('[id*=region_carpeaux').css('fill', '#aa1d1d');">
-						Formation STAPS</li>
-
-				</div>
-			</div>
-		</div>
 		<div class="mapAndInfos">
 			<div class="map">
 				<?php include('../ressources/map.svg'); ?>
@@ -118,25 +77,12 @@ include '../admin/database.php';
 
 
 	<script>
-		function ChangeDrapeau() {
-			var image = document.getElementById('drapeau');
-			if (image.src == "http://localhost/stage2022/textures/drapeau_fr.png") {
-				image.src = "http://localhost/stage2022/textures/drapeau_en.png";
-			} else {
-				image.src = "http://localhost/stage2022/textures/drapeau_fr.png"
-			}
-		}
-
 		function changeImage() {
 			var image = document.querySelector("image")
 			if (image.href.animVal == 'rdc.png') {
 				image.setAttribute('href', "etage1.png");
-				document.getElementById("etage1").style.display = 'block';
-				document.getElementById("aip").style.display = 'none';
 			} else {
 				image.setAttribute('href', "rdc.png")
-				document.getElementById("etage1").style.display = 'none';
-				document.getElementById("aip").style.display = 'block';
 			}
 		}
 		//Appartition de la carte du campus
@@ -158,8 +104,6 @@ include '../admin/database.php';
 			} else {
 				div.style.display = "none";
 			}
-			document.getElementById("etage1").style.display = 'none';
-
 		}
 
 		function arrowUp() {
@@ -184,16 +128,6 @@ include '../admin/database.php';
 
 		function logoInsa() {
 			var div = document.getElementById("logoinsa");
-			if (div.style.display === "none") {
-				div.style.display = "block";
-			} else {
-				div.style.display = "none";
-			}
-
-		}
-
-		function vueaip() {
-			var div = document.getElementById("vueaip");
 			if (div.style.display === "none") {
 				div.style.display = "block";
 			} else {
@@ -258,34 +192,11 @@ include '../admin/database.php';
 					}, 1000);
 				console.log(regionId);
 			});
+			$("#OpenDys").click(function() {
+				$("div").toggleClass("OpenDys-font");
+				$("#containerInfo").toggleClass("containerInfo");
+			});
 		})
-		$('[lang="en"]').hide();
-
-		$('.switch-lang').click(function() {
-			$('[lang="fr"]').toggle();
-			$('[lang="en"]').toggle();
-		});
-
-		$("#OpenDys").click(function() {
-			$("div").toggleClass("OpenDys-font");
-			$("#containerInfo").toggleClass("containerInfo");
-		});
-
-		function show_list() {
-			var courses = document.getElementById("courses_id");
-
-			if (courses.style.display == "block") {
-				courses.style.display = "none";
-			} else {
-				courses.style.display = "block";
-			}
-		}
-		window.onclick = function(event) {
-			if (!event.target.matches('.dropdown_button')) {
-				document.getElementById('courses_id')
-					.style.display = "none";
-			}
-		}
 	</script>
 
 	<script>
@@ -355,6 +266,12 @@ include '../admin/database.php';
 							this.destroy();
 							setTimeout(() => {
 								point.scene.createScene(scene);
+								TweenLite.to(this.sphere.material, 1, {
+									opacity: 0,
+									onComplete: () => {
+										this.scene.remove(this.sphere)
+									}
+								})
 							}, 1500);
 							point.scene.appear();
 
@@ -436,7 +353,7 @@ include '../admin/database.php';
 			controls.maxDistance = 3;
 			controls.minDistance = 0.9;
 			controls.rotateSpeed = -0.1
-			controls.enableZoom = true
+			controls.enableZoom = false
 			controls.enablePan = false
 			controls.autoRotate = true
 			controls.autoRotateSpeed = 0.1
@@ -445,21 +362,21 @@ include '../admin/database.php';
 			camera.position.set(1, 0, 0)
 			controls.update()
 
-			let s = new Scene('RDC/entreeExt.jpg', camera)
-			let sEntreInt = new Scene('RDC/EntreInt.jpg', camera)
-			let sAmphi2 = new Scene('RDC/Amphi2.jpg', camera)
-			let sEscaAmphi = new Scene('RDC/EscaAmphi.jpg', camera)
-			let sHall = new Scene('RDC/Hall.jpg', camera)
-			let sEntreAIP = new Scene('RDC/entreAIP.jpg', camera)
-			let sCouloirDroitAIP = new Scene('RDC/CouloirDroiteAIP.jpg', camera)
-			let sCouloirGaucheAIP = new Scene('RDC/CouloirGaucheAIP.jpg', camera)
-			let smachineAIP = new Scene('RDC/MachineAIP.jpg', camera)
-			let sMilieuAIP = new Scene('RDC/MilieuAIP.jpg', camera)
-			let scouloirGestionProd = new Scene('RDC/CouloirGestionProd.jpg', camera)
-			let sGestionProd = new Scene('RDC/GestionProd.jpg', camera)
+			let s = new Scene('RDC/entreeext.jpg', camera)
+			let sEntreInt = new Scene('RDC/entreint.jpg', camera)
+			let sAmphi2 = new Scene('RDC/amphi2.jpg', camera)
+			let sEscaAmphi = new Scene('RDC/escaamphi.jpg', camera)
+			let sHall = new Scene('RDC/hall.jpg', camera)
+			let sEntreAIP = new Scene('RDC/entreaip.jpg', camera)
+			let sCouloirDroitAIP = new Scene('RDC/couloirdroiteaip.jpg', camera)
+			let sCouloirGaucheAIP = new Scene('RDC/couloirgaucheaip.jpg', camera)
+			let smachineAIP = new Scene('RDC/machineaip.jpg', camera)
+			let sMilieuAIP = new Scene('RDC/milieuaip.jpg', camera)
+			let scouloirGestionProd = new Scene('RDC/couloirgestionprod.jpg', camera)
+			let sGestionProd = new Scene('RDC/gestionprod.jpg', camera)
 			let sphimx = new Scene('RDC/sphimx.jpg', camera)
-			let imprimante = new Scene('RDC/salleImprimante.jpg', camera)
-			let Couloir20E = new Scene('RDC/couloir20E.jpg', camera)
+			let imprimante = new Scene('RDC/salleimprimante.jpg', camera)
+			let Couloir20E = new Scene('RDC/couloir20e.jpg', camera)
 			let Etage1AIP = new Scene('1ETAGE/etage1aip.jpg', camera)
 
 
@@ -634,10 +551,10 @@ include '../admin/database.php';
 			})
 
 			///-------------------Déclaration des scènes de AB2-Etage 1
-			let sEtage1Couloir = new Scene('1ETAGE/CouloirEsca.jpg', camera)
-			let sEtage1CouloirAmphi = new Scene('1ETAGE/CouloirAmphi.jpg', camera)
-			let sEtage1CouloirApple = new Scene('1ETAGE/CouloirDevApple.jpg', camera)
-			let sEtage1Apple = new Scene('1ETAGE/DevApple.jpg', camera)
+			let sEtage1Couloir = new Scene('1ETAGE/couloiresca.jpg', camera)
+			let sEtage1CouloirAmphi = new Scene('1ETAGE/couloiramphi.jpg', camera)
+			let sEtage1CouloirApple = new Scene('1ETAGE/couloirdevapple.jpg', camera)
+			let sEtage1Apple = new Scene('1ETAGE/devapple.jpg', camera)
 
 			//Point sur les scène
 			sEntreAIP.addPoint({
@@ -717,14 +634,6 @@ include '../admin/database.php';
 				image: 'arrowleft.png'
 			})
 
-			//------------- POINT INFO --------------//
-
-			sEtage1Couloir.addPoint({
-				position: new THREE.Vector3(-2.922502477197934, -0.3895707391016115, 10.533183389678136),
-				name: 'vue aip',
-				scene: false,
-				image: 'info.png'
-			})
 
 			s.createScene(scene)
 			s.appear()
@@ -739,16 +648,18 @@ include '../admin/database.php';
 				sEntreAIP.destroy()
 				sCouloirDroitAIP.destroy()
 				sCouloirGaucheAIP.destroy()
-				sEtage1Couloir.destroy()
-				sEtage1CouloirAmphi.destroy()
-				sEtage1CouloirApple
-				sEtage1Apple.destroy()
 				smachineAIP.destroy()
 				sMilieuAIP.destroy()
 				scouloirGestionProd.destroy()
 				sGestionProd.destroy()
 				sphimx.destroy()
 				imprimante.destroy()
+				Couloir20E.destroy()
+				Etage1AIP.destroy()
+				sEtage1Couloir.destroy()
+				sEtage1CouloirAmphi.destroy()
+				sEtage1CouloirApple.destroy()
+				sEtage1Apple.destroy()
 			}
 			window.aip = function() {
 				sEntreAIP.createScene(scene)
@@ -760,16 +671,18 @@ include '../admin/database.php';
 				sEntreAIP.destroy()
 				sCouloirDroitAIP.destroy()
 				sCouloirGaucheAIP.destroy()
-				sEtage1Couloir.destroy()
-				sEtage1CouloirAmphi.destroy()
-				sEtage1CouloirApple
-				sEtage1Apple.destroy()
 				smachineAIP.destroy()
 				sMilieuAIP.destroy()
 				scouloirGestionProd.destroy()
 				sGestionProd.destroy()
 				sphimx.destroy()
 				imprimante.destroy()
+				Couloir20E.destroy()
+				Etage1AIP.destroy()
+				sEtage1Couloir.destroy()
+				sEtage1CouloirAmphi.destroy()
+				sEtage1CouloirApple.destroy()
+				sEtage1Apple.destroy()
 			}
 
 
@@ -810,11 +723,6 @@ include '../admin/database.php';
 							tooltip.classList.remove('is-active')
 							spriteActive = false
 						}
-					}
-
-					if (intersect.object.name === "vue aip") {
-						intersect.object.onClick()
-						vueaip()
 					}
 
 				})

@@ -13,26 +13,39 @@ include '../admin/database.php';
 	<title>Visite virtuelle - Batiment Abel de Pujol 3</title>
 	<link rel="stylesheet" href="../css/visite.css">
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HYLJZEMJB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-7HYLJZEMJB');
+</script>
 
 <body>
+	<nav>
+		<ul>
+			<img src="RDC/entreint.jpg" style="width: 10%;" onclick="RDC()">
+			<img src="1ETAGE/esca.jpg" style="width: 10%;" onclick="etage1()">
+		</ul>
+	</nav>
 	<!-- Barre de tache en bas de l'écran -->
 	<div class="container">
 		<div class="toolbar">
 			<a href="../carrousel/index.html"><img class="accueil" src="../textures/accueil.png" alt="accueil"></a>
-			<a href="#"><img src="../ressources/iconMap.png" alt="Map" onclick="maFonction(); logoInsa();"></a>
+			<a href="#"><img src="../ressources/iconmap.png" alt="Map" onclick="maFonction(); logoInsa();"></a>
 			<a href="#"><img src="../textures/minimap.png" name="minimap" onclick="openmap(); arrowUp();"></a>
-			<img src="../textures/drapeau_fr.png" id="drapeau" class="switch-lang" onclick="ChangeDrapeau();">
 			<img src="../textures/dyslexie.png" id="OpenDys" class="switch-font">
-			<a href="#"><img src="../textures/fullscreenOn.png" name="FullScreen" onclick="fullscreen();"></a>
+			<a href="#"><img src="../textures/fullscreenon.png" name="FullScreen" onclick="fullscreen();"></a>
 			<hr />
 		</div>
 	</div>
 	<div id="logo">
-        <img src="tp/rdc.png" style="width: 100%;" onclick="RDC()">
-        <img src="tp/etage1.png" style="width: 100%;" onclick="etage1()">
-        <img src="tp/etage2.png" style="width: 100%;" onclick="etage2()">
-    </div>
+		<img src="tp/rdc.png" style="width: 100%;" onclick="RDC()">
+		<img src="tp/etage1.png" style="width: 100%;" onclick="etage1()">
+		<img src="tp/etage2.png" style="width: 100%;" onclick="etage2()">
+	</div>
 	<!-- Page qui s'affiche a chaque entrée de batiment -->
 	<div onclick="Layer();logoInsa();">
 		<img id="layer" src="layer.jpg" alt="">
@@ -43,61 +56,27 @@ include '../admin/database.php';
 		<a href="https://www.uphf.fr/insa-hdf"><img id="roundinsa" src="../textures/logoinsa.png" style="width: 100%;"></a>
 	</div>
 
-	<!--
-	<map name="ab3">
-		<area onclick="RDC();" shape="poly" coords="168,64,165,116,246,119,238,65" alt="Couloir" style="display: none;" />
-		<area onclick="etage1();" shape="poly" coords="103,19,77,144,132,143,138,62,115,60,119,19" alt="Couloir" style="display: none;" />
-		<area onclick="etage2();" shape="poly" coords="302,10,321,10,314,150,281,150" alt="Couloir" style="display: none;" />
-	</map>
--->
+	<div id="information" style="display: none;" onclick="information();">
+		<div id="containerInfo">
+			<div id="text" lang="fr">
+				<?php
+				$recupText = $bdd->query('SELECT * FROM text WHERE id="11"');
+				while ($text = $recupText->fetch()) {
+					echo $text['contenu'];
+				}
+				?>
+			</div>
+		</div>
+	</div>
+
+
 
 	<svg id="minimap" version="1.1" style="display: none;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080" onclick="openmap(); arrowUp();">
-		<image width="1920" height="1080" xlink:href="rdc.png"></image> <a xlink:href="#">
-			<rect id="rdc" x="986" y="108" fill="#fff" opacity="0" width="645" height="452" onclick="RDC();"></rect>
-		</a><a xlink:href="#">
-			<rect id="etage1" x="1135" y="130" fill="#fff" opacity="0" width="347" height="660" onclick="etage1();"></rect>
-		</a>
-		<a xlink:href="#">
-			<rect id="etage2" x="172" y="344" fill="#fff" opacity="0" width="1614" height="274" onclick="etage2();"></rect>
-		</a>
+		<image width="1920" height="1080" xlink:href="rdc.png"></image>
 	</svg>
-	<img src="../textures/ArrowUp.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
+	<img src="../textures/arrowup.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
 
 	<div id="maDIV" style="display: none; ">
-	<div class="main">
-            <div class="dropdown_list">
-                <button style="position: absolute;" class="dropdown_button" onclick="show_list()">
-                    Séléctionner votre formation
-                </button>
-
-               <div style="position: absolute; overflow: auto; height: 50%;" id="courses_id" class="courses">
-                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
-                    $('[id*=region_ab2').css('fill', '#aa1d1d');
-                    $('[id*=region_ab1').css('fill', '#aa1d1d');">
-                        Formation Audiovisuel et Multimédia</li>
-
-                    <li>Formation Automatique</li>
-
-                    <li>Formation Cybersécurité</li>
-                    <li>Formation Electronique et Electronique Embarquée</li>
-                    <li>Formation Informatique</li>
-                    <li>Formation Génie Civil</li>
-                    <li>Formation Génie Industriel</li>
-                    <li>Formation Génie Electrique et informatique industrielle</li>
-                    <li>Formation Qualité/Hygiène/Sécruité</li>
-                    <li>Formation Mathématiques</li>
-                    <li>Formation Mécanique et Energétique/ Transports et Energie</li>
-                    <li>Formation Physique/Chimie/Matériaux</li>
-                    <li>Formation Réseaux et Télécommunications</li>
-
-                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
-                    $('[id*=region_gym').css('fill', '#aa1d1d');
-                    $('[id*=region_carpeaux').css('fill', '#aa1d1d');">
-                        Formation STAPS</li>
-
-                </div>
-            </div>
-        </div>
 		<div class="mapAndInfos">
 			<div class="map">
 				<?php include('../ressources/map.svg'); ?>
@@ -113,36 +92,25 @@ include '../admin/database.php';
 
 
 	<script>
-		function ChangeDrapeau() {
-			var image = document.getElementById('drapeau');
-			if (image.src == "http://localhost/stage2022/textures/drapeau_fr.png") {
-				image.src = "http://localhost/stage2022/textures/drapeau_en.png";
+		function information() {
+			var div = document.getElementById("information");
+			if (div.style.display === "none") {
+				div.style.display = "block";
 			} else {
-				image.src = "http://localhost/stage2022/textures/drapeau_fr.png"
+				div.style.display = "none";
 			}
+
 		}
 
 		function changeImage() {
 			var image = document.querySelector("image")
 			if (image.href.animVal == 'rdc.png') {
 				image.setAttribute('href', "etage1.png");
-				document.getElementById("etage1").style.display = 'block';
-				document.getElementById("rdc").style.display = 'none';
-				document.getElementById("etage2").style.display = 'none';
 
 			} else if (image.href.animVal == 'etage1.png') {
 				image.setAttribute('href', "etage2.png");
-				document.getElementById("etage1").style.display = 'none';
-				document.getElementById("rdc").style.display = 'none';
-				document.getElementById("etage2").style.display = 'block';
-
 			} else {
 				image.setAttribute('href', "rdc.png")
-				document.getElementById("rdc").style.display = 'block';
-				document.getElementById("etage1").style.display = 'none';
-				document.getElementById("etage2").style.display = 'none';
-
-
 			}
 		}
 
@@ -165,10 +133,6 @@ include '../admin/database.php';
 			} else {
 				div.style.display = "none";
 			}
-            document.getElementById("etage1").style.display = 'none';
-            document.getElementById("etage2").style.display = 'none';
-
-
 		}
 
 		function arrowUp() {
@@ -256,34 +220,11 @@ include '../admin/database.php';
 					}, 1000);
 				console.log(regionId);
 			});
+			$("#OpenDys").click(function() {
+				$("div").toggleClass("OpenDys-font");
+				$("#containerInfo").toggleClass("containerInfo");
+			});
 		})
-		$('[lang="en"]').hide();
-
-		$('.switch-lang').click(function() {
-			$('[lang="fr"]').toggle();
-			$('[lang="en"]').toggle();
-		});
-
-		$("#OpenDys").click(function() {
-			$("div").toggleClass("OpenDys-font");
-			$("#containerInfo").toggleClass("containerInfo");
-		});
-
-		function show_list() {
-            var courses = document.getElementById("courses_id");
-
-            if (courses.style.display == "block") {
-                courses.style.display = "none";
-            } else {
-                courses.style.display = "block";
-            }
-        }
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown_button')) {
-                document.getElementById('courses_id')
-                    .style.display = "none";
-            }
-        }
 	</script>
 
 
@@ -354,6 +295,12 @@ include '../admin/database.php';
 							this.destroy();
 							setTimeout(() => {
 								point.scene.createScene(scene);
+								TweenLite.to(this.sphere.material, 1, {
+									opacity: 0,
+									onComplete: () => {
+										this.scene.remove(this.sphere)
+									}
+								})
 							}, 1500);
 							point.scene.appear();
 
@@ -435,7 +382,7 @@ include '../admin/database.php';
 			controls.maxDistance = 3;
 			controls.minDistance = 0.9;
 			controls.rotateSpeed = -0.1
-			controls.enableZoom = true
+			controls.enableZoom = false
 			controls.enablePan = false
 			controls.autoRotate = true
 			controls.autoRotateSpeed = 0.1
@@ -444,21 +391,21 @@ include '../admin/database.php';
 			camera.position.set(1, 0, 0)
 			controls.update()
 
-			let s = new Scene('RDC/entreExt.jpg', camera)
-			let sEntreInt = new Scene('RDC/entreInt.jpg', camera)
-			let sCouloirH = new Scene('RDC/couloirHall.jpg', camera)
-			let sCouloirElectronique = new Scene('RDC/couloirElectronique.jpg', camera)
-			let sCouloirContuinite = new Scene('RDC/couloirContinuite.jpg', camera)
-			let sCouloirContuinite1 = new Scene('RDC/couloirContinuite1.jpg', camera)
-			let sCouloirContuinite2 = new Scene('RDC/couloirContinuite2.jpg', camera)
-			let sCouloirContuinite3 = new Scene('RDC/couloirContinuite3.jpg', camera)
-			let sSalleElec = new Scene('RDC/salleElec.jpg', camera)
-			let sSalleReseau = new Scene('RDC/salleReseau.jpg', camera)
-			let sSalleAutomatisme = new Scene('RDC/salleAutomatisme.jpg', camera)
+			let s = new Scene('RDC/entreext.jpg', camera)
+			let sEntreInt = new Scene('RDC/entreint.jpg', camera)
+			let sCouloirH = new Scene('RDC/couloirhall.jpg', camera)
+			let sCouloirElectronique = new Scene('RDC/couloirelectronique.jpg', camera)
+			let sCouloirContuinite = new Scene('RDC/couloircontinuite.jpg', camera)
+			let sCouloirContuinite1 = new Scene('RDC/couloircontinuite1.jpg', camera)
+			let sCouloirContuinite2 = new Scene('RDC/couloircontinuite2.jpg', camera)
+			let sCouloirContuinite3 = new Scene('RDC/couloircontinuite3.jpg', camera)
+			let sSalleElec = new Scene('RDC/salleelec.jpg', camera)
+			let sSalleReseau = new Scene('RDC/sallereseau.jpg', camera)
+			let sSalleAutomatisme = new Scene('RDC/salleautomatisme.jpg', camera)
 			let sModule = new Scene('ap3Module.jpg', camera)
 			let sHall = new Scene('RDC/hall.jpg', camera)
-			let sAdmin1 = new Scene('RDC/Couloiradmin.jpg', camera)
-			let sAdmin2 = new Scene('RDC/CouloirAdmin2.jpg', camera)
+			let sAdmin1 = new Scene('RDC/couloiradmin.jpg', camera)
+			let sAdmin2 = new Scene('RDC/couloiradmin2.jpg', camera)
 
 
 			//Point sur les scène
@@ -472,10 +419,10 @@ include '../admin/database.php';
 				position: new THREE.Vector3(6.480561829892239, 0.4072163438560642, 8.817342667585349),
 				name: '',
 				scene: sModule,
-				image: 'door.png'
+				image: 'spyglasse.png'
 			})
 			sModule.addPoint({
-				position: new THREE.Vector3(-6.968480960407255, -0.14281885786743995, -8.433640051113311),
+				position: new THREE.Vector3(8.96006099773237, 0.3844743680310132, 6.3084118247876315),
 				name: '',
 				scene: s,
 				image: 'door.png'
@@ -614,10 +561,10 @@ include '../admin/database.php';
 			})
 
 			sSalleReseau.addPoint({
-				position: new THREE.Vector3(4.495879682511349, -0.2421017171922418, 9.996190145085208),
+				position: new THREE.Vector3(5.511805140290646, -0.22830642307339805, 9.453931339677597),
 				name: '',
 				scene: sCouloirElectronique,
-				image: 'door.png'
+				image: 'arrowright.png'
 			})
 			sCouloirContuinite1.addPoint({
 				position: new THREE.Vector3(10.864436713107068, 0.5052843449541481, -1.1243647515393767),
@@ -635,7 +582,7 @@ include '../admin/database.php';
 
 			//Abel de pujol 3 / Etage 1 ---------------------------- MANQUE DES PHOTOS ! A NE PAS OUBLIER
 			//Déclaration des scène
-			let sEtage1Esca = new Scene('1ETAGE/Esca.jpg', camera)
+			let sEtage1Esca = new Scene('1ETAGE/esca.jpg', camera)
 
 			//Point sur les scène
 			sHall.addPoint({
@@ -657,7 +604,7 @@ include '../admin/database.php';
 			let sEtageSemiEsca = new Scene('SEMI/esca.jpg', camera)
 			let sEtageSemiCouloir109 = new Scene('SEMI/couloir109.jpg', camera)
 			let sEtageSemiCouloir110 = new Scene('SEMI/couloir110.jpg', camera)
-			let sEtageSemiSalle111 = new Scene('SEMI/salleInfo111.jpg', camera)
+			let sEtageSemiSalle111 = new Scene('SEMI/salleinfo111.jpg', camera)
 
 			//Point sur les scène
 			sEtage1Esca.addPoint({
@@ -712,9 +659,9 @@ include '../admin/database.php';
 			//Abel de pujol 3 / Etage 1.5
 			//Déclaration des scène
 			let sEtage2Esca = new Scene('2ETAGE/esca.jpg', camera)
-			let sEtage2Couloir201 = new Scene('2ETAGE/couloir201.jpg', camera)
+			let sEtage2Couloir201 = new Scene('2etage/couloir201.jpg', camera)
 			let sEtage2Couloir203 = new Scene('2ETAGE/couloir203.jpg', camera)
-			let sEtage2Salle203 = new Scene('2ETAGE/salleInfo203.jpg', camera)
+			let sEtage2Salle203 = new Scene('2ETAGE/salleinfo203.jpg', camera)
 
 			//Point sur les scène
 			sEtageSemiEsca.addPoint({
@@ -766,11 +713,18 @@ include '../admin/database.php';
 				image: 'rond.png'
 			})
 
+			s.addPoint({
+				position: new THREE.Vector3(-8.263998285248835, -1.1662377744152068, -7.082616160453021),
+				name: 'Information',
+				scene: false,
+				image: 'panneau.png'
+			})
+
 			s.createScene(scene)
 			s.appear()
 
 			window.RDC = function() {
-				sCouloirH.createScene(scene)
+				sEntreInt.createScene(scene)
 				s.destroy()
 				sEntreInt.destroy()
 				sCouloirH.destroy()
@@ -782,6 +736,11 @@ include '../admin/database.php';
 				sSalleElec.destroy()
 				sSalleReseau.destroy()
 				sSalleAutomatisme.destroy()
+				sModule.destroy()
+				sHall.destroy()
+				sAdmin1.destroy()
+				sAdmin2.destroy()
+				sEtage1Esca.destroy()
 				sEtageSemiEsca.destroy()
 				sEtageSemiCouloir109.destroy()
 				sEtageSemiCouloir110.destroy()
@@ -790,7 +749,6 @@ include '../admin/database.php';
 				sEtage2Couloir201.destroy()
 				sEtage2Couloir203.destroy()
 				sEtage2Salle203.destroy()
-				sEtage1Esca.destroy()
 			}
 			window.etage1 = function() {
 				sEtage1Esca.createScene(scene)
@@ -805,6 +763,11 @@ include '../admin/database.php';
 				sSalleElec.destroy()
 				sSalleReseau.destroy()
 				sSalleAutomatisme.destroy()
+				sModule.destroy()
+				sHall.destroy()
+				sAdmin1.destroy()
+				sAdmin2.destroy()
+				sEtage1Esca.destroy()
 				sEtageSemiEsca.destroy()
 				sEtageSemiCouloir109.destroy()
 				sEtageSemiCouloir110.destroy()
@@ -813,7 +776,6 @@ include '../admin/database.php';
 				sEtage2Couloir201.destroy()
 				sEtage2Couloir203.destroy()
 				sEtage2Salle203.destroy()
-				sEtage1Esca.destroy()
 			}
 			window.etage2 = function() {
 				sEtage2Esca.createScene(scene)
@@ -828,6 +790,11 @@ include '../admin/database.php';
 				sSalleElec.destroy()
 				sSalleReseau.destroy()
 				sSalleAutomatisme.destroy()
+				sModule.destroy()
+				sHall.destroy()
+				sAdmin1.destroy()
+				sAdmin2.destroy()
+				sEtage1Esca.destroy()
 				sEtageSemiEsca.destroy()
 				sEtageSemiCouloir109.destroy()
 				sEtageSemiCouloir110.destroy()
@@ -836,7 +803,6 @@ include '../admin/database.php';
 				sEtage2Couloir201.destroy()
 				sEtage2Couloir203.destroy()
 				sEtage2Salle203.destroy()
-				sEtage1Esca.destroy()
 			}
 
 			renderer.setSize(window.innerWidth, window.innerHeight)
@@ -880,6 +846,11 @@ include '../admin/database.php';
 					if (intersect.object.name === "Info") {
 						intersect.object.onClick()
 						Info()
+					}
+
+					if (intersect.object.name === "Information") {
+						intersect.object.onClick()
+						information()
 					}
 
 				})

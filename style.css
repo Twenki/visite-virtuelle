@@ -9,7 +9,7 @@
 body {
     font-family: sans-serif;
     overflow-x: hidden;
-    background: url('ressources/couv.jpg') no-repeat center center fixed;
+    background: url('ressources/background.jpg') no-repeat center center fixed;
     background-size: cover;
     font-weight: bold;
 }
@@ -27,8 +27,8 @@ body {
 
 .container-first {
     position: absolute;
-    top: 88%;
-    right: 10%;
+    top: 85%;
+    left: 8%;
 }
 
 h1 {

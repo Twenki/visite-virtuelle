@@ -131,9 +131,8 @@ hr {
 
 /* Make the image responsive */
 .container img {
-    width: 6%;
     height: auto;
-    padding-left: 10%;
+    padding-left: 2%;
 
 }
 
@@ -217,7 +216,11 @@ hr {
 #fluo,
 #absorption,
 #Cuve,
-#Thermique {
+#Thermique,
+#premat,
+#protool,
+#son,
+#video {
     position: absolute;
     background-image: url("../ressources/fondinfo.jpg");
     background-color: #0979ad;
@@ -346,6 +349,7 @@ hr {
 .zoom {
     transition: transform .2s;
     width: 50%;
+    margin-left: 2%;
     height: auto;
     margin: 0 auto;
 }
@@ -370,7 +374,11 @@ hr {
     #fluo,
     #absorption,
     #Cuve,
-    #Thermique {
+    #Thermique,
+    #premat,
+    #protool,
+    #son,
+    #video {
         height: 100%;
     }
 

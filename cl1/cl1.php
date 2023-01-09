@@ -16,15 +16,21 @@ include '../admin/database.php';
 
 
 <body>
+	<nav>
+		<ul>
+			<img src="RDC/entreext.jpg" style="width: 10%;" onclick="rdcCl1()">
+			<img src="couloirAmphi.jpg" style="width: 10%;" onclick="rdcCl2()">
+			<img src="RDC/entrecl3.jpg" style="width: 10%;" onclick="rdcCl3()">
+		</ul>
+	</nav>
 	<!-- Barre de tache en bas de l'écran -->
 	<div class="container">
 		<div class="toolbar">
 			<a href="../carrousel/index.html"><img class="accueil" src="../textures/accueil.png" alt="accueil"></a>
-			<a href="#"><img src="../ressources/iconMap.png" alt="Map" onclick="maFonction(); logoInsa();"></a>
+			<a href="#"><img src="../ressources/iconmap.png" alt="Map" onclick="maFonction(); logoInsa();"></a>
 			<a href="#"><img src="../textures/minimap.png" name="minimap" onclick="openmap(); arrowUp();"></a>
-			<img src="../textures/drapeau_fr.png" id="drapeau" class="switch-lang" onclick="ChangeDrapeau();">
 			<img src="../textures/dyslexie.png" id="OpenDys" class="switch-font">
-			<a href="#"><img src="../textures/fullscreenOn.png" name="FullScreen" onclick="fullscreen();"></a>
+			<a href="#"><img src="../textures/fullscreenon.png" name="FullScreen" onclick="fullscreen();"></a>
 			<hr />
 		</div>
 	</div>
@@ -35,9 +41,7 @@ include '../admin/database.php';
 		<img src="tp/cl3.png" style="width: 100%;" onclick="rdcCl3()">
 	</div>
 	<!--Video-->
-	<div id="video_directeur" onclick="video_directeur();">
-		<iframe src="https://pod.uphf.fr/video/2286-presentation-insa/?is_iframe=true" width="80%" height="80%" allowfullscreen></iframe>
-	</div>
+	
 
 	<!-- Logo Insa en haut a gauche -->
 	<div id="logoinsa" style="display: block;">
@@ -45,97 +49,37 @@ include '../admin/database.php';
 	</div>
 
 	<div id="information" style="display: none;" onclick="information();">
-        <div id="containerInfo">
-            <div id="text" lang="fr">
-                <?php
-                $recupText = $bdd->query('SELECT * FROM text WHERE id="8"');
-                while ($text = $recupText->fetch()) {
-                    echo $text['contenu'];
-                }
-                ?>
-            </div>
-            <div id="text" lang="en">
-                <?php
-                $recupText = $bdd->query('SELECT * FROM texten WHERE id="8"');
-                while ($text = $recupText->fetch()) {
-                    echo $text['contenu'];
-                }
-                ?>
-            </div>
-        </div>
-    </div>
+		<div id="containerInfo">
+			<div id="text" lang="fr">
+				<?php
+				$recupText = $bdd->query('SELECT * FROM text WHERE id="8"');
+				while ($text = $recupText->fetch()) {
+					echo $text['contenu'];
+				}
+				?>
+			</div>
+		</div>
+	</div>
 	<div id="information2" style="display: none;" onclick="information2();">
-        <div id="containerInfo">
-            <div id="text" lang="fr">
-                <?php
-                $recupText = $bdd->query('SELECT * FROM text WHERE id="9"');
-                while ($text = $recupText->fetch()) {
-                    echo $text['contenu'];
-                }
-                ?>
-            </div>
-            <div id="text" lang="en">
-                <?php
-                $recupText = $bdd->query('SELECT * FROM texten WHERE id="9"');
-                while ($text = $recupText->fetch()) {
-                    echo $text['contenu'];
-                }
-                ?>
-            </div>
-        </div>
-    </div>
+		<div id="containerInfo">
+			<div id="text" lang="fr">
+				<?php
+				$recupText = $bdd->query('SELECT * FROM text WHERE id="9"');
+				while ($text = $recupText->fetch()) {
+					echo $text['contenu'];
+				}
+				?>
+			</div>
+		</div>
+	</div>
 
-	<!--
-	<map name="map">
-		<area id="rdcCl1" onclick="Enabled=false;rdcCl1();" shape="poly" coords="141,166,184,165,187,137,336,137,332,86,303,84,302,49,274,48,275,107,209,106,232,49,160,48,167,9,150,7,130,88,141,90,130,131,147,134" alt="Couloir" style="display: none;" />
-		<area onclick="rdcCl3();" shape="poly" coords="110,43,268,44,273,106,177,108,174,125,57,124" alt="Couloir" style="display: none;" />
-	</map>
-		-->
 	<svg id="minimap" version="1.1" style="display: none;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080" onclick="openmap(); arrowUp();">
-		<image width="1920" height="1080" xlink:href="rdc.png"></image> <a xlink:href="#">
-			<rect id="rdc" x="341" y="246" fill="#fff" opacity="0" width="1134" height="600" onclick="rdcCl1();;"></rect>
-		</a><a xlink:href="#">
-			<rect id="cl3" x="324" y="184" fill="#fff" opacity="0" width="1296" height="520" onclick="rdcCl3();;"></rect>
-		</a>
+		<image width="1920" height="1080" xlink:href="rdc.png"></image> 
 	</svg>
-	<img src="../textures/ArrowUp.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
+	<img src="../textures/arrowup.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
 
 	<!-- Grande carte du campus -->
 	<div id="maDIV" style="display: none; ">
-	<div class="main">
-            <div class="dropdown_list">
-                <button style="position: absolute;" class="dropdown_button" onclick="show_list()">
-                    Séléctionner votre formation
-                </button>
-
-				<div style="position: absolute; overflow: auto; height: 50%;" id="courses_id" class="courses">
-                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
-                    $('[id*=region_ab2').css('fill', '#aa1d1d');
-                    $('[id*=region_ab1').css('fill', '#aa1d1d');">
-                        Formation Audiovisuel et Multimédia</li>
-
-                    <li>Formation Automatique</li>
-
-                    <li>Formation Cybersécurité</li>
-                    <li>Formation Electronique et Electronique Embarquée</li>
-                    <li>Formation Informatique</li>
-                    <li>Formation Génie Civil</li>
-                    <li>Formation Génie Industriel</li>
-                    <li>Formation Génie Electrique et informatique industrielle</li>
-                    <li>Formation Qualité/Hygiène/Sécruité</li>
-                    <li>Formation Mathématiques</li>
-                    <li>Formation Mécanique et Energétique/ Transports et Energie</li>
-                    <li>Formation Physique/Chimie/Matériaux</li>
-                    <li>Formation Réseaux et Télécommunications</li>
-
-                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
-                    $('[id*=region_gym').css('fill', '#aa1d1d');
-                    $('[id*=region_carpeaux').css('fill', '#aa1d1d');">
-                        Formation STAPS</li>
-
-                </div>
-            </div>
-        </div>
 		<div class="mapAndInfos">
 			<div class="map">
 				<?php include('../ressources/map.svg'); ?>
@@ -152,43 +96,31 @@ include '../admin/database.php';
 
 	<script>
 		function information() {
-            var div = document.getElementById("information");
-            if (div.style.display === "none") {
-                div.style.display = "block";
-            } else {
-                div.style.display = "none";
-            }
-
-        }
-		function information2() {
-            var div = document.getElementById("information2");
-            if (div.style.display === "none") {
-                div.style.display = "block";
-            } else {
-                div.style.display = "none";
-            }
-
-        }
-		function ChangeDrapeau() {
-			var image = document.getElementById('drapeau');
-			if (image.src == "http://localhost/stage2022/textures/drapeau_fr.png") {
-				image.src = "http://localhost/stage2022/textures/drapeau_en.png";
+			var div = document.getElementById("information");
+			if (div.style.display === "none") {
+				div.style.display = "block";
 			} else {
-				image.src = "http://localhost/stage2022/textures/drapeau_fr.png"
+				div.style.display = "none";
 			}
+
+		}
+
+		function information2() {
+			var div = document.getElementById("information2");
+			if (div.style.display === "none") {
+				div.style.display = "block";
+			} else {
+				div.style.display = "none";
+			}
+
 		}
 
 		function changeImage() {
 			var image = document.querySelector("image")
 			if (image.href.animVal == 'rdc.png') {
 				image.setAttribute('href', "rdccl3.png");
-				document.getElementById("rdc").style.display = 'none';
-				document.getElementById("cl3").style.display = 'block';
-
 			} else {
 				image.setAttribute('href', "rdc.png")
-				document.getElementById("rdc").style.display = 'block';
-				document.getElementById("cl3").style.display = 'none';
 			}
 		}
 
@@ -209,7 +141,6 @@ include '../admin/database.php';
 			} else {
 				div.style.display = "none";
 			}
-			document.getElementById("cl3").style.display = 'none'
 		}
 
 		function maFonction() {
@@ -222,15 +153,7 @@ include '../admin/database.php';
 
 		}
 
-		function video_directeur() {
-			var div = document.getElementById("video_directeur");
-			if (div.style.display === "none") {
-				div.style.display = "block";
-			} else {
-				div.style.display = "none";
-			}
-			document.getElementById('video_directeur').parentNode.removeChild(document.getElementById('video_directeur'));
-		}
+		
 
 		function logoInsa() {
 			var div = document.getElementById("logoinsa");
@@ -298,34 +221,12 @@ include '../admin/database.php';
 					}, 1000);
 				console.log(regionId);
 			});
+			$("#OpenDys").click(function() {
+                $("div").toggleClass("OpenDys-font");
+                $("#containerInfo").toggleClass("containerInfo");
+            });
 		})
-		$('[lang="en"]').hide();
-
-		$('.switch-lang').click(function() {
-			$('[lang="fr"]').toggle();
-			$('[lang="en"]').toggle();
-		});
-
-		$("#OpenDys").click(function() {
-			$("div").toggleClass("OpenDys-font");
-			$("#containerInfo").toggleClass("containerInfo");
-		});
-
-		function show_list() {
-            var courses = document.getElementById("courses_id");
-
-            if (courses.style.display == "block") {
-                courses.style.display = "none";
-            } else {
-                courses.style.display = "block";
-            }
-        }
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown_button')) {
-                document.getElementById('courses_id')
-                    .style.display = "none";
-            }
-        }
+		
 	</script>
 
 
@@ -396,6 +297,12 @@ include '../admin/database.php';
 							this.destroy();
 							setTimeout(() => {
 								point.scene.createScene(scene);
+								TweenLite.to(this.sphere.material, 1, {
+                                    opacity: 0,
+                                    onComplete: () => {
+                                        this.scene.remove(this.sphere)
+                                    }
+                                })
 							}, 1500);
 							point.scene.appear();
 
@@ -475,7 +382,7 @@ include '../admin/database.php';
 			controls.maxDistance = 3;
 			controls.minDistance = 0.9;
 			controls.rotateSpeed = -0.1
-			controls.enableZoom = true
+			controls.enableZoom = false
 			controls.enablePan = false
 			controls.autoRotate = true
 			controls.autoRotateSpeed = 0.1
@@ -484,25 +391,25 @@ include '../admin/database.php';
 			camera.position.set(-1, 0, 0)
 			controls.update()
 
-			let s = new Scene('RDC/entrerInt.jpg', camera)
-			let sCl3Ext = new Scene('RDC/entreExt.jpg', camera)
+			let s = new Scene('RDC/entrerint.jpg', camera)
+			let sCl3Ext = new Scene('RDC/entreext.jpg', camera)
 			let sHall = new Scene('RDC/hall.jpg', camera)
-			let sCouloirEntrer = new Scene('RDC/couloirEntrer.jpg', camera)
-			let sCouloirFablab = new Scene('RDC/couloirFablab.jpg', camera)
-			let sSalleTp8 = new Scene('RDC/salleTP8.jpg', camera)
-			let sSalleTp1 = new Scene('RDC/salleTP1.jpg', camera)
-			let sCouloirTp = new Scene('RDC/couloirTp.jpg', camera)
-			let sSalleTp2 = new Scene('RDC/salleTP2.jpg', camera)
-			let sentreCL3 = new Scene('RDC/entreCL3.jpg', camera)
-			let sEntreInt = new Scene('RDC/entreInt.jpg', camera)
-			let sBasEscalier = new Scene('RDC/basEscalier.jpg', camera)
-			let sHallCl3 = new Scene('RDC/Hallcl3.jpg', camera)
-			let sEscalierHall = new Scene('RDC/escalierHall.jpg', camera)
-			let sCouloirPft = new Scene('RDC/couloirPft.jpg', camera)
-			let sPft1 = new Scene('RDC/PFT.jpg', camera)
-			let sPft2 = new Scene('RDC/PFT2.jpg', camera)
-			let spft3 = new Scene('RDC/PFT3.jpg', camera)
-			let sPft4 = new Scene('RDC/PFT4.jpg', camera)
+			let sCouloirEntrer = new Scene('RDC/couloirentrer.jpg', camera)
+			let sCouloirFablab = new Scene('RDC/couloirfablab.jpg', camera)
+			let sSalleTp8 = new Scene('RDC/salletp8.jpg', camera)
+			let sSalleTp1 = new Scene('RDC/salletp1.jpg', camera)
+			let sCouloirTp = new Scene('RDC/couloirtp.jpg', camera)
+			let sSalleTp2 = new Scene('RDC/salletp2.jpg', camera)
+			let sentreCL3 = new Scene('RDC/entrecl3.jpg', camera)
+			let sEntreInt = new Scene('RDC/entreint.jpg', camera)
+			let sBasEscalier = new Scene('RDC/basescalier.jpg', camera)
+			let sHallCl3 = new Scene('RDC/hallcl3.jpg', camera)
+			let sEscalierHall = new Scene('RDC/escalierhall.jpg', camera)
+			let sCouloirPft = new Scene('RDC/couloirpft.jpg', camera)
+			let sPft1 = new Scene('RDC/pft.jpg', camera)
+			let sPft2 = new Scene('RDC/pft2.jpg', camera)
+			let spft3 = new Scene('RDC/pft3.jpg', camera)
+			let sPft4 = new Scene('RDC/pft4.jpg', camera)
 			let scouloir = new Scene('couloirAmphi.jpg', camera)
 			let sAmphi1 = new Scene('amphi.jpg', camera)
 			let sAmphi2 = new Scene('amphi2.jpg', camera)
@@ -528,17 +435,17 @@ include '../admin/database.php';
 				image: 'rond.png'
 			})
 			sEntreCl1.addPoint({
-                position: new THREE.Vector3(1.4279212315413545, -2.547232239045808, 10.547495060755557),
-                name: 'Information',
-                scene: false,
-                image: 'panneau.png'
-            })
+				position: new THREE.Vector3(1.4279212315413545, -2.547232239045808, 10.547495060755557),
+				name: 'Information',
+				scene: false,
+				image: 'panneau.png'
+			})
 			sCl3Ext.addPoint({
-                position: new THREE.Vector3(9.178916706441207, -1.2411519005950296, 5.887143278198129),
-                name: 'Information 2',
-                scene: false,
-                image: 'panneau.png'
-            })
+				position: new THREE.Vector3(9.178916706441207, -1.2411519005950296, 5.887143278198129),
+				name: 'Information 2',
+				scene: false,
+				image: 'panneau.png'
+			})
 			sHall.addPoint({
 				position: new THREE.Vector3(-8.960547002913097, -1.694405849104562, -6.110965305616871),
 				name: '',
@@ -706,7 +613,7 @@ include '../admin/database.php';
 				scene: sBasEscalier,
 				image: 'rond.png'
 			})
-			
+
 			sHallCl3.addPoint({
 				position: new THREE.Vector3(-10.292584579648361, -1.8971124473360133, 3.1832144974540144),
 				name: '',
@@ -714,7 +621,7 @@ include '../admin/database.php';
 				image: 'rond.png'
 			})
 			sHallCl3.addPoint({
-				position: new THREE.Vector3(-6.872723931012591,-0.5258852250689572, 8.487998076413819),
+				position: new THREE.Vector3(-6.872723931012591, -0.5258852250689572, 8.487998076413819),
 				name: '',
 				scene: sPft4,
 				image: 'door.png'
@@ -812,11 +719,11 @@ include '../admin/database.php';
 
 			//Abel de Claudin 1 / Rez de chaussé
 			//Déclaration des scène
-			let sEtage1CouloirConseil = new Scene('1ETAGE/couloirSalleConseil.jpg', camera)
-			let sEtage1CouloirCentral = new Scene('1ETAGE/couloirCentral.jpg', camera)
-			let sEtage1CouloirPLP = new Scene('1ETAGE/couloirPLP.jpg', camera)
-			let sEtage1PLP = new Scene('1ETAGE/PLP.jpg', camera)
-			let sEtage1Conseil = new Scene('1ETAGE/Conseil.jpg', camera)
+			let sEtage1CouloirConseil = new Scene('1ETAGE/couloirsalleconseil.jpg', camera)
+			let sEtage1CouloirCentral = new Scene('1ETAGE/couloircentral.jpg', camera)
+			let sEtage1CouloirPLP = new Scene('1ETAGE/couloirplp.jpg', camera)
+			let sEtage1PLP = new Scene('1ETAGE/plp.jpg', camera)
+			let sEtage1Conseil = new Scene('1ETAGE/conseil.jpg', camera)
 
 			sEscalierHall.addPoint({
 				position: new THREE.Vector3(-10.760719735121114, 1.642134783924429, 1.0423107538619056),
@@ -888,7 +795,7 @@ include '../admin/database.php';
 			window.rdcCl1 = function() {
 				sEntreCl1.createScene(scene)
 				s.destroy()
-				sEntreCl1.destroy()
+				sCl3Ext.destroy()
 				sHall.destroy()
 				sCouloirEntrer.destroy()
 				sCouloirFablab.destroy()
@@ -904,9 +811,12 @@ include '../admin/database.php';
 				sCouloirPft.destroy()
 				sPft1.destroy()
 				sPft2.destroy()
+				spft3.destroy()
+				sPft4.destroy()
 				scouloir.destroy()
 				sAmphi1.destroy()
 				sAmphi2.destroy()
+				sEntreCl1.destroy()
 				sEsca.destroy()
 				sEtage1CouloirConseil.destroy()
 				sEtage1CouloirCentral.destroy()
@@ -917,7 +827,7 @@ include '../admin/database.php';
 			window.rdcCl2 = function() {
 				scouloir.createScene(scene)
 				s.destroy()
-				sEntreCl1.destroy()
+				sCl3Ext.destroy()
 				sHall.destroy()
 				sCouloirEntrer.destroy()
 				sCouloirFablab.destroy()
@@ -933,9 +843,12 @@ include '../admin/database.php';
 				sCouloirPft.destroy()
 				sPft1.destroy()
 				sPft2.destroy()
+				spft3.destroy()
+				sPft4.destroy()
 				scouloir.destroy()
 				sAmphi1.destroy()
 				sAmphi2.destroy()
+				sEntreCl1.destroy()
 				sEsca.destroy()
 				sEtage1CouloirConseil.destroy()
 				sEtage1CouloirCentral.destroy()
@@ -946,7 +859,7 @@ include '../admin/database.php';
 			window.rdcCl3 = function() {
 				sCl3Ext.createScene(scene)
 				s.destroy()
-				sEntreCl1.destroy()
+				sCl3Ext.destroy()
 				sHall.destroy()
 				sCouloirEntrer.destroy()
 				sCouloirFablab.destroy()
@@ -962,9 +875,12 @@ include '../admin/database.php';
 				sCouloirPft.destroy()
 				sPft1.destroy()
 				sPft2.destroy()
+				spft3.destroy()
+				sPft4.destroy()
 				scouloir.destroy()
 				sAmphi1.destroy()
 				sAmphi2.destroy()
+				sEntreCl1.destroy()
 				sEsca.destroy()
 				sEtage1CouloirConseil.destroy()
 				sEtage1CouloirCentral.destroy()
@@ -1016,13 +932,13 @@ include '../admin/database.php';
 						Info()
 					}
 					if (intersect.object.name === "Information") {
-                        intersect.object.onClick()
-                        information()
-                    }
+						intersect.object.onClick()
+						information()
+					}
 					if (intersect.object.name === "Information 2") {
-                        intersect.object.onClick()
-                        information2()
-                    }
+						intersect.object.onClick()
+						information2()
+					}
 
 				})
 

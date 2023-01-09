@@ -14,17 +14,24 @@ include '../admin/database.php';
     <link rel="stylesheet" href="../css/visite.css">
 </head>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HYLJZEMJB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-7HYLJZEMJB');
+</script>
 <body>
     <!-- Barre de tache en bas de l'écran -->
     <div class="container">
         <div class="toolbar">
             <a href="../carrousel/index.html"><img class="accueil" src="../textures/accueil.png" alt="accueil"></a>
-            <a href="#"><img src="../ressources/iconMap.png" alt="Map" onclick="maFonction(); logoInsa();"></a>
+            <a href="#"><img src="../ressources/iconmap.png" alt="Map" onclick="maFonction(); logoInsa();"></a>
             <a href="#"><img src="../textures/minimap.png" name="minimap" onclick="openmap(); arrowUp();"></a>
-            <img src="../textures/drapeau_fr.png" id="drapeau" class="switch-lang" onclick="ChangeDrapeau(); ">
             <img src="../textures/dyslexie.png" id="OpenDys" class="switch-font">
-            <a href="#"><img src="../textures/fullscreenOn.png" name="FullScreen" onclick="fullscreen();"></a>
+            <a href="#"><img src="../textures/fullscreenon.png" name="FullScreen" onclick="fullscreen();"></a>
             <hr />
         </div>
     </div>
@@ -42,44 +49,10 @@ include '../admin/database.php';
     <svg id="minimap" version="1.1" style="display: none;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080" onclick="openmap(); arrowUp();">
         <image width="1920" height="1080" xlink:href="rdc.png"></image>
     </svg>
-    <img src="../textures/ArrowUp.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
+    <img src="../textures/arrowup.png" id="arrowUp" onclick="changeImage()" style="display: none;" />
 
 
     <div id="maDIV" style="display: none; ">
-        <div class="main">
-            <div class="dropdown_list">
-                <button style="position: absolute;" class="dropdown_button" onclick="show_list()">
-                    Séléctionner votre formation
-                </button>
-
-                <div style="position: absolute; overflow: auto; height: 50%;" id="courses_id" class="courses">
-                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
-                    $('[id*=region_ab2').css('fill', '#aa1d1d');
-                    $('[id*=region_ab1').css('fill', '#aa1d1d');">
-                        Formation Audiovisuel et Multimédia</li>
-
-                    <li>Formation Automatique</li>
-
-                    <li>Formation Cybersécurité</li>
-                    <li>Formation Electronique et Electronique Embarquée</li>
-                    <li>Formation Informatique</li>
-                    <li>Formation Génie Civil</li>
-                    <li>Formation Génie Industriel</li>
-                    <li>Formation Génie Electrique et informatique industrielle</li>
-                    <li>Formation Qualité/Hygiène/Sécruité</li>
-                    <li>Formation Mathématiques</li>
-                    <li>Formation Mécanique et Energétique/ Transports et Energie</li>
-                    <li>Formation Physique/Chimie/Matériaux</li>
-                    <li>Formation Réseaux et Télécommunications</li>
-
-                    <li onclick="$('[id*=region_').css('fill', '#a0a0a0a0');
-                    $('[id*=region_gym').css('fill', '#aa1d1d');
-                    $('[id*=region_carpeaux').css('fill', '#aa1d1d');">
-                        Formation STAPS</li>
-
-                </div>
-            </div>
-        </div>
         <div class="mapAndInfos">
             <div class="map">
                 <?php include('../ressources/map.svg'); ?>
@@ -228,33 +201,12 @@ include '../admin/database.php';
                 console.log(regionId);
             });
         })
-        $('[lang="en"]').hide();
-
-        $('.switch-lang').click(function() {
-            $('[lang="fr"]').toggle();
-            $('[lang="en"]').toggle();
-        });
 
         $("#OpenDys").click(function() {
             $("div").toggleClass("OpenDys-font");
             $("#containerInfo").toggleClass("containerInfo");
         });
 
-        function show_list() {
-            var courses = document.getElementById("courses_id");
-
-            if (courses.style.display == "block") {
-                courses.style.display = "none";
-            } else {
-                courses.style.display = "block";
-            }
-        }
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown_button')) {
-                document.getElementById('courses_id')
-                    .style.display = "none";
-            }
-        }
     </script>
 
     <script>
@@ -324,6 +276,12 @@ include '../admin/database.php';
                             this.destroy();
                             setTimeout(() => {
                                 point.scene.createScene(scene);
+                                TweenLite.to(this.sphere.material, 1, {
+                                    opacity: 0,
+                                    onComplete: () => {
+                                        this.scene.remove(this.sphere)
+                                    }
+                                }) 
                             }, 1500);
                             point.scene.appear();
 
@@ -404,7 +362,7 @@ include '../admin/database.php';
             controls.maxDistance = 3;
             controls.minDistance = 0.9;
             controls.rotateSpeed = -0.1
-            controls.enableZoom = true
+            controls.enableZoom = false
             controls.enablePan = false
             controls.autoRotate = true
             controls.autoRotateSpeed = 0.1
@@ -415,9 +373,9 @@ include '../admin/database.php';
 
             let s = new Scene('hall.jpg', camera)
             let sCouloir = new Scene('couloir.jpg', camera)
-            let sSalleMicroscope = new Scene('SalleMicroscopeBaleyage2.jpg', camera)
-            let sRobotique = new Scene('salleRobotique.jpg', camera)
-            let sScience = new Scene('salleScience.jpg', camera)
+            let sSalleMicroscope = new Scene('sallemicroscopebaleyage2.jpg', camera)
+            let sRobotique = new Scene('sallerobotique.jpg', camera)
+            let sScience = new Scene('sallescience.jpg', camera)
             let sVoiture = new Scene('voiture.jpg', camera)
             let sAvantDerniere = new Scene('avantderniere.jpg', camera)
             let sDerniereSalle = new Scene('dernieresalle.jpg', camera)
