@@ -494,7 +494,7 @@ Tout est expliqué dessus
 ## Demo
 
 https://www.flexclip.com/fr/share/22329396c0808d3424536d9e4ca99dd51e3394b.html
-![](https://github.com/Twenki/visite-virtuelle/blob/master/gif.mp4)
+![](https://github.com/Twenki/visite-virtuelle/blob/master/gif.gif)
 
 
 ## Remerciement
