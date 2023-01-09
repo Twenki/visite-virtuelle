@@ -500,7 +500,7 @@ https://www.flexclip.com/fr/share/22329396c0808d3424536d9e4ca99dd51e3394b.html
 ## Remerciement
 Pour l'aide qu'il m'ont apporté durant tout le long du projet (que ce soit prise de vue, création d'image, conseils et autre..)
  - Severine Masi
- - Virgile depres
+ - Virgile Depres
 
 
 ## Authors
